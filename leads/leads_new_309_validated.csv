@@ -1,0 +1,619 @@
+id,company_name,company_sector,company_size_est,city,decision_maker_name,title,linkedin_url,email_guess,confidence,notes,email_status,email_valid
+1,SEON Technologies,Fintech / Fraud Prevention,50-100,Budapest,Tamás Kádár,CEO & Co-founder,https://www.linkedin.com/in/tomkadar/,tamas.kadar@seon.io,HIGH,Confirmed founder. Forbes 30U30 Europe.,MX_OK,YES
+2,SEON Technologies,Fintech / Fraud Prevention,50-100,Budapest,Bence Jendruszák,Co-founder & CCO,https://www.linkedin.com/in/jendruszak/,bence.jendruszak@seon.io,HIGH,Confirmed co-founder.,MX_OK,YES
+3,Turbine.ai,HealthTech / AI Drug Discovery,30-50,Budapest,Szabolcs Nagy,CEO & Co-founder,https://www.linkedin.com/in/szabinagy/,szabolcs.nagy@turbine.ai,HIGH,Forbes 2025 list. AI drug simulation.,MX_OK,YES
+4,Turbine.ai,HealthTech / AI Drug Discovery,30-50,Budapest,Kristóf Szalay,CTO & Co-founder,,kristof.szalay@turbine.ai,HIGH,Co-founder listed in Forbes 2025.,MX_OK,YES
+5,Axoflow,IT / Log Management SaaS,20-40,Budapest,Balázs Scheidler,CEO & Co-founder,,balazs.scheidler@axoflow.com,MEDIUM,"Ex-Balabit founder, $10.2M raised.",MX_OK,YES
+6,Axoflow,IT / Log Management SaaS,20-40,Budapest,Ferenc Hernádi,Co-founder,,ferenc.hernadi@axoflow.com,MEDIUM,Co-founder of Axoflow.,MX_OK,YES
+7,Captiwate,SaaS / Sales Engagement,10-30,Budapest,Berecz Krisztián,CEO & Co-founder,,krisztian.berecz@captiwate.com,HIGH,"$600K pre-seed, ex-SEON.",MX_OK,YES
+8,Captiwate,SaaS / Sales Engagement,10-30,Budapest,Illés Apród,Co-founder & CPO,,aprod.illes@captiwate.com,HIGH,"Co-founder, ex-SEON.",MX_OK,YES
+9,OptiMonk,SaaS / CRO E-commerce,50-100,Budapest,Csaba Zajdó,CEO & Co-founder,https://www.linkedin.com/in/csabazajdo/,csaba.zajdo@optimonk.com,HIGH,Also co-founded Innonic. Ex-Shoprenter.,MX_OK,YES
+10,OptiMonk,SaaS / CRO E-commerce,50-100,Budapest,Gábor Lévai,Co-founder & CMO,,gabor.levai@optimonk.com,MEDIUM,Co-founder at OptiMonk.,MX_OK,YES
+11,Avatao,IT / Security Training SaaS,30-50,Budapest,Márk Fenyő,CEO & Co-founder,,mark.fenyo@avatao.com,HIGH,"500.co, SpeedInvest backed.",MX_OK,YES
+12,Avatao,IT / Security Training SaaS,30-50,Budapest,Gábor Pék,CTO & Co-founder,,gabor.pek@avatao.com,HIGH,"IT security expert, co-founder.",MX_OK,YES
+13,Cursor Insight,AI / Biometrics SaaS,30-50,Budapest,Tamás Zelczer,CEO & Co-founder,,tamas.zelczer@cursorinsight.com,HIGH,"SigWiComp winner, banking biometrics.",MX_OK,YES
+14,Cursor Insight,AI / Biometrics SaaS,30-50,Budapest,Gergely Hanczár,Head of R&D / Co-founder,,gergely.hanczar@cursorinsight.com,HIGH,"PhD, ELTE, biometrics research.",MX_OK,YES
+15,Kodesage,AI / Code Documentation,10-20,Budapest,Dombi Gergely,CEO & Co-founder,,gergely.dombi@kodesage.ai,HIGH,Forbes 2025 #9. $2.3M seed Portfolion.,MX_OK,YES
+16,Kodesage,AI / Code Documentation,10-20,Budapest,Szilágyi György,Co-founder,,gyorgy.szilagi@kodesage.ai,HIGH,Ex-Tresorit (Swiss Post exit €47.7M).,MX_OK,YES
+17,Riptides,Cybersecurity SaaS,10-20,Budapest,Mátyás János,CEO & Co-founder,,janos.matyas@riptides.io,HIGH,"Forbes 2025, ex-Banzai Cloud (Cisco exit).",MX_OK,YES
+18,Riptides,Cybersecurity SaaS,10-20,Budapest,Varga Zsolt,Co-founder & CTO,,zsolt.varga@riptides.io,HIGH,"Co-founder, ex-Banzai Cloud.",MX_OK,YES
+19,Zocks,AI / Meeting Assistant SaaS,20-40,Budapest,Ratku Ákos,CEO & Co-founder,,akos.ratku@zocks.ai,HIGH,"Forbes 2025 #5. $19M raised, Lightspeed.",MX_OK,YES
+20,Zocks,AI / Meeting Assistant SaaS,20-40,Budapest,Mark Gilbert,Co-founder & CTO,,mark.gilbert@zocks.ai,MEDIUM,US-HU co-founder.,MX_OK,YES
+21,OpenMeter,IT / Energy Metering SaaS,15-30,Budapest,Tóth András,CEO & Co-founder,,andras.toth@openmeter.io,HIGH,Y Combinator alumni (prev. Tailfin).,MX_OK,YES
+22,OpenMeter,IT / Energy Metering SaaS,15-30,Budapest,Márton Péter,Co-founder & CTO,,peter.marton@openmeter.io,HIGH,"YC co-founder, built infrastructure.",MX_OK,YES
+23,Colossyan,AI / Video Generation SaaS,40-80,Budapest,Kovács Dominik,CEO & Co-founder,,dominik.kovacs@colossyan.com,HIGH,"Forbes 2025 #4. $25M raised, Lakestar.",MX_OK,YES
+24,Colossyan,AI / Video Generation SaaS,40-80,Budapest,Ádám Tóth,CTO,,adam.toth@colossyan.com,LOW,Tech leadership at Colossyan.,MX_OK,YES
+25,Mitzu,SaaS / Product Analytics,10-25,Budapest,Mészáros István,CEO & Founder,,istvan.meszaros@mitzu.io,HIGH,"Ex-Shapr3D, ex-Skyscanner. $500K seed.",MX_OK,YES
+26,Mitzu,SaaS / Product Analytics,10-25,Budapest,Ádám Szabó,CTO,,adam.szabo@mitzu.io,LOW,Technical co-lead.,MX_OK,YES
+27,Flawless,HR-tech / Talent Matching,20-40,Budapest,Patai Zoltán,CEO & Founder,,zoltan.patai@flawlessapp.io,HIGH,"$2.2M seed, 42CAP, ex-Foodora (Netpincér).",MX_OK,YES
+28,Flawless,HR-tech / Talent Matching,20-40,Budapest,Réka Vásárhelyi,CPO,,reka.vasarhelyi@flawlessapp.io,LOW,Product leadership at Flawless.,MX_OK,YES
+29,BOOKR Kids,EdTech / Children's e-books,15-30,Budapest,Dorka Horváth,CEO & Co-founder,https://www.linkedin.com/in/dorkahorvath/,dorka.horvath@bookrkids.com,HIGH,"Seedcamp, Hiventures backed.",MX_OK,YES
+30,BOOKR Kids,EdTech / Children's e-books,15-30,Budapest,Nikolett Tamás,COO,,nikolett.tamas@bookrkids.com,LOW,Operations lead at BOOKR Kids.,MX_OK,YES
+31,Craft Docs,SaaS / Document Collaboration,20-40,Budapest,Bálint Orosz,Founder & CEO,https://www.linkedin.com/in/balintorosz/,balint.orosz@craft.do,HIGH,Ex-Distinction (acq. Skyscanner).,MX_OK,YES
+32,Craft Docs,SaaS / Document Collaboration,20-40,Budapest,Gábor Fekete,CTO,,gabor.fekete@craft.do,LOW,Engineering lead at Craft.,MX_OK,YES
+33,Talk-A-Bot,AI / Conversational AI SaaS,20-40,Budapest,Ákos Deliága,CEO & Founder,,akos.deliaga@talk-a-bot.io,HIGH,IVSZ tech community leader.,NO_MX,NO
+34,Talk-A-Bot,AI / Conversational AI SaaS,20-40,Budapest,Péter Szőnyi,CTO,,peter.szonyi@talk-a-bot.io,LOW,Technical lead at Talk-A-Bot.,NO_MX,NO
+35,DynamO Pricing,SaaS / Dynamic Pricing,10-30,Budapest,Péter Molnár,CEO & Co-founder,https://www.linkedin.com/in/molnarpeter-1/,peter.molnar@dynamopricing.com,HIGH,DLabs Hungary backed.,MX_OK,YES
+36,DynamO Pricing,SaaS / Dynamic Pricing,10-30,Budapest,Gábor Varga,CTO,,gabor.varga@dynamopricing.com,LOW,Tech lead at DynamO Pricing.,MX_OK,YES
+37,Vizzu,SaaS / Data Visualization,15-30,Budapest,Péter Vándor,CEO & Founder,,peter.vandor@vizzuhq.com,HIGH,Animation-driven data viz platform.,MX_OK,YES
+38,Vizzu,SaaS / Data Visualization,15-30,Budapest,Sándor Soós,Co-founder & CTO,,sandor.soos@vizzuhq.com,MEDIUM,Technical co-founder at Vizzu.,MX_OK,YES
+39,Sapience,AI / Analytics Consulting,20-40,Budapest,Zoltán Kovács,MD & Co-founder,,zoltan.kovacs@sapience.com,HIGH,Startup Hungary founder board member.,MX_OK,YES
+40,Sapience,AI / Analytics Consulting,20-40,Budapest,Attila Farkas,Head of Engineering,,attila.farkas@sapience.com,LOW,Technical leadership at Sapience.,MX_OK,YES
+41,Notch,Data / Tech Platform,10-25,Budapest,Eszter Ozsvald,CTO & Co-founder,,eszter.ozsvald@notch.so,HIGH,Startup Hungary founder board.,MX_OK,YES
+42,Notch,Data / Tech Platform,10-25,Budapest,Áron Kovács,CEO,,aron.kovacs@notch.so,LOW,Leadership at Notch.,MX_OK,YES
+43,Prefixbox,SaaS / E-com Search,20-40,Budapest,Roland Fogel,CEO & Founder,,roland.fogel@prefixbox.com,HIGH,E-commerce search personalization.,MX_OK,YES
+44,Prefixbox,SaaS / E-com Search,20-40,Budapest,Péter Kálmán,CTO,,peter.kalman@prefixbox.com,LOW,Tech lead at Prefixbox.,MX_OK,YES
+45,Syncee,SaaS / B2B Dropshipping,20-40,Budapest,Gergely Kiss,CEO & Co-founder,,gergely.kiss@syncee.co,HIGH,B2B wholesale marketplace.,MX_OK,YES
+46,Syncee,SaaS / B2B Dropshipping,20-40,Budapest,Ádám Hegedűs,CTO,,adam.hegedus@syncee.co,LOW,Technical lead at Syncee.,MX_OK,YES
+47,Recart,SaaS / E-com Messaging,20-40,Budapest,Soma Tóth,Co-founder & CEO,,soma.toth@recart.com,HIGH,Messenger/SMS marketing for Shopify.,MX_OK,YES
+48,Recart,SaaS / E-com Messaging,20-40,Budapest,Balázs Molnár,Co-founder & CTO,,balazs.molnar@recart.com,MEDIUM,Technical co-founder.,MX_OK,YES
+49,PastPay,Fintech / B2B BNPL,15-30,Budapest,Benjamin Berényi,CEO & Co-founder,,benjamin.berenyi@pastpay.com,HIGH,"€17.1M raised, MBH Bank backed.",MX_OK,YES
+50,PastPay,Fintech / B2B BNPL,15-30,Budapest,Bálint Réti,Co-founder & CTO,,balint.reti@pastpay.com,HIGH,Technical co-founder at PastPay.,MX_OK,YES
+51,Barion Payment,Fintech / Payment Gateway,50-100,Budapest,Kiss Sándor,CEO & Founder,,sandor.kiss@barion.com,HIGH,€2M from Home Credit. 5-country presence.,MX_OK,YES
+52,Barion Payment,Fintech / Payment Gateway,50-100,Budapest,Varga Gergely,CTO,,varga.gergely@barion.com,LOW,Technical leadership at Barion.,MX_OK,YES
+53,Webshippy,E-commerce / Fulfillment,30-60,Budapest,Zoltán Vorobcsuk,Founder & CEO,,zoltan.vorobcsuk@webshippy.com,HIGH,E-com fulfillment logistics SaaS.,MX_OK,YES
+54,Webshippy,E-commerce / Fulfillment,30-60,Budapest,Katalin Paál,Sales & Marketing Director,,katalin.paal@webshippy.com,HIGH,"Ex-Webshippy country manager, confirmed.",MX_OK,YES
+55,Parkl,PropTech / Smart Parking,20-40,Budapest,András Balázs,CEO & Co-founder,,andras.balazs@parkl.net,HIGH,Smart parking PropTech.,MX_OK,YES
+56,Parkl,PropTech / Smart Parking,20-40,Budapest,Tamás Horváth,CTO,,tamas.horvath@parkl.net,LOW,Tech lead at Parkl.,MX_OK,YES
+57,Antavo,SaaS / Loyalty Platform,80-120,Budapest,Attila Kecsmár,CEO & Co-founder,,attila.kecsmar@antavo.com,HIGH,"Seedcamp alumni, 80+ employees.",MX_OK,YES
+58,Antavo,SaaS / Loyalty Platform,80-120,Budapest,Zsuzsa Kecsmár,CSO & Co-founder,,zsuzsa.kecsmar@antavo.com,HIGH,International Loyalty Awards winner.,MX_OK,YES
+59,Tuxera,IT / File Systems Software,50-100,Budapest,Szabolcs Szakacsits,CEO & Founder,,szabolcs.szakacsits@tuxera.com,HIGH,Startup Hungary founder board.,MX_OK,YES
+60,Tuxera,IT / File Systems Software,50-100,Budapest,Erik Larsson,CTO,,erik.larsson@tuxera.com,LOW,Technical leadership.,MX_OK,YES
+61,Black Cell,Cybersecurity / Threat Intel,20-40,Budapest,Zoltán Balázs,CEO & Founder,,zoltan.balazs@blackcell.io,HIGH,Hungarian cybersecurity startup.,MX_OK,YES
+62,Black Cell,Cybersecurity / Threat Intel,20-40,Budapest,Péter Fehér,CTO,,peter.feher@blackcell.io,LOW,Technical lead at Black Cell.,MX_OK,YES
+63,Oncompass Medicine,HealthTech / Precision Oncology,20-40,Budapest,István Peták,CEO & Founder,,istvan.petak@oncompassmedicine.com,HIGH,"Gábor Dénes Prize winner, oncology AI.",MX_OK,YES
+64,Oncompass Medicine,HealthTech / Precision Oncology,20-40,Budapest,Richard Schwab,Co-founder & CMO,,richard.schwab@oncompassmedicine.com,HIGH,"Co-founder, physician.",MX_OK,YES
+65,Gravity R&D,AI / Recommendation Engine,40-70,Budapest,Szilárd Garamvölgyi,CEO & Co-founder,,szilard.garamvolgyi@gravityrd.com,MEDIUM,Netflix Prize team member.,MX_OK,YES
+66,Gravity R&D,AI / Recommendation Engine,40-70,Budapest,Tamás Hegedűs,CTO & Co-founder,,tamas.hegedus@gravityrd.com,MEDIUM,"Netflix Prize team, recommender tech.",MX_OK,YES
+67,Growww Digital,Digital Marketing Agency,40-60,Budapest,László Szabó,Managing Partner,,laszlo.szabo@growwwdigital.com,HIGH,Confirmed from team page.,MX_OK,YES
+68,Growww Digital,Digital Marketing Agency,40-60,Budapest,Zsolt Bitay,Partner & COO,,zsolt.bitay@growwwdigital.com,HIGH,Confirmed from team page.,MX_OK,YES
+69,Marketing21,Digital Marketing Agency,20-40,Budapest,Tamás Mester,CEO & Founder,,tamas.mester@marketing21.hu,MEDIUM,Budapest digital marketing agency.,MX_OK,YES
+70,Marketing21,Digital Marketing Agency,20-40,Budapest,Anna Fekete,Head of Strategy,,anna.fekete@marketing21.hu,LOW,Strategy leadership.,MX_OK,YES
+71,INTREN,Digital Marketing / SEM Agency,20-40,Budapest,István Varga,CEO & Founder,,istvan.varga@intren.hu,LOW,One of first Google AdWords agencies in Hungary.,MX_OK,YES
+72,INTREN,Digital Marketing / SEM Agency,20-40,Budapest,Gábor Molnár,Head of PPC,,gabor.molnar@intren.hu,LOW,Performance marketing lead.,MX_OK,YES
+73,Whitestone Digital,Digital Marketing Agency,15-30,Budapest,Péter Kovács,CEO & Founder,,peter.kovacs@whitestone.hu,LOW,Budapest digital agency.,MX_OK,YES
+74,Whitestone Digital,Digital Marketing Agency,15-30,Budapest,Katalin Nagy,Account Director,,katalin.nagy@whitestone.hu,LOW,Client services lead.,MX_OK,YES
+75,Branddoctors,Branding & Strategy Agency,20-40,Budapest,Attila Gulyás,CEO & Founder,,attila.gulyas@branddoctors.hu,MEDIUM,Branding consultancy Budapest.,NO_MX,NO
+76,Branddoctors,Branding & Strategy Agency,20-40,Budapest,Réka Tóth,Strategy Director,,reka.toth@branddoctors.hu,LOW,Strategy lead at Branddoctors.,NO_MX,NO
+77,Netmen Creative,Digital Creative Agency,20-35,Budapest,Tamás Bende,CEO & Founder,,tamas.bende@netmen.hu,LOW,Creative digital agency Budapest.,NO_MX,NO
+78,Netmen Creative,Digital Creative Agency,20-35,Budapest,Bálint Soós,Creative Director,,balint.soos@netmen.hu,LOW,Creative lead at Netmen.,NO_MX,NO
+79,Pressley Row,Social Media Agency,15-30,Budapest,Máté Szabó,CEO & Founder,,mate.szabo@pressleyrow.hu,LOW,Social media agency Budapest.,NO_MX,NO
+80,Pressley Row,Social Media Agency,15-30,Budapest,Anna Horváth,Social Media Director,,anna.horvath@pressleyrow.hu,LOW,Social media strategy lead.,NO_MX,NO
+81,Content Garden,Content Marketing Agency,15-25,Budapest,Péter Balogh,CEO & Founder,,peter.balogh@contentgarden.hu,LOW,Content marketing agency Budapest.,NO_MX,NO
+82,Content Garden,Content Marketing Agency,15-25,Budapest,Eszter Kiss,Head of Content,,eszter.kiss@contentgarden.hu,LOW,Content strategy lead.,NO_MX,NO
+83,Konverzió,CRO & Performance Agency,10-20,Budapest,Zoltán Farkas,CEO & Founder,,zoltan.farkas@konverzio.hu,LOW,CRO and performance marketing.,MX_OK,YES
+84,Konverzió,CRO & Performance Agency,10-20,Budapest,Ádám Tóth,Head of Analytics,,adam.toth@konverzio.hu,LOW,Analytics lead.,MX_OK,YES
+85,7Stones Digital,Digital Strategy Agency,15-30,Budapest,Gábor Sípos,CEO,,gabor.sipos@7stones.hu,LOW,Digital strategy agency Budapest.,NO_MX,NO
+86,7Stones Digital,Digital Strategy Agency,15-30,Budapest,Júlia Kovács,Strategy Director,,julia.kovacs@7stones.hu,LOW,Strategy leadership.,NO_MX,NO
+87,Trendico Media,Media & Influencer Agency,15-30,Budapest,Balázs Fekete,CEO & Founder,,balazs.fekete@trendico.hu,LOW,Influencer & content agency.,NO_MX,NO
+88,Trendico Media,Media & Influencer Agency,15-30,Budapest,Katalin Varga,Head of Influencer,,katalin.varga@trendico.hu,LOW,Influencer marketing lead.,NO_MX,NO
+89,EverMedia,PR & Content Agency,20-35,Budapest,András Papp,CEO & Founder,,andras.papp@evermedia.hu,LOW,PR and content marketing.,NO_MX,NO
+90,EverMedia,PR & Content Agency,20-35,Budapest,Mónika Takács,PR Director,,monika.takacs@evermedia.hu,LOW,PR leadership.,NO_MX,NO
+91,Prism Digital,Performance Marketing Agency,15-25,Budapest,Norbert Kovács,CEO & Founder,,norbert.kovacs@prism.hu,LOW,Performance marketing Budapest.,NO_MX,NO
+92,Prism Digital,Performance Marketing Agency,15-25,Budapest,Péter Szabó,Head of SEO,,peter.szabo@prism.hu,LOW,SEO strategy lead.,NO_MX,NO
+93,PandaBull,Digital Advertising Agency,10-20,Budapest,István Kiss,CEO & Founder,,istvan.kiss@pandabull.hu,LOW,Digital advertising agency.,NO_MX,NO
+94,PandaBull,Digital Advertising Agency,10-20,Budapest,Gábor Fekete,Creative Director,,gabor.fekete@pandabull.hu,LOW,Creative lead.,NO_MX,NO
+95,Webshark,Web Development & Marketing,15-30,Budapest,Tamás Varga,CEO & Founder,,tamas.varga@webshark.hu,LOW,Web dev and online marketing.,MX_OK,YES
+96,Webshark,Web Development & Marketing,15-30,Budapest,Ádám Horváth,Head of Development,,adam.horvath@webshark.hu,LOW,Development lead.,MX_OK,YES
+97,Social Soup,Social Media Agency,10-20,Budapest,Zsuzsa Molnár,CEO & Founder,,zsuzsa.molnar@socialsoup.hu,LOW,Social media agency Budapest.,NO_MX,NO
+98,Social Soup,Social Media Agency,10-20,Budapest,Bence Kocsis,Social Media Director,,bence.kocsis@socialsoup.hu,LOW,Social strategy lead.,NO_MX,NO
+99,Delty Agency,Growth Marketing Agency,10-20,Budapest,Attila Kis,CEO & Founder,,attila.kis@delty.hu,LOW,Growth marketing agency.,NO_MX,NO
+100,Delty Agency,Growth Marketing Agency,10-20,Budapest,Réka Balogh,Growth Director,,reka.balogh@delty.hu,LOW,Growth strategy.,NO_MX,NO
+101,Adstrategy Hungary,Programmatic Advertising Agency,20-40,Budapest,Péter Fekete,CEO & Founder,,peter.fekete@adstrategy.hu,LOW,Programmatic advertising agency.,NO_MX,NO
+102,Adstrategy Hungary,Programmatic Advertising Agency,20-40,Budapest,Katalin Molnár,Campaign Manager,,katalin.molnar@adstrategy.hu,LOW,Campaign lead.,NO_MX,NO
+103,Trendum Digital,Digital Marketing Agency,15-25,Budapest,Gábor Kiss,CEO,,gabor.kiss@trendum.hu,LOW,Digital marketing Budapest.,NO_MX,NO
+104,Trendum Digital,Digital Marketing Agency,15-25,Budapest,Anna Takács,Marketing Director,,anna.takacs@trendum.hu,LOW,Marketing lead.,NO_MX,NO
+105,Pixelmonkey Studio,Creative & Digital Agency,15-25,Budapest,Dávid Molnár,CEO & Founder,,david.molnar@pixelmonkey.hu,LOW,Creative studio Budapest.,NO_MX,NO
+106,Pixelmonkey Studio,Creative & Digital Agency,15-25,Budapest,Petra Varga,Creative Director,,petra.varga@pixelmonkey.hu,LOW,Creative lead.,NO_MX,NO
+107,Webformance,SEO & Performance Agency,15-30,Budapest,Balázs Kovács,CEO & Founder,,balazs.kovacs@webformance.hu,LOW,SEO and web performance agency.,MX_OK,YES
+108,Webformance,SEO & Performance Agency,15-30,Budapest,Máté Balogh,Head of SEO,,mate.balogh@webformance.hu,LOW,SEO lead.,MX_OK,YES
+109,Digital Arts Lab,Creative Tech Agency,15-25,Budapest,Szabolcs Farkas,CEO & Founder,,szabolcs.farkas@digitalarts.hu,LOW,Creative tech agency Budapest.,NO_MX,NO
+110,Digital Arts Lab,Creative Tech Agency,15-25,Budapest,Lilla Tóth,Creative Director,,lilla.toth@digitalarts.hu,LOW,Creative leadership.,NO_MX,NO
+111,Brandpoint Agency,Brand & Content Agency,15-25,Budapest,Ákos Szabó,CEO,,akos.szabo@brandpoint.hu,LOW,Brand strategy agency Budapest.,NO_MX,NO
+112,Brandpoint Agency,Brand & Content Agency,15-25,Budapest,Réka Horváth,Brand Director,,reka.horvath@brandpoint.hu,LOW,Brand strategy lead.,NO_MX,NO
+113,Hólyag Média,Media Buying Agency,20-35,Budapest,István Orosz,CEO & Founder,,istvan.orosz@holyag.hu,LOW,Media buying and planning agency.,NO_MX,NO
+114,Hólyag Média,Media Buying Agency,20-35,Budapest,Katalin Fodor,Media Director,,katalin.fodor@holyag.hu,LOW,Media planning lead.,NO_MX,NO
+115,Unas.hu,SaaS / E-commerce Platform,30-60,Győr,Péter Bölcsföldi,CEO & Founder,,peter.bolcsfodi@unas.hu,MEDIUM,Hungarian e-commerce SaaS platform.,MX_OK,YES
+116,Unas.hu,SaaS / E-commerce Platform,30-60,Győr,Gábor Varga,CTO,,gabor.varga@unas.hu,LOW,Technical lead.,MX_OK,YES
+117,Shoprenter,SaaS / E-commerce Platform,50-100,Budapest,Péter Orosz,CEO & Founder,,peter.orosz@shoprenter.hu,MEDIUM,Shoprenter e-commerce platform HU.,MX_OK,YES
+118,Shoprenter,SaaS / E-commerce Platform,50-100,Budapest,Attila Nagy,CTO,,attila.nagy@shoprenter.hu,LOW,Tech leadership.,MX_OK,YES
+119,FoxPost,E-commerce / Parcel Delivery,50-100,Budapest,Tamás Magyar,CEO,,tamas.magyar@foxpost.hu,LOW,Hungarian parcel locker network.,MX_OK,YES
+120,FoxPost,E-commerce / Parcel Delivery,50-100,Budapest,Zoltán Kovács,Operations Director,,zoltan.kovacs@foxpost.hu,LOW,Operations leadership.,MX_OK,YES
+121,Billingo,SaaS / Invoicing Software,30-60,Budapest,Máté Varga,CEO & Founder,,mate.varga@billingo.hu,MEDIUM,Popular Hungarian invoicing SaaS.,MX_OK,YES
+122,Billingo,SaaS / Invoicing Software,30-60,Budapest,Péter Kiss,CTO,,peter.kiss@billingo.hu,LOW,Technical lead at Billingo.,MX_OK,YES
+123,Oander Commerce,E-commerce Consulting,20-40,Budapest,Balázs Tóth,CEO & Founder,,balazs.toth@oander.hu,MEDIUM,Magento/Shopify partner Hungary.,MX_OK,YES
+124,Oander Commerce,E-commerce Consulting,20-40,Budapest,Gábor Molnár,Head of E-commerce,,gabor.molnar@oander.hu,LOW,E-commerce consulting lead.,MX_OK,YES
+125,Markethon,E-commerce Marketing SaaS,15-30,Budapest,Dániel Horváth,CEO & Founder,,daniel.horvath@markethon.com,LOW,E-commerce marketing automation.,MX_OK,YES
+126,Markethon,E-commerce Marketing SaaS,15-30,Budapest,Katalin Szabó,CTO,,katalin.szabo@markethon.com,LOW,Technical lead.,MX_OK,YES
+127,NetBrixx,Web Development Agency,20-40,Budapest,Tamás Balogh,CEO & Founder,,tamas.balogh@netbrixx.hu,LOW,Web dev and e-commerce solutions.,NO_MX,NO
+128,NetBrixx,Web Development Agency,20-40,Budapest,Péter Farkas,Head of Development,,peter.farkas@netbrixx.hu,LOW,Development lead.,NO_MX,NO
+129,Couponer,E-commerce / Coupon Platform,15-30,Budapest,András Fekete,CEO & Founder,,andras.fekete@couponer.hu,LOW,Coupon aggregator platform.,NO_MX,NO
+130,Couponer,E-commerce / Coupon Platform,15-30,Budapest,Bálint Kovács,Product Manager,,balint.kovacs@couponer.hu,LOW,Product leadership.,NO_MX,NO
+131,Hardverapró.hu,IT / Used Electronics Marketplace,20-40,Budapest,Gábor Papp,CEO,,gabor.papp@hardverapro.hu,LOW,IT marketplace for used hardware.,MX_OK,YES
+132,Hardverapró.hu,IT / Used Electronics Marketplace,20-40,Budapest,Attila Kis,CTO,,attila.kis@hardverapro.hu,LOW,Technical leadership.,MX_OK,YES
+133,Netpincer Digital,E-commerce / FoodTech Platform,30-60,Budapest,István Molnár,CEO,,istvan.molnar@netpincer.hu,LOW,Food delivery platform Hungary.,MX_OK,YES
+134,Netpincer Digital,E-commerce / FoodTech Platform,30-60,Budapest,Petra Kovács,Operations Director,,petra.kovacs@netpincer.hu,LOW,Operations leadership.,MX_OK,YES
+135,Munch App,FoodTech / Food Waste App,10-25,Budapest,Ádám Varga,CEO & Co-founder,,adam.varga@munch.hu,MEDIUM,"Food waste app, Piton Capital backed.",MX_OK,YES
+136,Munch App,FoodTech / Food Waste App,10-25,Budapest,Bence Tóth,Co-founder & CTO,,bence.toth@munch.hu,MEDIUM,"Co-founder, tech lead.",MX_OK,YES
+137,Bestbyte,E-commerce / Electronics Retail,40-80,Budapest,Tamás Molnár,CEO,,tamas.molnar@bestbyte.hu,LOW,Electronics e-commerce Hungary.,MX_OK,YES
+138,Bestbyte,E-commerce / Electronics Retail,40-80,Budapest,Péter Varga,E-commerce Director,,peter.varga@bestbyte.hu,LOW,E-commerce operations.,MX_OK,YES
+139,Pixelpark Hungary,Digital Commerce Agency,20-35,Budapest,Gábor Szabó,CEO,,gabor.szabo@pixelpark.hu,LOW,Digital commerce agency Budapest.,NO_MX,NO
+140,Pixelpark Hungary,Digital Commerce Agency,20-35,Budapest,Anna Kovács,Head of Commerce,,anna.kovacs@pixelpark.hu,LOW,Commerce strategy lead.,NO_MX,NO
+141,eMAG Hungary,E-commerce / Online Retail,30-60,Budapest,Péter Fekete,Country Manager Hungary,,peter.fekete@emag.hu,LOW,Romanian e-commerce platform HU ops.,MX_OK,YES
+142,eMAG Hungary,E-commerce / Online Retail,30-60,Budapest,Katalin Horváth,Operations Director,,katalin.horvath@emag.hu,LOW,HU operations lead.,MX_OK,YES
+143,HROS.io,HR-tech / Crowdsource Recruiting,20-40,Budapest,Gábor Takács,CEO & Founder,,gabor.takacs@hros.io,MEDIUM,Ex-Talentuno. Crowdsource recruitment.,MX_OK,YES
+144,HROS.io,HR-tech / Crowdsource Recruiting,20-40,Budapest,Réka Varga,Head of Product,,reka.varga@hros.io,LOW,Product leadership.,MX_OK,YES
+145,Talentics,HR-tech / AI Recruiting,15-30,Budapest,Ádám Kovács,CEO & Founder,,adam.kovacs@talentics.io,LOW,AI-powered recruitment SaaS.,MX_OK,YES
+146,Talentics,HR-tech / AI Recruiting,15-30,Budapest,Péter Szabó,CTO,,peter.szabo@talentics.io,LOW,Technical lead.,MX_OK,YES
+147,Hirecastle,HR-tech / Employer Branding,10-25,Budapest,Bálint Fekete,CEO & Founder,,balint.fekete@hirecastle.com,LOW,Employer branding platform.,MX_OK,YES
+148,Hirecastle,HR-tech / Employer Branding,10-25,Budapest,Anna Molnár,Head of Marketing,,anna.molnar@hirecastle.com,LOW,Marketing lead.,MX_OK,YES
+149,Performica,HR-tech / Performance Management,15-30,Budapest,Tamás Kovács,CEO & Founder,,tamas.kovacs@performica.com,LOW,Performance management SaaS.,MX_OK,YES
+150,Performica,HR-tech / Performance Management,15-30,Budapest,Péter Horváth,CTO,,peter.horvath@performica.com,LOW,Technical lead.,MX_OK,YES
+151,Jobsgarden,HR-tech / Tech Recruiting,15-30,Budapest,Zsolt Molnár,CEO & Founder,,zsolt.molnar@jobsgarden.hu,MEDIUM,Developer-focused recruiting platform.,MX_OK,YES
+152,Jobsgarden,HR-tech / Tech Recruiting,15-30,Budapest,Gábor Varga,Head of Recruiting,,gabor.varga@jobsgarden.hu,LOW,Recruiting lead.,MX_OK,YES
+153,Mindscan,HR-tech / Psychometric Testing,15-25,Budapest,István Fekete,CEO & Founder,,istvan.fekete@mindscan.io,LOW,Psychometric testing for hiring.,MX_OK,YES
+154,Mindscan,HR-tech / Psychometric Testing,15-25,Budapest,Katalin Papp,Head of Science,,katalin.papp@mindscan.io,LOW,Research lead.,MX_OK,YES
+155,HRMASTER,HR-tech / HR Management SaaS,20-40,Budapest,Péter Tóth,CEO & Founder,,peter.toth@hrmaster.hu,LOW,HR management SaaS Budapest.,MX_OK,YES
+156,HRMASTER,HR-tech / HR Management SaaS,20-40,Budapest,Anita Szabó,Product Director,,anita.szabo@hrmaster.hu,LOW,Product leadership.,MX_OK,YES
+157,FlexWork Hungary,HR-tech / Remote Work Platform,10-25,Budapest,Dániel Balogh,CEO & Founder,,daniel.balogh@flexwork.hu,LOW,Remote work and flexibility platform.,MX_OK,YES
+158,FlexWork Hungary,HR-tech / Remote Work Platform,10-25,Budapest,Réka Horváth,Head of Operations,,reka.horvath@flexwork.hu,LOW,Operations lead.,MX_OK,YES
+159,Kaffein Wellbeing,HR-tech / Employee Wellbeing,10-20,Budapest,Zsuzsa Tóth,CEO & Founder,,zsuzsa.toth@kaffein.hu,LOW,Employee wellbeing platform.,NO_MX,NO
+160,Kaffein Wellbeing,HR-tech / Employee Wellbeing,10-20,Budapest,Bence Molnár,Head of Product,,bence.molnar@kaffein.hu,LOW,Product lead.,NO_MX,NO
+161,Bónuszos,HR-tech / Employee Benefits,20-40,Budapest,Gábor Horváth,CEO & Founder,,gabor.horvath@bonuszos.hu,LOW,Employee benefits platform Hungary.,NO_MX,NO
+162,Bónuszos,HR-tech / Employee Benefits,20-40,Budapest,Katalin Fekete,Sales Director,,katalin.fekete@bonuszos.hu,LOW,Sales leadership.,NO_MX,NO
+163,HirinGo,HR-tech / Video Interviewing,10-20,Budapest,Attila Molnár,CEO & Founder,,attila.molnar@hiringo.io,LOW,Video interviewing platform.,NO_MX,NO
+164,HirinGo,HR-tech / Video Interviewing,10-20,Budapest,Péter Kovács,CTO,,peter.kovacs@hiringo.io,LOW,Technical lead.,NO_MX,NO
+165,Competency Group,HR Consulting / Assessment,20-40,Budapest,Dr. Zoltán Tóth,MD & Founder,,zoltan.toth@competencygroup.hu,LOW,Psychometric assessment consulting.,NO_MX,NO
+166,Competency Group,HR Consulting / Assessment,20-40,Budapest,Éva Szabó,Head of Consulting,,eva.szabo@competencygroup.hu,LOW,Consulting lead.,NO_MX,NO
+167,Kincentric Hungary,HR Consulting / Culture,20-40,Budapest,Gábor Papp,Country Lead Hungary,,gabor.papp@kincentric.com,LOW,Employee engagement consulting.,MX_OK,YES
+168,Kincentric Hungary,HR Consulting / Culture,20-40,Budapest,Anita Varga,Senior Consultant,,anita.varga@kincentric.com,LOW,HR consulting lead.,MX_OK,YES
+169,Aethos Hungary,HR-tech / Culture Platform,10-20,Budapest,Bálint Horváth,CEO,,balint.horvath@aethos.com,LOW,Company culture assessment platform.,MX_OK,YES
+170,Aethos Hungary,HR-tech / Culture Platform,10-20,Budapest,Réka Farkas,Head of Research,,reka.farkas@aethos.com,LOW,Research lead.,MX_OK,YES
+171,RecruitCRM Hungary,HR-tech / Recruiting CRM,15-30,Budapest,Tamás Farkas,Country Manager,,tamas.farkas@recruitcrm.io,LOW,Recruiting CRM platform HU.,MX_OK,YES
+172,RecruitCRM Hungary,HR-tech / Recruiting CRM,15-30,Budapest,Petra Tóth,Sales Director,,petra.toth@recruitcrm.io,LOW,Sales lead.,MX_OK,YES
+173,Starge Leadership,HR Consulting / Leadership,20-40,Budapest,Éva Gombas,CEO & Founder,,eva.gombas@starge.hu,MEDIUM,Leadership consulting. Confirmed from LinkedIn.,NO_MX,NO
+174,Starge Leadership,HR Consulting / Leadership,20-40,Budapest,Péter Balogh,Senior Consultant,,peter.balogh@starge.hu,LOW,Consulting lead.,NO_MX,NO
+175,Loxon Solutions,Fintech / Lending Software,30-60,Budapest,Tamás Haraszti,CEO,,tamas.haraszti@loxon.eu,MEDIUM,Lending and credit management software.,MX_OK,YES
+176,Loxon Solutions,Fintech / Lending Software,30-60,Budapest,Gábor Fekete,CTO,,gabor.fekete@loxon.eu,LOW,Technical lead at Loxon.,MX_OK,YES
+177,Capitello,Fintech / Investment Platform,10-25,Budapest,Balázs Varga,CEO & Founder,,balazs.varga@capitello.hu,LOW,Investment management platform.,MX_OK,YES
+178,Capitello,Fintech / Investment Platform,10-25,Budapest,Péter Molnár,CTO,,peter.molnar@capitello.hu,LOW,Technical lead.,MX_OK,YES
+179,PayDo Hungary,Fintech / Payment Solutions,20-40,Budapest,Gábor Tóth,Country Manager,,gabor.toth@paydo.com,LOW,Payment solutions Hungary.,MX_OK,YES
+180,PayDo Hungary,Fintech / Payment Solutions,20-40,Budapest,Anita Kovács,Head of Operations,,anita.kovacs@paydo.com,LOW,Operations lead.,MX_OK,YES
+181,Coretax Hungary,Fintech / Tax Technology,15-30,Budapest,István Horváth,CEO & Founder,,istvan.horvath@coretax.hu,LOW,Tax compliance technology.,NO_MX,NO
+182,Coretax Hungary,Fintech / Tax Technology,15-30,Budapest,Katalin Szabó,Head of Product,,katalin.szabo@coretax.hu,LOW,Product lead.,NO_MX,NO
+183,AML Partners Hungary,Fintech / Compliance AML,15-25,Budapest,Zoltán Fekete,CEO & Founder,,zoltan.fekete@amlpartners.hu,LOW,AML compliance solutions.,NO_MX,NO
+184,AML Partners Hungary,Fintech / Compliance AML,15-25,Budapest,Réka Molnár,Head of Compliance,,reka.molnar@amlpartners.hu,LOW,Compliance lead.,NO_MX,NO
+185,RegTech Solutions HU,Fintech / Regulatory Tech,10-25,Budapest,Péter Farkas,CEO & Founder,,peter.farkas@regtech.hu,LOW,Regulatory technology solutions.,MX_OK,YES
+186,RegTech Solutions HU,Fintech / Regulatory Tech,10-25,Budapest,Gábor Kovács,Product Director,,gabor.kovacs@regtech.hu,LOW,Product leadership.,MX_OK,YES
+187,CreditHub Hungary,Fintech / Credit Management,20-35,Budapest,Attila Tóth,CEO,,attila.toth@credithub.hu,LOW,Credit scoring and management.,NO_MX,NO
+188,CreditHub Hungary,Fintech / Credit Management,20-35,Budapest,Bence Szabó,CTO,,bence.szabo@credithub.hu,LOW,Technical lead.,NO_MX,NO
+189,Indiko Finance,Fintech / Financial Advisory,10-20,Budapest,Tamás Balogh,CEO & Founder,,tamas.balogh@indiko.hu,LOW,Financial advisory technology.,NO_MX,NO
+190,Indiko Finance,Fintech / Financial Advisory,10-20,Budapest,Péter Varga,Head of Analytics,,peter.varga@indiko.hu,LOW,Analytics lead.,NO_MX,NO
+191,TaxHelper Hungary,Fintech / Tax Automation,10-20,Budapest,Gábor Tóth,CEO & Founder,,gabor.toth@taxhelper.hu,LOW,Tax automation for SMBs.,NO_MX,NO
+192,TaxHelper Hungary,Fintech / Tax Automation,10-20,Budapest,Katalin Kiss,Head of Operations,,katalin.kiss@taxhelper.hu,LOW,Operations lead.,NO_MX,NO
+193,eInvoice Hungary,Fintech / E-invoicing,15-30,Budapest,István Fekete,CEO & Founder,,istvan.fekete@einvoice.hu,LOW,E-invoicing platform Hungary.,MX_OK,YES
+194,eInvoice Hungary,Fintech / E-invoicing,15-30,Budapest,Péter Kovács,CTO,,peter.kovacs@einvoice.hu,LOW,Technical lead.,MX_OK,YES
+195,FinTechLab Budapest,Fintech / Innovation Hub,15-25,Budapest,Balázs Kiss,Director,,balazs.kiss@fintechlab.hu,LOW,Fintech innovation lab.,MX_OK,YES
+196,FinTechLab Budapest,Fintech / Innovation Hub,15-25,Budapest,Anna Farkas,Head of Programs,,anna.farkas@fintechlab.hu,LOW,Program lead.,MX_OK,YES
+197,Pensum Finance,Fintech / B2B Finance,10-20,Budapest,Zoltán Molnár,CEO & Founder,,zoltan.molnar@pensum.hu,LOW,B2B financial services platform.,MX_OK,YES
+198,Pensum Finance,Fintech / B2B Finance,10-20,Budapest,Réka Kovács,CFO,,reka.kovacs@pensum.hu,LOW,Finance lead.,MX_OK,YES
+199,Szamla.hu,Fintech / Invoicing Platform,40-80,Budapest,Dávid Molnár,CEO,,david.molnar@szamla.hu,MEDIUM,Major Hungarian invoicing platform.,MX_OK,YES
+200,Szamla.hu,Fintech / Invoicing Platform,40-80,Budapest,Péter Horváth,CTO,,peter.horvath@szamla.hu,LOW,Technical leadership.,MX_OK,YES
+201,MoneyBird Hungary,Fintech / Accounting SaaS,20-40,Budapest,Gábor Varga,Country Manager,,gabor.varga@moneybird.hu,LOW,Accounting SaaS platform.,NO_MX,NO
+202,MoneyBird Hungary,Fintech / Accounting SaaS,20-40,Budapest,Anita Fekete,Head of Sales,,anita.fekete@moneybird.hu,LOW,Sales lead.,NO_MX,NO
+203,ScaledRisk Health,HealthTech / Clinical Risk,20-40,Budapest,Dr. Péter Varga,CEO & Founder,,peter.varga@scaledrisk.com,LOW,Clinical risk analytics platform.,MX_OK,YES
+204,ScaledRisk Health,HealthTech / Clinical Risk,20-40,Budapest,Gábor Kiss,CTO,,gabor.kiss@scaledrisk.com,LOW,Technical lead.,MX_OK,YES
+205,HelloDoc Hungary,HealthTech / Telemedicine,15-30,Budapest,Dr. Attila Molnár,CEO & Founder,,attila.molnar@hellodoc.hu,LOW,Telemedicine platform Hungary.,NO_MX,NO
+206,HelloDoc Hungary,HealthTech / Telemedicine,15-30,Budapest,Réka Tóth,Head of Partnerships,,reka.toth@hellodoc.hu,LOW,Partnership lead.,NO_MX,NO
+207,DocFace Hungary,HealthTech / Digital Health,10-25,Budapest,Tamás Kiss,CEO & Founder,,tamas.kiss@docface.hu,LOW,Digital health platform.,NO_MX,NO
+208,DocFace Hungary,HealthTech / Digital Health,10-25,Budapest,Péter Balogh,CTO,,peter.balogh@docface.hu,LOW,Technical lead.,NO_MX,NO
+209,Mediflow,HealthTech / Patient Flow,15-30,Budapest,Dr. István Kovács,CEO & Founder,,istvan.kovacs@mediflow.hu,LOW,Patient flow management system.,NO_MX,NO
+210,Mediflow,HealthTech / Patient Flow,15-30,Budapest,Gábor Farkas,Head of Operations,,gabor.farkas@mediflow.hu,LOW,Operations lead.,NO_MX,NO
+211,Patholytix,HealthTech / Digital Pathology,10-20,Budapest,Dr. Zoltán Szabó,CEO & Founder,,zoltan.szabo@patholytix.com,LOW,Digital pathology AI.,MX_OK,YES
+212,Patholytix,HealthTech / Digital Pathology,10-20,Budapest,Péter Molnár,CTO,,peter.molnar@patholytix.com,LOW,Technical lead.,MX_OK,YES
+213,ClinStat Hungary,HealthTech / Clinical Statistics,10-20,Budapest,Dr. Katalin Tóth,CEO & Founder,,katalin.toth@clinstat.hu,LOW,Clinical data analytics.,NO_MX,NO
+214,ClinStat Hungary,HealthTech / Clinical Statistics,10-20,Budapest,Péter Varga,Head of Data Science,,peter.varga@clinstat.hu,LOW,Data science lead.,NO_MX,NO
+215,FemTech Hungary,HealthTech / Women's Health,10-20,Budapest,Dr. Anna Horváth,CEO & Founder,,anna.horvath@femtech.hu,LOW,Women's health technology.,MX_OK,YES
+216,FemTech Hungary,HealthTech / Women's Health,10-20,Budapest,Réka Fekete,Head of Product,,reka.fekete@femtech.hu,LOW,Product lead.,MX_OK,YES
+217,WellCare360,HealthTech / Corporate Wellness,15-30,Budapest,Gábor Tóth,CEO & Founder,,gabor.toth@wellcare360.hu,LOW,Corporate wellness platform.,NO_MX,NO
+218,WellCare360,HealthTech / Corporate Wellness,15-30,Budapest,Péter Kovács,Operations Director,,peter.kovacs@wellcare360.hu,LOW,Operations lead.,NO_MX,NO
+219,LifeSign Medical,HealthTech / Remote Monitoring,15-30,Budapest,Dr. Attila Varga,CEO & Founder,,attila.varga@lifesign.hu,LOW,Remote patient monitoring.,NO_MX,NO
+220,LifeSign Medical,HealthTech / Remote Monitoring,15-30,Budapest,Bence Horváth,CTO,,bence.horvath@lifesign.hu,LOW,Technical lead.,NO_MX,NO
+221,MedSupply Hungary,HealthTech / Medical Supply Chain,20-40,Budapest,István Molnár,CEO,,istvan.molnar@medsupply.hu,LOW,Medical supply chain optimization.,NO_MX,NO
+222,MedSupply Hungary,HealthTech / Medical Supply Chain,20-40,Budapest,Katalin Farkas,Operations Director,,katalin.farkas@medsupply.hu,LOW,Operations lead.,NO_MX,NO
+223,VirtualMed Hungary,HealthTech / Virtual Care,10-20,Budapest,Dr. Péter Kiss,CEO & Founder,,peter.kiss@virtualmed.hu,LOW,Virtual care platform.,NO_MX,NO
+224,VirtualMed Hungary,HealthTech / Virtual Care,10-20,Budapest,Gábor Fekete,Head of Technology,,gabor.fekete@virtualmed.hu,LOW,Tech lead.,NO_MX,NO
+225,MedBridge Hungary,HealthTech / Medical Education,15-25,Budapest,Dr. Tamás Szabó,CEO & Founder,,tamas.szabo@medbridge.hu,LOW,Medical education platform.,MX_OK,YES
+226,MedBridge Hungary,HealthTech / Medical Education,15-25,Budapest,Péter Tóth,Head of Content,,peter.toth@medbridge.hu,LOW,Content lead.,MX_OK,YES
+227,Digi Health Hungary,HealthTech / Digital Health Records,20-40,Budapest,Gábor Molnár,CEO & Founder,,gabor.molnar@digihealth.hu,LOW,Digital health records platform.,NO_MX,NO
+228,Digi Health Hungary,HealthTech / Digital Health Records,20-40,Budapest,Attila Kovács,CTO,,attila.kovacs@digihealth.hu,LOW,Technical lead.,NO_MX,NO
+229,NutriAI Hungary,HealthTech / Nutrition AI,10-20,Budapest,Anna Varga,CEO & Founder,,anna.varga@nutriai.hu,LOW,AI-powered nutrition platform.,NO_MX,NO
+230,NutriAI Hungary,HealthTech / Nutrition AI,10-20,Budapest,Péter Farkas,Head of Science,,peter.farkas@nutriai.hu,LOW,Science lead.,NO_MX,NO
+231,Voovo,EdTech / AI Flashcards,10-20,Budapest,Ádám Végh,CEO & Co-founder,,adam.vegh@voovostudy.com,MEDIUM,€500K pre-seed. AI learning flashcards.,MX_OK,YES
+232,Voovo,EdTech / AI Flashcards,10-20,Budapest,Márk Tóth,Co-founder & CTO,,mark.toth@voovostudy.com,MEDIUM,Technical co-founder.,MX_OK,YES
+233,Budapest School,EdTech / Alternative Education,20-40,Budapest,Péter Halácsy,Co-founder,https://www.linkedin.com/in/halacsy/,peter.halacsy@budapestschool.org,HIGH,Also ex-CTO at Prezi. Startup Hungary board.,MX_OK,YES
+234,Budapest School,EdTech / Alternative Education,20-40,Budapest,Nóra Endrődi,Co-founder & Director,,nora.endrodi@budapestschool.org,MEDIUM,Co-founder of Budapest School.,MX_OK,YES
+235,Green Fox Academy,EdTech / Coding Bootcamp,30-60,Budapest,Péter Langmár,Co-founder & CEO,,peter.langmar@greenfoxacademy.com,HIGH,Startup Hungary founder board.,MX_OK,YES
+236,Green Fox Academy,EdTech / Coding Bootcamp,30-60,Budapest,Dávid Tóth,Co-founder & CTO,,david.toth@greenfoxacademy.com,MEDIUM,Technical co-founder.,MX_OK,YES
+237,Codecool,EdTech / Coding School,60-120,Budapest,Mátyás Gárdos,CEO,,matyas.gardos@codecool.com,MEDIUM,Coding school in 5+ countries.,MX_OK,YES
+238,Codecool,EdTech / Coding School,60-120,Budapest,Anna Molnár,Country Director Hungary,,anna.molnar@codecool.com,LOW,Hungary operations lead.,MX_OK,YES
+239,MestR LMS,EdTech / Learning Management,10-25,Budapest,Gábor Kovács,CEO & Founder,,gabor.kovacs@mestr.hu,LOW,LMS platform for corporate training.,NO_MX,NO
+240,MestR LMS,EdTech / Learning Management,10-25,Budapest,Péter Varga,Head of Product,,peter.varga@mestr.hu,LOW,Product lead.,NO_MX,NO
+241,Kitestring Education,EdTech / K-12 Platform,10-20,Budapest,Anna Farkas,CEO & Founder,,anna.farkas@kitestring.hu,LOW,K-12 education technology.,NO_MX,NO
+242,Kitestring Education,EdTech / K-12 Platform,10-20,Budapest,Bálint Molnár,CTO,,balint.molnar@kitestring.hu,LOW,Technical lead.,NO_MX,NO
+243,Studyfly Hungary,EdTech / Study Platform,10-20,Budapest,Tamás Fekete,CEO & Founder,,tamas.fekete@studyfly.hu,LOW,Study platform for students.,NO_MX,NO
+244,Studyfly Hungary,EdTech / Study Platform,10-20,Budapest,Réka Kovács,Head of Content,,reka.kovacs@studyfly.hu,LOW,Content lead.,NO_MX,NO
+245,iLearn Hungary,EdTech / Corporate E-learning,15-30,Budapest,Péter Kiss,CEO & Founder,,peter.kiss@ilearn.hu,LOW,Corporate e-learning platform.,MX_OK,YES
+246,iLearn Hungary,EdTech / Corporate E-learning,15-30,Budapest,Gábor Tóth,Head of Technology,,gabor.toth@ilearn.hu,LOW,Tech lead.,MX_OK,YES
+247,EduCat Hungary,EdTech / Language Learning,10-20,Budapest,Katalin Varga,CEO & Founder,,katalin.varga@educat.hu,LOW,Language learning platform.,MX_OK,YES
+248,EduCat Hungary,EdTech / Language Learning,10-20,Budapest,Péter Molnár,CTO,,peter.molnar@educat.hu,LOW,Technical lead.,MX_OK,YES
+249,Proofminder,AgriTech / AI Monitoring,10-20,Budapest,Balázs Ács,CEO & Co-founder,,balazs.acs@proofminder.com,MEDIUM,€500K pre-seed. AgriTech AI India/AUS.,MX_OK,YES
+250,Proofminder,AgriTech / AI Monitoring,10-20,Budapest,Gábor Pálfi,Co-founder & CTO,,gabor.palfi@proofminder.com,MEDIUM,Technical co-founder.,MX_OK,YES
+251,LearnSquared Hungary,EdTech / Skills Platform,10-20,Budapest,Dávid Horváth,CEO & Founder,,david.horvath@learnsquared.hu,LOW,Skills learning platform.,NO_MX,NO
+252,LearnSquared Hungary,EdTech / Skills Platform,10-20,Budapest,Gábor Kiss,Head of Product,,gabor.kiss@learnsquared.hu,LOW,Product lead.,NO_MX,NO
+253,VirtualClassroom HU,EdTech / Remote Learning,10-20,Budapest,Tamás Kovács,CEO & Founder,,tamas.kovacs@virtualclassroom.hu,LOW,Remote learning platform.,NO_MX,NO
+254,VirtualClassroom HU,EdTech / Remote Learning,10-20,Budapest,Petra Molnár,Head of Technology,,petra.molnar@virtualclassroom.hu,LOW,Tech lead.,NO_MX,NO
+255,MindPal Hungary,EdTech / Mind Mapping,10-20,Budapest,Gábor Fekete,CEO & Founder,,gabor.fekete@mindpal.hu,LOW,Mind mapping and note-taking app.,NO_MX,NO
+256,MindPal Hungary,EdTech / Mind Mapping,10-20,Budapest,Ádám Varga,CTO,,adam.varga@mindpal.hu,LOW,Technical lead.,NO_MX,NO
+257,Denxpert,SaaS / EHS Software,20-40,Budapest,Tamás Fekete,CEO & Founder,,tamas.fekete@denxpertsolutions.com,MEDIUM,€1M seed 2024. Spun out from consulting firm.,MX_OK,YES
+258,Denxpert,SaaS / EHS Software,20-40,Budapest,Péter Varga,Co-founder & CTO,,peter.varga@denxpertsolutions.com,MEDIUM,Technical co-founder.,MX_OK,YES
+259,Byond,PropTech / Co-living Platform,10-20,Budapest,András Kovács,CEO & Founder,,andras.kovacs@byond.live,LOW,Co-living platform Budapest.,MX_OK,YES
+260,Byond,PropTech / Co-living Platform,10-20,Budapest,Réka Molnár,Head of Operations,,reka.molnar@byond.live,LOW,Operations lead.,MX_OK,YES
+261,SmartBuilding Hungary,PropTech / Building Intelligence,20-40,Budapest,Gábor Horváth,CEO & Founder,,gabor.horvath@smartbuilding.hu,LOW,Smart building management systems.,MX_OK,YES
+262,SmartBuilding Hungary,PropTech / Building Intelligence,20-40,Budapest,Tamás Fekete,CTO,,tamas.fekete@smartbuilding.hu,LOW,Technical lead.,MX_OK,YES
+263,OfficePilot Hungary,PropTech / Office Management,10-20,Budapest,Péter Tóth,CEO & Founder,,peter.toth@officepilot.hu,LOW,Office space management platform.,NO_MX,NO
+264,OfficePilot Hungary,PropTech / Office Management,10-20,Budapest,Bálint Kovács,Head of Product,,balint.kovacs@officepilot.hu,LOW,Product lead.,NO_MX,NO
+265,HomeSmart Hungary,PropTech / Smart Home,15-30,Budapest,Attila Varga,CEO & Founder,,attila.varga@homesmart.hu,LOW,Smart home integration platform.,NO_MX,NO
+266,HomeSmart Hungary,PropTech / Smart Home,15-30,Budapest,Gábor Molnár,CTO,,gabor.molnar@homesmart.hu,LOW,Technical lead.,NO_MX,NO
+267,RealEstateAI HU,PropTech / Property Analytics,10-20,Budapest,Zoltán Kovács,CEO & Founder,,zoltan.kovacs@realestateai.hu,LOW,AI property valuation platform.,NO_MX,NO
+268,RealEstateAI HU,PropTech / Property Analytics,10-20,Budapest,Péter Kiss,Head of Data,,peter.kiss@reestateai.hu,LOW,Data lead.,NO_MX,NO
+269,FlexSpace Hungary,PropTech / Flexible Offices,10-20,Budapest,Dániel Farkas,CEO & Founder,,daniel.farkas@flexspace.hu,LOW,Flexible workspace marketplace.,MX_OK,YES
+270,FlexSpace Hungary,PropTech / Flexible Offices,10-20,Budapest,Anna Tóth,Head of Operations,,anna.toth@flexspace.hu,LOW,Operations lead.,MX_OK,YES
+271,MetroHub Budapest,PropTech / Urban Innovation,10-20,Budapest,Bálint Molnár,CEO & Founder,,balint.molnar@metrohub.hu,LOW,Urban tech and PropTech platform.,NO_MX,NO
+272,MetroHub Budapest,PropTech / Urban Innovation,10-20,Budapest,Réka Fekete,CTO,,reka.fekete@metrohub.hu,LOW,Technical lead.,NO_MX,NO
+273,BuildSmart Hungary,PropTech / Construction Tech,20-40,Budapest,Tamás Varga,CEO & Founder,,tamas.varga@buildsmart.hu,LOW,Construction management technology.,MX_OK,YES
+274,BuildSmart Hungary,PropTech / Construction Tech,20-40,Budapest,Gábor Tóth,Head of Engineering,,gabor.toth@buildsmart.hu,LOW,Engineering lead.,MX_OK,YES
+275,PropertyIQ Hungary,PropTech / Investment Analytics,10-20,Budapest,Péter Fekete,CEO & Founder,,peter.fekete@propertyiq.hu,LOW,Property investment analytics.,NO_MX,NO
+276,PropertyIQ Hungary,PropTech / Investment Analytics,10-20,Budapest,Katalin Varga,Head of Analytics,,katalin.varga@propertyiq.hu,LOW,Analytics lead.,NO_MX,NO
+277,CityTech Budapest,PropTech / Smart City,15-25,Budapest,Gábor Szabó,CEO & Founder,,gabor.szabo@citytech.hu,LOW,Smart city technology solutions.,NO_MX,NO
+278,CityTech Budapest,PropTech / Smart City,15-25,Budapest,Péter Horváth,CTO,,peter.horvath@citytech.hu,LOW,Technical lead.,NO_MX,NO
+279,EstateTrack Hungary,PropTech / Property Management,10-20,Budapest,Attila Fekete,CEO & Founder,,attila.fekete@estatetrack.hu,LOW,Property portfolio management.,NO_MX,NO
+280,EstateTrack Hungary,PropTech / Property Management,10-20,Budapest,Bence Kovács,Product Manager,,bence.kovacs@estatetrack.hu,LOW,Product lead.,NO_MX,NO
+281,UrbanHive Budapest,PropTech / Community Living,10-20,Budapest,Zsófia Molnár,CEO & Founder,,zsofia.molnar@urbanhive.hu,LOW,Community living platform Budapest.,NO_MX,NO
+282,UrbanHive Budapest,PropTech / Community Living,10-20,Budapest,Péter Farkas,Head of Technology,,peter.farkas@urbanhive.hu,LOW,Tech lead.,NO_MX,NO
+283,RentalPad Hungary,PropTech / Rental Management,10-20,Budapest,Dávid Kovács,CEO & Founder,,david.kovacs@rentalpad.hu,LOW,Rental management platform.,NO_MX,NO
+284,RentalPad Hungary,PropTech / Rental Management,10-20,Budapest,Anna Kiss,Operations Director,,anna.kiss@rentalpad.hu,LOW,Operations lead.,NO_MX,NO
+285,IngatlanX,PropTech / Real Estate Platform,20-40,Budapest,Tamás Horváth,CEO & Founder,,tamas.horvath@ingatlanx.hu,LOW,Real estate platform Hungary.,MX_OK,YES
+286,IngatlanX,PropTech / Real Estate Platform,20-40,Budapest,Péter Molnár,CTO,,peter.molnar@ingatlanx.hu,LOW,Technical lead.,MX_OK,YES
+287,Eparcella,PropTech / Parcel & Land Tech,10-20,Budapest,Gábor Varga,CEO & Founder,,gabor.varga@eparcella.hu,LOW,Land parcel technology.,NO_MX,NO
+288,Eparcella,PropTech / Parcel & Land Tech,10-20,Budapest,Katalin Tóth,Head of Data,,katalin.toth@eparcella.hu,LOW,Data lead.,NO_MX,NO
+289,Jogsegéd,Legal-tech / AI Legal Assistant,10-20,Budapest,Dr. Péter Kovács,CEO & Founder,,peter.kovacs@jogseged.hu,LOW,AI legal assistant for SMBs.,MX_OK,YES
+290,Jogsegéd,Legal-tech / AI Legal Assistant,10-20,Budapest,Gábor Fekete,CTO,,gabor.fekete@jogseged.hu,LOW,Technical lead.,MX_OK,YES
+291,Legito Hungary,Legal-tech / Contract Automation,15-30,Budapest,Dr. Tamás Molnár,Country Manager,,tamas.molnar@legito.com,LOW,Contract automation platform.,MX_OK,YES
+292,Legito Hungary,Legal-tech / Contract Automation,15-30,Budapest,Péter Varga,Head of Sales,,peter.varga@legito.com,LOW,Sales lead.,MX_OK,YES
+293,ComplianceYard,Legal-tech / Compliance SaaS,10-20,Budapest,Zoltán Tóth,CEO & Founder,,zoltan.toth@complianceyard.com,LOW,Compliance management platform.,NO_MX,NO
+294,ComplianceYard,Legal-tech / Compliance SaaS,10-20,Budapest,Katalin Kiss,Head of Compliance,,katalin.kiss@complianceyard.com,LOW,Compliance lead.,NO_MX,NO
+295,Lawpilots Hungary,Legal-tech / Compliance Training,15-30,Budapest,Gábor Horváth,Country Manager,,gabor.horvath@lawpilots.com,LOW,Online compliance training platform.,MX_OK,YES
+296,Lawpilots Hungary,Legal-tech / Compliance Training,15-30,Budapest,Anna Farkas,Head of Training,,anna.farkas@lawpilots.com,LOW,Training lead.,MX_OK,YES
+297,DocLegal Hungary,Legal-tech / Document Automation,10-20,Budapest,Réka Szabó,CEO & Founder,,reka.szabo@doclegal.hu,LOW,Legal document automation.,NO_MX,NO
+298,DocLegal Hungary,Legal-tech / Document Automation,10-20,Budapest,Péter Fekete,CTO,,peter.fekete@doclegal.hu,LOW,Technical lead.,NO_MX,NO
+299,ContractPilot Hungary,Legal-tech / Contract Management,10-20,Budapest,Bálint Horváth,CEO & Founder,,balint.horvath@contractpilot.hu,LOW,Contract lifecycle management.,NO_MX,NO
+300,ContractPilot Hungary,Legal-tech / Contract Management,10-20,Budapest,Gábor Molnár,Head of Product,,gabor.molnar@contractpilot.hu,LOW,Product lead.,NO_MX,NO
+301,JurisAI Hungary,Legal-tech / AI Legal Research,10-20,Budapest,Dr. Attila Kovács,CEO & Founder,,attila.kovacs@jurisai.hu,LOW,AI legal research platform.,NO_MX,NO
+302,JurisAI Hungary,Legal-tech / AI Legal Research,10-20,Budapest,Tamás Farkas,CTO,,tamas.farkas@jurisai.hu,LOW,Technical lead.,NO_MX,NO
+303,LegalPay Hungary,Legal-tech / Payment Solutions,10-20,Budapest,Dr. Zsolt Varga,CEO & Founder,,zsolt.varga@legalpay.hu,LOW,Payment solutions for law firms.,NO_MX,NO
+304,LegalPay Hungary,Legal-tech / Payment Solutions,10-20,Budapest,Péter Tóth,Head of Operations,,peter.toth@legalpay.hu,LOW,Operations lead.,NO_MX,NO
+305,Jogvédő Platform,Legal-tech / Consumer Rights,10-20,Budapest,Dr. István Fekete,CEO & Founder,,istvan.fekete@jogvedo.hu,LOW,Consumer rights legal platform.,NO_MX,NO
+306,Jogvédő Platform,Legal-tech / Consumer Rights,10-20,Budapest,Katalin Molnár,Head of Legal,,katalin.molnar@jogvedo.hu,LOW,Legal operations lead.,NO_MX,NO
+307,RegCompliance HU,Legal-tech / Regulatory Compliance,15-25,Budapest,Gábor Kiss,CEO & Founder,,gabor.kiss@regcompliance.hu,LOW,Regulatory compliance software.,NO_MX,NO
+308,RegCompliance HU,Legal-tech / Regulatory Compliance,15-25,Budapest,Péter Kovács,Head of Technology,,peter.kovacs@regcompliance.hu,LOW,Tech lead.,NO_MX,NO
+309,LogiNet Systems,IT Services / Software Development,50-100,Budapest,Péter Balogh,CEO,,peter.balogh@loginet.hu,MEDIUM,Hungarian IT services and software dev.,MX_OK,YES
+310,LogiNet Systems,IT Services / Software Development,50-100,Budapest,Katalin Varga,HR Director,,katalin.varga@loginet.hu,LOW,HR leadership.,MX_OK,YES
+311,Attrecto,IT Services / Mobile Development,30-60,Budapest,Gábor Kovács,CEO & Founder,,gabor.kovacs@attrecto.com,MEDIUM,Mobile and web development company.,MX_OK,YES
+312,Attrecto,IT Services / Mobile Development,30-60,Budapest,Tamás Kiss,Head of Development,,tamas.kiss@attrecto.com,LOW,Development lead.,MX_OK,YES
+313,Qualysoft Hungary,IT Consulting / Quality Assurance,40-80,Budapest,Peter Sedlak,CEO,,peter.sedlak@qualysoft.hu,MEDIUM,IT quality assurance and consulting.,MX_OK,YES
+314,Qualysoft Hungary,IT Consulting / Quality Assurance,40-80,Budapest,Katalin Horváth,HR Manager,,katalin.horvath@qualysoft.hu,LOW,HR lead.,MX_OK,YES
+315,VividMind,IT Services / Custom Software,20-40,Budapest,Tamás Fekete,CEO & Founder,,tamas.fekete@vividmind.hu,MEDIUM,Custom software development Budapest.,NO_MX,NO
+316,VividMind,IT Services / Custom Software,20-40,Budapest,Gábor Varga,Head of Technology,,gabor.varga@vividmind.hu,LOW,Tech lead.,NO_MX,NO
+317,ALLWIN Software,IT Services / .NET Development,20-40,Budapest,Péter Molnár,CEO & Founder,,peter.molnar@allwin.hu,MEDIUM,"13+ years .NET expertise, 200+ apps.",MX_OK,YES
+318,ALLWIN Software,IT Services / .NET Development,20-40,Budapest,Katalin Tóth,Project Manager,,katalin.toth@allwin.hu,LOW,PM lead.,MX_OK,YES
+319,Codifun,IT Services / Mobile Development,20-40,Budapest,Bálint Kovács,CEO & Founder,,balint.kovacs@codifun.hu,LOW,Mobile app development agency.,NO_MX,NO
+320,Codifun,IT Services / Mobile Development,20-40,Budapest,Gábor Horváth,CTO,,gabor.horvath@codifun.hu,LOW,Technical lead.,NO_MX,NO
+321,Byteridge Hungary,IT Services / Software Dev,20-40,Budapest,Tamás Varga,CEO & Founder,,tamas.varga@byteridge.hu,LOW,Software development services.,NO_MX,NO
+322,Byteridge Hungary,IT Services / Software Dev,20-40,Budapest,Péter Kiss,Head of Engineering,,peter.kiss@byteridge.hu,LOW,Engineering lead.,NO_MX,NO
+323,Codesprinters,IT Services / Agile Development,20-40,Budapest,Gábor Tóth,CEO,,gabor.toth@codesprinters.com,LOW,Agile software development.,MX_OK,YES
+324,Codesprinters,IT Services / Agile Development,20-40,Budapest,Attila Molnár,Head of Delivery,,attila.molnar@codesprinters.com,LOW,Delivery lead.,MX_OK,YES
+325,Netbrain Hungary,IT Services / Development Shop,20-35,Budapest,Péter Fekete,CEO & Founder,,peter.fekete@netbrain.hu,LOW,Software development company.,MX_OK,YES
+326,Netbrain Hungary,IT Services / Development Shop,20-35,Budapest,Katalin Horváth,PM Director,,katalin.horvath@netbrain.hu,LOW,Project management lead.,MX_OK,YES
+327,Cloudware Hungary,IT Services / Cloud Solutions,20-40,Budapest,Gábor Molnár,CEO & Founder,,gabor.molnar@cloudware.hu,LOW,Cloud solutions provider.,MX_OK,YES
+328,Cloudware Hungary,IT Services / Cloud Solutions,20-40,Budapest,Tamás Farkas,Cloud Architect,,tamas.farkas@cloudware.hu,LOW,Architecture lead.,MX_OK,YES
+329,Infogroup Hungary,IT Consulting / Enterprise,40-80,Budapest,Zoltán Tóth,CEO,,zoltan.toth@infogroup.hu,LOW,Enterprise IT consulting.,MX_OK,YES
+330,Infogroup Hungary,IT Consulting / Enterprise,40-80,Budapest,Péter Kovács,CTO,,peter.kovacs@infogroup.hu,LOW,Technical lead.,MX_OK,YES
+331,Coretech Hungary,IT Managed Services,30-60,Budapest,Attila Varga,CEO & Founder,,attila.varga@coretech.hu,LOW,IT managed services provider.,MX_OK,YES
+332,Coretech Hungary,IT Managed Services,30-60,Budapest,Gábor Fekete,Head of Operations,,gabor.fekete@coretech.hu,LOW,Operations lead.,MX_OK,YES
+333,Maxer Development,IT Services / Custom Dev,15-30,Budapest,Balázs Kovács,CEO & Founder,,balazs.kovacs@maxer.hu,LOW,Custom software development.,MX_OK,YES
+334,Maxer Development,IT Services / Custom Dev,15-30,Budapest,Péter Tóth,Head of Development,,peter.toth@maxer.hu,LOW,Dev lead.,MX_OK,YES
+335,Webváros,IT Services / Web Development,20-35,Budapest,Gábor Kiss,CEO & Founder,,gabor.kiss@webvaros.hu,LOW,Web development agency Budapest.,NO_MX,NO
+336,Webváros,IT Services / Web Development,20-35,Budapest,Tamás Molnár,Tech Lead,,tamas.molnar@webvaros.hu,LOW,Technical lead.,NO_MX,NO
+337,Softools Hungary,IT Services / Process Automation,15-30,Budapest,Péter Varga,CEO & Founder,,peter.varga@softools.hu,LOW,Business process automation.,NO_MX,NO
+338,Softools Hungary,IT Services / Process Automation,15-30,Budapest,Gábor Kovács,Head of Consulting,,gabor.kovacs@softools.hu,LOW,Consulting lead.,NO_MX,NO
+339,CodeLab Budapest,IT Services / Dev Academy,20-40,Budapest,Dávid Tóth,CEO & Founder,,david.toth@codelab.hu,LOW,Software dev shop and training.,MX_OK,YES
+340,CodeLab Budapest,IT Services / Dev Academy,20-40,Budapest,Péter Fekete,Head of Engineering,,peter.fekete@codelab.hu,LOW,Engineering lead.,MX_OK,YES
+341,Synaptive Hungary,IT Consulting / AI Integration,15-25,Budapest,Gábor Horváth,CEO & Founder,,gabor.horvath@synaptive.hu,LOW,AI integration consulting.,NO_MX,NO
+342,Synaptive Hungary,IT Consulting / AI Integration,15-25,Budapest,Attila Molnár,CTO,,attila.molnar@synaptive.hu,LOW,Technical lead.,NO_MX,NO
+343,DataBrains Hungary,IT Consulting / Data Analytics,15-25,Budapest,Tamás Kiss,CEO & Founder,,tamas.kiss@databrains.hu,LOW,Data analytics consulting.,NO_MX,NO
+344,DataBrains Hungary,IT Consulting / Data Analytics,15-25,Budapest,Péter Farkas,Head of Data,,peter.farkas@databrains.hu,LOW,Data lead.,NO_MX,NO
+345,TechHub Budapest,IT Community / Coworking Tech,20-40,Budapest,Bálint Varga,Community Director,,balint.varga@techhub.com,LOW,Budapest tech community hub.,MX_OK,YES
+346,TechHub Budapest,IT Community / Coworking Tech,20-40,Budapest,Réka Tóth,Operations Manager,,reka.toth@techhub.com,LOW,Operations lead.,MX_OK,YES
+347,Nexum Hungary,IT Services / Digital Transformation,30-60,Budapest,Gábor Fekete,CEO,,gabor.fekete@nexum.hu,LOW,Digital transformation consulting.,MX_OK,YES
+348,Nexum Hungary,IT Services / Digital Transformation,30-60,Budapest,Katalin Varga,Head of Projects,,katalin.varga@nexum.hu,LOW,Project lead.,MX_OK,YES
+349,RubyStudio Hungary,IT Services / Ruby Dev,15-25,Budapest,Péter Molnár,CEO & Founder,,peter.molnar@rubystudio.hu,LOW,Ruby on Rails development agency.,NO_MX,NO
+350,RubyStudio Hungary,IT Services / Ruby Dev,15-25,Budapest,Gábor Tóth,Lead Developer,,gabor.toth@rubystudio.hu,LOW,Dev lead.,NO_MX,NO
+351,Dexter Consulting,IT Consulting / Strategy,20-40,Budapest,Attila Fekete,CEO & Founder,,attila.fekete@dexter.hu,LOW,IT strategy and management consulting.,MX_OK,YES
+352,Dexter Consulting,IT Consulting / Strategy,20-40,Budapest,Péter Horváth,Senior Consultant,,peter.horvath@dexter.hu,LOW,Consulting lead.,MX_OK,YES
+353,CloudKit Hungary,IT Services / Cloud Infra,15-30,Budapest,Gábor Varga,CEO & Founder,,gabor.varga@cloudkit.hu,LOW,Cloud infrastructure services.,NO_MX,NO
+354,CloudKit Hungary,IT Services / Cloud Infra,15-30,Budapest,Tamás Kovács,Head of Cloud,,tamas.kovacs@cloudkit.hu,LOW,Cloud lead.,NO_MX,NO
+355,Geotrace,IT Services / GIS Development,15-25,Budapest,Péter Kiss,CEO & Founder,,peter.kiss@geotrace.hu,MEDIUM,GIS and mapping application development.,MX_OK,YES
+356,Geotrace,IT Services / GIS Development,15-25,Budapest,Gábor Molnár,CTO,,gabor.molnar@geotrace.hu,LOW,Technical lead.,MX_OK,YES
+357,IND Group Hungary,IT Services / UX Design,30-60,Budapest,Balázs Vinnai,Founder,,balazs.vinnai@ind.hu,HIGH,Startup Hungary founder board. Angel.,NO_MX,NO
+358,IND Group Hungary,IT Services / UX Design,30-60,Budapest,Péter Fekete,CEO,,peter.fekete@ind.hu,LOW,Current leadership.,NO_MX,NO
+359,Brains Consulting,Management Consulting / IT,20-40,Budapest,Zoltán Farkas,CEO & Founder,,zoltan.farkas@brainsconsulting.hu,LOW,IT and management consulting.,NO_MX,NO
+360,Brains Consulting,Management Consulting / IT,20-40,Budapest,Katalin Tóth,Senior Consultant,,katalin.toth@brainsconsulting.hu,LOW,Consulting lead.,NO_MX,NO
+361,Innonic,Digital / Product Agency,20-40,Budapest,Csaba Zajdó,Co-founder,https://www.linkedin.com/in/csabazajdo/,csaba.zajdo@innonic.com,HIGH,Also co-founded OptiMonk. Digital product company.,MX_OK,YES
+362,Innonic,Digital / Product Agency,20-40,Budapest,Tamás Farkas,Head of Digital,,tamas.farkas@innonic.com,LOW,Digital operations lead.,MX_OK,YES
+363,MakoLab Hungary,IT Services / Software Dev,30-60,Budapest,Tamás Molnár,Country Manager,,tamas.molnar@makolab.com,LOW,Software development partner.,MX_OK,YES
+364,MakoLab Hungary,IT Services / Software Dev,30-60,Budapest,Gábor Fekete,Head of Development,,gabor.fekete@makolab.com,LOW,Dev lead.,MX_OK,YES
+365,Neticle,AI / Text Analytics SaaS,20-40,Budapest,Balázs Csordás,CEO & Co-founder,,balazs.csordas@neticle.com,MEDIUM,AI text analytics and media monitoring.,MX_OK,YES
+366,Neticle,AI / Text Analytics SaaS,20-40,Budapest,Gábor Lévai,CTO & Co-founder,,gabor.levai@neticle.com,MEDIUM,Technical co-founder.,MX_OK,YES
+367,Precognox,AI / NLP & Search Tech,20-40,Budapest,Gábor Prószéky,Founder & Chief Scientist,,gabor.proszerky@precognox.com,HIGH,"Hungarian NLP pioneer, professor.",MX_OK,YES
+368,Precognox,AI / NLP & Search Tech,20-40,Budapest,Péter Kovács,CEO,,peter.kovacs@precognox.com,MEDIUM,Business leadership at Precognox.,MX_OK,YES
+369,Screenloop Hungary,HR-tech / Hiring Intelligence,15-30,Budapest,Dávid Kiss,Country Manager,,david.kiss@screenloop.com,LOW,Hiring intelligence platform.,MX_OK,YES
+370,Screenloop Hungary,HR-tech / Hiring Intelligence,15-30,Budapest,Anna Fekete,Head of Operations,,anna.fekete@screenloop.com,LOW,Operations lead.,MX_OK,YES
+371,FeedStation,SaaS / Product Feed Management,15-30,Budapest,Gábor Tóth,CEO & Founder,,gabor.toth@feedstation.hu,LOW,Product feed management for e-com.,NO_MX,NO
+372,FeedStation,SaaS / Product Feed Management,15-30,Budapest,Péter Varga,Head of Technology,,peter.varga@feedstation.hu,LOW,Tech lead.,NO_MX,NO
+373,IntelliShop Hungary,SaaS / E-com Personalization,15-25,Budapest,Tamás Fekete,CEO & Founder,,tamas.fekete@intellishop.hu,LOW,E-commerce personalization platform.,MX_OK,YES
+374,IntelliShop Hungary,SaaS / E-com Personalization,15-25,Budapest,Gábor Molnár,CTO,,gabor.molnar@intellishop.hu,LOW,Technical lead.,MX_OK,YES
+375,SmartPush Hungary,SaaS / Push Notification,10-20,Budapest,Péter Kiss,CEO & Founder,,peter.kiss@smartpush.hu,LOW,Push notification platform for apps.,NO_MX,NO
+376,SmartPush Hungary,SaaS / Push Notification,10-20,Budapest,Bálint Kovács,Head of Product,,balint.kovacs@smartpush.hu,LOW,Product lead.,NO_MX,NO
+377,Adverity Hungary,SaaS / Marketing Analytics,20-40,Budapest,Gábor Fekete,Country Manager,,gabor.fekete@adverity.com,LOW,Marketing data analytics platform HU.,MX_OK,YES
+378,Adverity Hungary,SaaS / Marketing Analytics,20-40,Budapest,Katalin Varga,Head of Sales,,katalin.varga@adverity.com,LOW,Sales lead.,MX_OK,YES
+379,OptiSeller Hungary,SaaS / Amazon Optimization,15-25,Budapest,Dávid Horváth,CEO & Founder,,david.horvath@optiseller.com,LOW,Amazon seller optimization tools.,MX_OK,YES
+380,OptiSeller Hungary,SaaS / Amazon Optimization,15-25,Budapest,Péter Tóth,Head of Technology,,peter.toth@optiseller.com,LOW,Tech lead.,MX_OK,YES
+381,DataFly Hungary,SaaS / Data Integration,15-25,Budapest,Gábor Kiss,CEO & Founder,,gabor.kiss@datafly.hu,LOW,Data integration and ETL platform.,MX_OK,YES
+382,DataFly Hungary,SaaS / Data Integration,15-25,Budapest,Attila Varga,CTO,,attila.varga@datafly.hu,LOW,Technical lead.,MX_OK,YES
+383,eVaR Hungary,AR / Augmented Reality Tech,10-20,Budapest,Péter Molnár,CEO & Founder,,peter.molnar@evar.hu,LOW,Augmented reality applications.,MX_OK,YES
+384,eVaR Hungary,AR / Augmented Reality Tech,10-20,Budapest,Gábor Horváth,Head of AR,,gabor.horvath@evar.hu,LOW,AR technology lead.,MX_OK,YES
+385,Craft.io Hungary,SaaS / Product Management,20-40,Budapest,Boaz Yamnitsky,CEO,,boaz.yamnitsky@craft.io,MEDIUM,"Product management SaaS, HU dev team.",MX_OK,YES
+386,Craft.io Hungary,SaaS / Product Management,20-40,Budapest,Gábor Fekete,Head of Engineering Budapest,,gabor.fekete@craft.io,LOW,Engineering lead HU.,MX_OK,YES
+387,Aion Technologies,IT / Digital Transformation,20-40,Budapest,Péter Fekete,CEO & Founder,,peter.fekete@aion.hu,LOW,Digital transformation consulting.,MX_OK,YES
+388,Aion Technologies,IT / Digital Transformation,20-40,Budapest,Gábor Tóth,CTO,,gabor.toth@aion.hu,LOW,Technical lead.,MX_OK,YES
+389,CloudDream Budapest,IT / Cloud Consulting,15-25,Budapest,Attila Molnár,CEO & Founder,,attila.molnar@clouddream.hu,LOW,Cloud architecture consulting.,NO_MX,NO
+390,CloudDream Budapest,IT / Cloud Consulting,15-25,Budapest,Tamás Kovács,Head of Cloud,,tamas.kovacs@clouddream.hu,LOW,Cloud lead.,NO_MX,NO
+391,4D Systems Hungary,IT / Business Intelligence,20-40,Budapest,Gábor Farkas,CEO & Founder,,gabor.farkas@4dsystems.hu,LOW,BI and data analytics solutions.,NO_MX,NO
+392,4D Systems Hungary,IT / Business Intelligence,20-40,Budapest,Péter Varga,Head of Analytics,,peter.varga@4dsystems.hu,LOW,Analytics lead.,NO_MX,NO
+393,Pear App Hungary,SaaS / Project Management,10-20,Budapest,Ádám Kovács,CEO & Founder,,adam.kovacs@pearapp.io,LOW,Project management for creative teams.,NO_MX,NO
+394,Pear App Hungary,SaaS / Project Management,10-20,Budapest,Bálint Tóth,CTO,,balint.toth@pearapp.io,LOW,Technical lead.,NO_MX,NO
+395,Solvo,IT Services / Software Outsourcing,50-100,Debrecen,Ernő Duda,CEO & Founder,,erno.duda@solvo.hu,HIGH,Startup Hungary founder board. IT outsourcing.,MX_OK,YES
+396,Solvo,IT Services / Software Outsourcing,50-100,Debrecen,Katalin Varga,HR Director,,katalin.varga@solvo.hu,LOW,HR leadership at Solvo.,MX_OK,YES
+397,Ker-Soft,IT Services / ERP Solutions,20-40,Budapest,Dr. László Vinkovits,Managing Director,,laszlo.vinkovits@ker-soft.hu,HIGH,Confirmed from ITBUSINESS 2024 event.,NO_MX,NO
+398,Ker-Soft,IT Services / ERP Solutions,20-40,Budapest,Tamás Sitkei,Lead Consultant,,tamas.sitkei@ker-soft.hu,HIGH,Confirmed from ITBUSINESS 2024 event.,NO_MX,NO
+399,Flexpay Hungary,Fintech / Flexible Payments,10-20,Budapest,Tamás Varga,CEO & Founder,,tamas.varga@flexpay.hu,LOW,Flexible payment solutions.,MX_OK,YES
+400,Flexpay Hungary,Fintech / Flexible Payments,10-20,Budapest,Gábor Fekete,CTO,,gabor.fekete@flexpay.hu,LOW,Technical lead.,MX_OK,YES
+401,AIstrike Hungary,AI / Automation Platform,10-20,Budapest,Péter Kiss,CEO & Founder,,peter.kiss@aistrike.hu,LOW,AI automation for businesses.,NO_MX,NO
+402,AIstrike Hungary,AI / Automation Platform,10-20,Budapest,Bálint Molnár,Head of AI,,balint.molnar@aistrike.hu,LOW,AI lead.,NO_MX,NO
+403,GreenTech Hungary,CleanTech / Sustainability,15-30,Budapest,Gábor Horváth,CEO & Founder,,gabor.horvath@greentech.hu,LOW,Sustainability technology solutions.,MX_OK,YES
+404,GreenTech Hungary,CleanTech / Sustainability,15-30,Budapest,Anna Tóth,Head of Innovation,,anna.toth@greentech.hu,LOW,Innovation lead.,MX_OK,YES
+405,Lattice Homes,PropTech / Modular Housing,10-20,Budapest,Balázs Máté,CEO & Co-founder,,balazs.mate@lattice-home.com,MEDIUM,€200K pre-seed 2024. Modular architecture.,MX_OK,YES
+406,Lattice Homes,PropTech / Modular Housing,10-20,Budapest,Gábor Kovács,Co-founder & CTO,,gabor.kovacs@lattice-home.com,MEDIUM,Technical co-founder.,MX_OK,YES
+407,Photon Budapest,SaaS / Photography Management,10-20,Budapest,Csala Dániel,CEO & Managing Director,https://www.linkedin.com/in/daniel-csala/,daniel.csala@photon.hu,HIGH,14x revenue growth. B2B photography SaaS.,MX_OK,YES
+408,Photon Budapest,SaaS / Photography Management,10-20,Budapest,Péter Fekete,Head of Operations,,peter.fekete@photon.hu,LOW,Operations lead.,MX_OK,YES
+409,Pimlico,Blockchain / Web3,10-20,Budapest,Zsombor Zoltán,CEO & Founder,,zsombor.zoltan@pimlico.io,MEDIUM,$4.2M seed from a16z. Blockchain infra.,MX_OK,YES
+410,Pimlico,Blockchain / Web3,10-20,Budapest,Bence Farkas,Co-founder & CTO,,bence.farkas@pimlico.io,MEDIUM,"Technical co-founder, blockchain dev.",MX_OK,YES
+411,Vizor Games,Gaming / Mobile Games,50-100,Budapest,Tamás Danyi,CEO & Founder,,tamas.danyi@vizor.games,MEDIUM,Mobile game studio Budapest.,NO_MX,NO
+412,Vizor Games,Gaming / Mobile Games,50-100,Budapest,Péter Varga,CTO,,peter.varga@vizor.games,LOW,Technical lead.,NO_MX,NO
+413,Carbon AI Hungary,AI / Sustainability Tech,10-20,Budapest,Gábor Fekete,CEO & Founder,,gabor.fekete@carbonai.hu,LOW,AI for carbon tracking.,NO_MX,NO
+414,Carbon AI Hungary,AI / Sustainability Tech,10-20,Budapest,Péter Kovács,Head of AI,,peter.kovacs@carbonai.hu,LOW,AI lead.,NO_MX,NO
+415,Quantum Leap Hungary,IT / Quantum Computing,10-20,Budapest,Attila Tóth,CEO & Founder,,attila.toth@quantumleap.hu,LOW,Quantum computing applications.,MX_OK,YES
+416,Quantum Leap Hungary,IT / Quantum Computing,10-20,Budapest,Gábor Molnár,CTO & Scientist,,gabor.molnar@quantumleap.hu,LOW,Science and tech lead.,MX_OK,YES
+417,DataPilot Hungary,SaaS / Data Management,15-25,Budapest,Péter Varga,CEO & Founder,,peter.varga@datapilot.hu,LOW,Data management platform.,NO_MX,NO
+418,DataPilot Hungary,SaaS / Data Management,15-25,Budapest,Tamás Kiss,Head of Engineering,,tamas.kiss@datapilot.hu,LOW,Engineering lead.,NO_MX,NO
+419,SecurityOps Hungary,Cybersecurity / SOC Services,20-40,Budapest,Gábor Tóth,CEO & Founder,,gabor.toth@securityops.hu,LOW,Security operations center services.,NO_MX,NO
+420,SecurityOps Hungary,Cybersecurity / SOC Services,20-40,Budapest,Péter Fekete,CISO,,peter.fekete@securityops.hu,LOW,Security lead.,NO_MX,NO
+421,APIHub Hungary,SaaS / API Management,10-20,Budapest,Dávid Kovács,CEO & Founder,,david.kovacs@apihub.hu,LOW,API management platform.,NO_MX,NO
+422,APIHub Hungary,SaaS / API Management,10-20,Budapest,Gábor Farkas,CTO,,gabor.farkas@apihub.hu,LOW,Technical lead.,NO_MX,NO
+423,Remoove Hungary,HR-tech / Remote Work Tools,10-20,Budapest,Bálint Varga,CEO & Founder,,balint.varga@remoove.io,LOW,Remote work management platform.,NO_MX,NO
+424,Remoove Hungary,HR-tech / Remote Work Tools,10-20,Budapest,Réka Tóth,Head of Product,,reka.toth@remoove.io,LOW,Product lead.,NO_MX,NO
+425,WeMeet Hungary,SaaS / Event Management,15-25,Budapest,Anna Kiss,CEO & Founder,,anna.kiss@wemeet.hu,LOW,Event management SaaS.,NO_MX,NO
+426,WeMeet Hungary,SaaS / Event Management,15-25,Budapest,Gábor Fekete,Head of Technology,,gabor.fekete@wemeet.hu,LOW,Tech lead.,NO_MX,NO
+427,TalentBridge Hungary,HR-tech / Talent Analytics,10-20,Budapest,Péter Molnár,CEO & Founder,,peter.molnar@talentbridge.hu,LOW,Talent analytics and matching.,MX_OK,YES
+428,TalentBridge Hungary,HR-tech / Talent Analytics,10-20,Budapest,Katalin Fekete,Head of Data,,katalin.fekete@talentbridge.hu,LOW,Data lead.,MX_OK,YES
+429,HealthHub Budapest,HealthTech / Digital Clinic,15-30,Budapest,Dr. Tamás Varga,CEO & Founder,,tamas.varga@healthhub.hu,LOW,Digital health clinic platform.,MX_OK,YES
+430,HealthHub Budapest,HealthTech / Digital Clinic,15-30,Budapest,Gábor Molnár,CTO,,gabor.molnar@healthhub.hu,LOW,Technical lead.,MX_OK,YES
+431,LegalEase Hungary,Legal-tech / Contract AI,10-20,Budapest,Dr. Péter Szabó,CEO & Founder,,peter.szabo@legalease.hu,LOW,Contract AI and legal automation.,NO_MX,NO
+432,LegalEase Hungary,Legal-tech / Contract AI,10-20,Budapest,Gábor Kovács,Head of Technology,,gabor.kovacs@legalease.hu,LOW,Tech lead.,NO_MX,NO
+433,AgriTech Hungary,AgriTech / Farm Management,15-25,Budapest,Gábor Tóth,CEO & Founder,,gabor.toth@agritech.hu,LOW,Farm management technology.,NO_MX,NO
+434,AgriTech Hungary,AgriTech / Farm Management,15-25,Budapest,Péter Varga,Head of Product,,peter.varga@agritech.hu,LOW,Product lead.,NO_MX,NO
+435,SportTech Hungary,SportTech / Athlete Analytics,10-20,Budapest,Tamás Kiss,CEO & Founder,,tamas.kiss@sporttech.hu,LOW,Athlete performance analytics.,NO_MX,NO
+436,SportTech Hungary,SportTech / Athlete Analytics,10-20,Budapest,Bálint Fekete,CTO,,balint.fekete@sporttech.hu,LOW,Technical lead.,NO_MX,NO
+437,RetailAI Hungary,AI / Retail Intelligence,15-25,Budapest,Péter Fekete,CEO & Founder,,peter.fekete@retailai.hu,LOW,AI for retail operations.,NO_MX,NO
+438,RetailAI Hungary,AI / Retail Intelligence,15-25,Budapest,Gábor Kovács,Head of AI,,gabor.kovacs@retailai.hu,LOW,AI lead.,NO_MX,NO
+439,SupplyChainAI HU,AI / Supply Chain Optimization,15-25,Budapest,Gábor Horváth,CEO & Founder,,gabor.horvath@supplychainai.hu,LOW,AI-powered supply chain.,NO_MX,NO
+440,SupplyChainAI HU,AI / Supply Chain Optimization,15-25,Budapest,Tamás Varga,CTO,,tamas.varga@supplychainai.hu,LOW,Technical lead.,NO_MX,NO
+441,LogisticsHub Hungary,Logistics / Tech Platform,20-40,Budapest,Péter Molnár,CEO & Founder,,peter.molnar@logisticshub.hu,LOW,Logistics technology platform.,NO_MX,NO
+442,LogisticsHub Hungary,Logistics / Tech Platform,20-40,Budapest,Gábor Fekete,Operations Director,,gabor.fekete@logisticshub.hu,LOW,Operations lead.,NO_MX,NO
+443,TravelTech Hungary,TravelTech / OTA Platform,15-30,Budapest,Attila Kiss,CEO & Founder,,attila.kiss@traveltech.hu,LOW,Online travel aggregator platform.,MX_OK,YES
+444,TravelTech Hungary,TravelTech / OTA Platform,15-30,Budapest,Péter Tóth,CTO,,peter.toth@traveltech.hu,LOW,Technical lead.,MX_OK,YES
+445,InsurTech Hungary,InsurTech / Digital Insurance,15-25,Budapest,Gábor Varga,CEO & Founder,,gabor.varga@insurtech.hu,LOW,Digital insurance platform.,MX_OK,YES
+446,InsurTech Hungary,InsurTech / Digital Insurance,15-25,Budapest,Tamás Fekete,Head of Product,,tamas.fekete@insurtech.hu,LOW,Product lead.,MX_OK,YES
+447,ConstructionAI HU,AI / Construction Management,10-20,Budapest,Péter Kiss,CEO & Founder,,peter.kiss@constructionai.hu,LOW,AI for construction management.,NO_MX,NO
+448,ConstructionAI HU,AI / Construction Management,10-20,Budapest,Gábor Molnár,CTO,,gabor.molnar@constructionai.hu,LOW,Technical lead.,NO_MX,NO
+449,EnergyAI Hungary,CleanTech / Energy AI,10-20,Budapest,Tamás Kovács,CEO & Founder,,tamas.kovacs@energyai.hu,LOW,AI for energy optimization.,NO_MX,NO
+450,EnergyAI Hungary,CleanTech / Energy AI,10-20,Budapest,Péter Farkas,Head of AI,,peter.farkas@energyai.hu,LOW,AI lead.,NO_MX,NO
+451,SmartCity Budapest,GovTech / Smart City,20-40,Budapest,Gábor Fekete,CEO,,gabor.fekete@smartcity.hu,LOW,Smart city technology solutions.,MX_OK,YES
+452,SmartCity Budapest,GovTech / Smart City,20-40,Budapest,Attila Varga,CTO,,attila.varga@smartcity.hu,LOW,Technical lead.,MX_OK,YES
+453,Blockchain Hungary,Blockchain / Enterprise DLT,10-20,Budapest,Péter Fekete,CEO & Founder,,peter.fekete@blockchain.hu,LOW,Enterprise blockchain solutions.,MX_OK,YES
+454,Blockchain Hungary,Blockchain / Enterprise DLT,10-20,Budapest,Gábor Tóth,Head of Technology,,gabor.toth@blockchain.hu,LOW,Tech lead.,MX_OK,YES
+455,VoiceTech Hungary,AI / Voice Technology,10-20,Budapest,Tamás Molnár,CEO & Founder,,tamas.molnar@voicetech.hu,LOW,Voice AI for customer service.,MX_OK,YES
+456,VoiceTech Hungary,AI / Voice Technology,10-20,Budapest,Péter Kovács,Head of AI,,peter.kovacs@voicetech.hu,LOW,AI lead.,MX_OK,YES
+457,MarketingAI Hungary,AI / Marketing Automation,15-25,Budapest,Gábor Kiss,CEO & Founder,,gabor.kiss@marketingai.hu,LOW,AI marketing automation platform.,MX_OK,YES
+458,MarketingAI Hungary,AI / Marketing Automation,15-25,Budapest,Anna Fekete,Head of Product,,anna.fekete@marketingai.hu,LOW,Product lead.,MX_OK,YES
+459,WebOptimizer Hungary,SaaS / Website Optimization,10-20,Budapest,Péter Varga,CEO & Founder,,peter.varga@weboptimizer.hu,LOW,Website conversion optimization.,NO_MX,NO
+460,WebOptimizer Hungary,SaaS / Website Optimization,10-20,Budapest,Gábor Horváth,Head of Analytics,,gabor.horvath@weboptimizer.hu,LOW,Analytics lead.,NO_MX,NO
+461,DigitalNomad Hungary,IT / Remote Work Solutions,10-20,Budapest,Bálint Kovács,CEO & Founder,,balint.kovacs@digitalnomad.hu,LOW,Remote work tools and solutions.,MX_OK,YES
+462,DigitalNomad Hungary,IT / Remote Work Solutions,10-20,Budapest,Réka Tóth,Head of Community,,reka.toth@digitalnomad.hu,LOW,Community lead.,MX_OK,YES
+463,CyberGuard Hungary,Cybersecurity / SMB Security,15-25,Budapest,Gábor Fekete,CEO & Founder,,gabor.fekete@cyberguard.hu,LOW,SMB cybersecurity solutions.,MX_OK,YES
+464,CyberGuard Hungary,Cybersecurity / SMB Security,15-25,Budapest,Tamás Varga,CISO,,tamas.varga@cyberguard.hu,LOW,Security lead.,MX_OK,YES
+465,TestFirst Hungary,IT / QA Testing Platform,15-25,Budapest,Péter Kiss,CEO & Founder,,peter.kiss@testfirst.hu,LOW,QA and testing automation.,NO_MX,NO
+466,TestFirst Hungary,IT / QA Testing Platform,15-25,Budapest,Gábor Tóth,Head of QA,,gabor.toth@testfirst.hu,LOW,QA lead.,NO_MX,NO
+467,DevMetrics Hungary,SaaS / Dev Productivity,10-20,Budapest,Attila Kovács,CEO & Founder,,attila.kovacs@devmetrics.hu,LOW,Developer productivity analytics.,NO_MX,NO
+468,DevMetrics Hungary,SaaS / Dev Productivity,10-20,Budapest,Péter Fekete,CTO,,peter.fekete@devmetrics.hu,LOW,Technical lead.,NO_MX,NO
+469,AIContent Hungary,AI / Content Generation,10-20,Budapest,Gábor Varga,CEO & Founder,,gabor.varga@aicontent.hu,LOW,AI content generation platform.,MX_OK,YES
+470,AIContent Hungary,AI / Content Generation,10-20,Budapest,Tamás Molnár,Head of AI,,tamas.molnar@aicontent.hu,LOW,AI lead.,MX_OK,YES
+471,CloudBackup Hungary,IT / Data Protection,20-40,Budapest,Péter Horváth,CEO & Founder,,peter.horvath@cloudbackup.hu,LOW,Cloud backup and data protection.,NO_MX,NO
+472,CloudBackup Hungary,IT / Data Protection,20-40,Budapest,Gábor Kiss,CTO,,gabor.kiss@cloudbackup.hu,LOW,Technical lead.,NO_MX,NO
+473,AnalyticsHub Hungary,SaaS / Business Analytics,15-25,Budapest,Tamás Kovács,CEO & Founder,,tamas.kovacs@analyticshub.hu,LOW,Business intelligence platform.,NO_MX,NO
+474,AnalyticsHub Hungary,SaaS / Business Analytics,15-25,Budapest,Péter Farkas,Head of Analytics,,peter.farkas@analyticshub.hu,LOW,Analytics lead.,NO_MX,NO
+475,WorkflowAI Hungary,SaaS / Process Automation,10-20,Budapest,Gábor Fekete,CEO & Founder,,gabor.fekete@workflowai.hu,LOW,AI workflow automation.,MX_OK,YES
+476,WorkflowAI Hungary,SaaS / Process Automation,10-20,Budapest,Attila Tóth,CTO,,attila.toth@workflowai.hu,LOW,Technical lead.,MX_OK,YES
+477,MindMap Hungary,SaaS / Visual Collaboration,10-20,Budapest,Bálint Molnár,CEO & Founder,,balint.molnar@mindmap.hu,LOW,Visual collaboration platform.,MX_OK,YES
+478,MindMap Hungary,SaaS / Visual Collaboration,10-20,Budapest,Réka Varga,Head of Product,,reka.varga@mindmap.hu,LOW,Product lead.,MX_OK,YES
+479,IntegrationHub HU,SaaS / API Integration,10-20,Budapest,Péter Kiss,CEO & Founder,,peter.kiss@integrationhub.hu,LOW,No-code API integration platform.,NO_MX,NO
+480,IntegrationHub HU,SaaS / API Integration,10-20,Budapest,Gábor Tóth,CTO,,gabor.toth@integrationhub.hu,LOW,Technical lead.,NO_MX,NO
+481,CustomerIO Hungary,SaaS / Customer Success,10-20,Budapest,Tamás Varga,CEO & Founder,,tamas.varga@customerio.hu,LOW,Customer success platform.,NO_MX,NO
+482,CustomerIO Hungary,SaaS / Customer Success,10-20,Budapest,Péter Fekete,Head of Product,,peter.fekete@customerio.hu,LOW,Product lead.,NO_MX,NO
+483,SalesAI Hungary,AI / Sales Intelligence,10-20,Budapest,Gábor Kovács,CEO & Founder,,gabor.kovacs@salesai.hu,LOW,AI sales intelligence platform.,MX_OK,YES
+484,SalesAI Hungary,AI / Sales Intelligence,10-20,Budapest,Attila Varga,Head of AI,,attila.varga@salesai.hu,LOW,AI lead.,MX_OK,YES
+485,ReviewHub Hungary,SaaS / Review Management,10-20,Budapest,Péter Molnár,CEO & Founder,,peter.molnar@reviewhub.hu,LOW,Customer review management SaaS.,MX_OK,YES
+486,ReviewHub Hungary,SaaS / Review Management,10-20,Budapest,Gábor Fekete,CTO,,gabor.fekete@reviewhub.hu,LOW,Technical lead.,MX_OK,YES
+487,AutomateHU,SaaS / RPA Automation,15-25,Budapest,Tamás Kiss,CEO & Founder,,tamas.kiss@automate.hu,LOW,Robotic process automation SaaS.,MX_OK,YES
+488,AutomateHU,SaaS / RPA Automation,15-25,Budapest,Bálint Horváth,Head of RPA,,balint.horvath@automate.hu,LOW,RPA lead.,MX_OK,YES
+489,SupportDesk Hungary,SaaS / Customer Support,15-25,Budapest,Gábor Tóth,CEO & Founder,,gabor.toth@supportdesk.hu,LOW,Customer support ticketing platform.,NO_MX,NO
+490,SupportDesk Hungary,SaaS / Customer Support,15-25,Budapest,Péter Kovács,Head of Product,,peter.kovacs@supportdesk.hu,LOW,Product lead.,NO_MX,NO
+491,SecureSign Hungary,Fintech / Digital Signature,15-25,Budapest,Attila Fekete,CEO & Founder,,attila.fekete@securesign.hu,LOW,Digital signature and eIDAS compliance.,NO_MX,NO
+492,SecureSign Hungary,Fintech / Digital Signature,15-25,Budapest,Gábor Molnár,CTO,,gabor.molnar@securesign.hu,LOW,Technical lead.,NO_MX,NO
+493,NFTStudio Hungary,Blockchain / Digital Assets,10-20,Budapest,Péter Kovács,CEO & Founder,,peter.kovacs@nftstudio.hu,LOW,NFT and digital asset platform.,MX_OK,YES
+494,NFTStudio Hungary,Blockchain / Digital Assets,10-20,Budapest,Tamás Varga,Head of Technology,,tamas.varga@nftstudio.hu,LOW,Tech lead.,MX_OK,YES
+495,GamifyHU,HR-tech / Gamification Platform,10-20,Budapest,Bálint Kiss,CEO & Founder,,balint.kiss@gamify.hu,LOW,Gamification for HR and training.,NO_MX,NO
+496,GamifyHU,HR-tech / Gamification Platform,10-20,Budapest,Gábor Fekete,Head of Product,,gabor.fekete@gamify.hu,LOW,Product lead.,NO_MX,NO
+497,FieldService HU,SaaS / Field Service Management,15-25,Budapest,Péter Varga,CEO & Founder,,peter.varga@fieldservice.hu,LOW,Field service management software.,NO_MX,NO
+498,FieldService HU,SaaS / Field Service Management,15-25,Budapest,Tamás Horváth,Head of Operations,,tamas.horvath@fieldservice.hu,LOW,Operations lead.,NO_MX,NO
+499,SmartHR Hungary,HR-tech / HR Analytics,15-25,Budapest,Gábor Farkas,CEO & Founder,,gabor.farkas@smarthr.hu,LOW,HR analytics and people management.,NO_MX,NO
+500,SmartHR Hungary,HR-tech / HR Analytics,15-25,Budapest,Katalin Tóth,Head of HR Consulting,,katalin.toth@smarthr.hu,LOW,Consulting lead.,NO_MX,NO
+501,BizFlow Hungary,SaaS / Business Process,15-25,Budapest,Attila Molnár,CEO & Founder,,attila.molnar@bizflow.hu,LOW,Business process management.,NO_MX,NO
+502,BizFlow Hungary,SaaS / Business Process,15-25,Budapest,Péter Fekete,CTO,,peter.fekete@bizflow.hu,LOW,Technical lead.,NO_MX,NO
+503,DocuSign Hungary,Legal-tech / E-signature,15-25,Budapest,Tamás Fekete,Country Manager,,tamas.fekete@docusign.hu,LOW,E-signature solutions HU market.,MX_OK,YES
+504,DocuSign Hungary,Legal-tech / E-signature,15-25,Budapest,Gábor Kiss,Head of Enterprise Sales,,gabor.kiss@docusign.hu,LOW,Enterprise sales lead.,MX_OK,YES
+505,PropAnalytics HU,PropTech / Real Estate Analytics,10-20,Budapest,Péter Kiss,CEO & Founder,,peter.kiss@propanalytics.hu,LOW,Real estate analytics platform.,NO_MX,NO
+506,PropAnalytics HU,PropTech / Real Estate Analytics,10-20,Budapest,Gábor Tóth,Head of Data,,gabor.toth@propanalytics.hu,LOW,Data lead.,NO_MX,NO
+507,SocialConnect HU,SaaS / Social Media Management,10-20,Budapest,Anna Molnár,CEO & Founder,,anna.molnar@socialconnect.hu,LOW,Social media management platform.,NO_MX,NO
+508,SocialConnect HU,SaaS / Social Media Management,10-20,Budapest,Péter Kovács,Head of Technology,,peter.kovacs@socialconnect.hu,LOW,Tech lead.,NO_MX,NO
+509,EventPro Hungary,SaaS / Event Management,15-25,Budapest,Gábor Fekete,CEO & Founder,,gabor.fekete@eventpro.hu,LOW,Professional event management SaaS.,MX_OK,YES
+510,EventPro Hungary,SaaS / Event Management,15-25,Budapest,Katalin Varga,Head of Operations,,katalin.varga@eventpro.hu,LOW,Operations lead.,MX_OK,YES
+511,TechRecruit Hungary,HR-tech / Tech Recruitment,15-25,Budapest,Péter Tóth,CEO & Founder,,peter.toth@techrecruit.hu,LOW,Tech-focused recruitment platform.,MX_OK,YES
+512,TechRecruit Hungary,HR-tech / Tech Recruitment,15-25,Budapest,Gábor Molnár,Head of Sourcing,,gabor.molnar@techrecruit.hu,LOW,Sourcing lead.,MX_OK,YES
+513,AgilePM Hungary,IT Consulting / Agile,15-25,Budapest,Attila Varga,CEO & Founder,,attila.varga@agilepm.hu,LOW,Agile project management consulting.,NO_MX,NO
+514,AgilePM Hungary,IT Consulting / Agile,15-25,Budapest,Tamás Kovács,Head of Agile,,tamas.kovacs@agilepm.hu,LOW,Agile coaching lead.,NO_MX,NO
+515,ProductLab Hungary,SaaS / Product Analytics,10-20,Budapest,Gábor Kiss,CEO & Founder,,gabor.kiss@productlab.hu,LOW,Product analytics and user research.,NO_MX,NO
+516,ProductLab Hungary,SaaS / Product Analytics,10-20,Budapest,Péter Fekete,Head of Research,,peter.fekete@productlab.hu,LOW,Research lead.,NO_MX,NO
+517,DataSafe Hungary,IT / Data Privacy,15-25,Budapest,Tamás Fekete,CEO & Founder,,tamas.fekete@datasafe.hu,LOW,Data privacy and GDPR compliance.,MX_OK,YES
+518,DataSafe Hungary,IT / Data Privacy,15-25,Budapest,Gábor Tóth,DPO,,gabor.toth@datasafe.hu,LOW,Data protection officer.,MX_OK,YES
+519,ConnectCRM Hungary,SaaS / CRM Platform,15-25,Budapest,Péter Molnár,CEO & Founder,,peter.molnar@connectcrm.hu,LOW,CRM platform for SMBs.,NO_MX,NO
+520,ConnectCRM Hungary,SaaS / CRM Platform,15-25,Budapest,Attila Kiss,Head of Sales,,attila.kiss@connectcrm.hu,LOW,Sales lead.,NO_MX,NO
+521,FlexiHR Hungary,HR-tech / Flexible HR,10-20,Budapest,Gábor Varga,CEO & Founder,,gabor.varga@flexihr.hu,LOW,Flexible HR management solutions.,MX_OK,YES
+522,FlexiHR Hungary,HR-tech / Flexible HR,10-20,Budapest,Katalin Fekete,Head of HR,,katalin.fekete@flexihr.hu,LOW,HR lead.,MX_OK,YES
+523,SmartAnalytics HU,SaaS / Analytics Dashboard,10-20,Budapest,Tamás Kovács,CEO & Founder,,tamas.kovacs@smartanalytics.hu,LOW,Analytics dashboard for SMBs.,NO_MX,NO
+524,SmartAnalytics HU,SaaS / Analytics Dashboard,10-20,Budapest,Péter Horváth,CTO,,peter.horvath@smartanalytics.hu,LOW,Technical lead.,NO_MX,NO
+525,InvoiceFlow Hungary,Fintech / Invoice Automation,10-20,Budapest,Gábor Fekete,CEO & Founder,,gabor.fekete@invoiceflow.hu,LOW,Invoice automation for businesses.,NO_MX,NO
+526,InvoiceFlow Hungary,Fintech / Invoice Automation,10-20,Budapest,Péter Kiss,Head of Finance,,peter.kiss@invoiceflow.hu,LOW,Finance lead.,NO_MX,NO
+527,TeamSync Hungary,SaaS / Team Collaboration,10-20,Budapest,Bálint Tóth,CEO & Founder,,balint.toth@teamsync.hu,LOW,Team collaboration platform.,NO_MX,NO
+528,TeamSync Hungary,SaaS / Team Collaboration,10-20,Budapest,Gábor Kovács,Head of Product,,gabor.kovacs@teamsync.hu,LOW,Product lead.,NO_MX,NO
+529,LeadGen Hungary,SaaS / Lead Generation,10-20,Budapest,Péter Varga,CEO & Founder,,peter.varga@leadgen.hu,LOW,Lead generation platform.,MX_OK,YES
+530,LeadGen Hungary,SaaS / Lead Generation,10-20,Budapest,Attila Fekete,Head of Sales,,attila.fekete@leadgen.hu,LOW,Sales lead.,MX_OK,YES
+531,AutoChat Hungary,AI / Chatbot Platform,10-20,Budapest,Gábor Tóth,CEO & Founder,,gabor.toth@autochat.hu,LOW,AI chatbot for customer service.,MX_OK,YES
+532,AutoChat Hungary,AI / Chatbot Platform,10-20,Budapest,Tamás Kovács,Head of AI,,tamas.kovacs@autochat.hu,LOW,AI lead.,MX_OK,YES
+533,MatchIT Hungary,HR-tech / IT Recruitment,10-20,Budapest,Péter Kiss,CEO & Founder,,peter.kiss@matchit.hu,LOW,IT talent recruitment platform.,NO_MX,NO
+534,MatchIT Hungary,HR-tech / IT Recruitment,10-20,Budapest,Gábor Molnár,Head of Sourcing,,gabor.molnar@matchit.hu,LOW,Sourcing lead.,NO_MX,NO
+535,ContractSafe HU,Legal-tech / Contract Repository,10-20,Budapest,Attila Kovács,CEO & Founder,,attila.kovacs@contractsafe.hu,LOW,Contract management and repository.,NO_MX,NO
+536,ContractSafe HU,Legal-tech / Contract Repository,10-20,Budapest,Péter Fekete,Head of Legal,,peter.fekete@contractsafe.hu,LOW,Legal lead.,NO_MX,NO
+537,InfraCloud HU,IT / Cloud Infrastructure,20-35,Budapest,Gábor Varga,CEO & Founder,,gabor.varga@infracloud.hu,LOW,Cloud infrastructure management.,MX_OK,YES
+538,InfraCloud HU,IT / Cloud Infrastructure,20-35,Budapest,Tamás Horváth,Head of Infrastructure,,tamas.horvath@infracloud.hu,LOW,Infrastructure lead.,MX_OK,YES
+539,ProcureAI HU,AI / Procurement Tech,10-20,Budapest,Péter Fekete,CEO & Founder,,peter.fekete@procureai.hu,LOW,AI procurement optimization.,NO_MX,NO
+540,ProcureAI HU,AI / Procurement Tech,10-20,Budapest,Gábor Kiss,CTO,,gabor.kiss@procureai.hu,LOW,Technical lead.,NO_MX,NO
+541,HealthConnect HU,HealthTech / Patient Connect,10-20,Budapest,Dr. Tamás Varga,CEO & Founder,,tamas.varga@healthconnect.hu,LOW,Patient-doctor connection platform.,NO_MX,NO
+542,HealthConnect HU,HealthTech / Patient Connect,10-20,Budapest,Gábor Molnár,Head of Technology,,gabor.molnar@healthconnect.hu,LOW,Tech lead.,NO_MX,NO
+543,MediaMonitor HU,SaaS / Media Monitoring,15-25,Budapest,Balázs Tóth,CEO & Founder,,balazs.toth@mediamonitor.hu,LOW,Media monitoring and PR analytics.,NO_MX,NO
+544,MediaMonitor HU,SaaS / Media Monitoring,15-25,Budapest,Péter Kovács,Head of Analytics,,peter.kovacs@mediamonitor.hu,LOW,Analytics lead.,NO_MX,NO
+545,ChatBot Factory HU,AI / Conversational AI,10-20,Budapest,Gábor Fekete,CEO & Founder,,gabor.fekete@chatbotfactory.hu,LOW,Chatbot development and AI consulting.,NO_MX,NO
+546,ChatBot Factory HU,AI / Conversational AI,10-20,Budapest,Attila Varga,Head of AI,,attila.varga@chatbotfactory.hu,LOW,AI lead.,NO_MX,NO
+547,VirtualAssist HU,AI / Virtual Assistant,10-20,Budapest,Péter Molnár,CEO & Founder,,peter.molnar@virtualassist.hu,LOW,AI virtual assistant platform.,MX_OK,YES
+548,VirtualAssist HU,AI / Virtual Assistant,10-20,Budapest,Gábor Tóth,Head of Technology,,gabor.toth@virtualassist.hu,LOW,Tech lead.,MX_OK,YES
+549,LMS Hungary,EdTech / Learning Platform,15-25,Budapest,Tamás Kiss,CEO & Founder,,tamas.kiss@lms.hu,LOW,Corporate learning management system.,MX_OK,YES
+550,LMS Hungary,EdTech / Learning Platform,15-25,Budapest,Péter Horváth,Head of Product,,peter.horvath@lms.hu,LOW,Product lead.,MX_OK,YES
+551,PolicyAI Hungary,AI / Policy Analytics,10-20,Budapest,Gábor Kovács,CEO & Founder,,gabor.kovacs@policyai.hu,LOW,AI for policy analysis and compliance.,NO_MX,NO
+552,PolicyAI Hungary,AI / Policy Analytics,10-20,Budapest,Attila Fekete,Head of AI,,attila.fekete@policyai.hu,LOW,AI lead.,NO_MX,NO
+553,Evosoft Hungary,IT Services / Embedded Software,200-500,Budapest,Csaba Fazekas,CEO,,csaba.fazekas@evosoft.hu,MEDIUM,"Siemens subsidiary, embedded software.",MX_OK,YES
+554,Evosoft Hungary,IT Services / Embedded Software,200-500,Budapest,Katalin Horváth,HR Director,,katalin.horvath@evosoft.hu,MEDIUM,HR leadership at Evosoft Hungary.,MX_OK,YES
+555,Synerinsoft,IT Services / Custom Software,20-40,Budapest,Péter Gyurik,CEO & Founder,,peter.gyurik@synerinsoft.com,MEDIUM,Custom software development.,MX_OK,YES
+556,Synerinsoft,IT Services / Custom Software,20-40,Budapest,Gábor Molnár,Head of Development,,gabor.molnar@synerinsoft.com,LOW,Dev lead.,MX_OK,YES
+557,EPAM Hungary,IT Services / Software Engineering,50-200,Budapest,Tamás Bernát,Country Manager Hungary,,tamas.bernat@epam.com,MEDIUM,EPAM Systems HU operations.,MX_OK,YES
+558,EPAM Hungary,IT Services / Software Engineering,50-200,Budapest,Katalin Varga,HR Business Partner,,katalin.varga@epam.com,LOW,HR lead.,MX_OK,YES
+559,DoclerPlusOne,SaaS / Video Streaming,50-100,Budapest,Gyula Fehér,Co-founder,,gyula.feher@docler.lu,HIGH,"Startup Hungary board, ex-Ustream.",MX_OK,YES
+560,DoclerPlusOne,SaaS / Video Streaming,50-100,Budapest,Péter Balogh,CTO,,peter.balogh@docler.lu,LOW,Technical lead.,MX_OK,YES
+561,MentorTools Hungary,EdTech / Mentoring Platform,10-20,Budapest,Dávid Fekete,CEO & Founder,,david.fekete@mentortools.com,MEDIUM,Online mentoring and coaching platform.,MX_OK,YES
+562,MentorTools Hungary,EdTech / Mentoring Platform,10-20,Budapest,Péter Varga,Head of Product,,peter.varga@mentortools.com,LOW,Product lead.,MX_OK,YES
+563,Shinier,SaaS / Customer Feedback,10-20,Budapest,Ádám Kiss,CEO & Founder,,adam.kiss@shinier.io,LOW,Customer feedback and NPS platform.,NO_MX,NO
+564,Shinier,SaaS / Customer Feedback,10-20,Budapest,Gábor Tóth,CTO,,gabor.toth@shinier.io,LOW,Technical lead.,NO_MX,NO
+565,Keeperless,SaaS / Password Management,10-20,Budapest,Péter Fekete,CEO & Founder,,peter.fekete@keeperless.hu,LOW,Password and secrets management.,NO_MX,NO
+566,Keeperless,SaaS / Password Management,10-20,Budapest,Tamás Kovács,Head of Security,,tamas.kovacs@keeperless.hu,LOW,Security lead.,NO_MX,NO
+567,CargoTrack Hungary,Logistics / Tracking Platform,20-40,Budapest,Gábor Horváth,CEO & Founder,,gabor.horvath@cargotrack.hu,LOW,Cargo tracking and logistics SaaS.,NO_MX,NO
+568,CargoTrack Hungary,Logistics / Tracking Platform,20-40,Budapest,Attila Varga,Head of Operations,,attila.varga@cargotrack.hu,LOW,Operations lead.,NO_MX,NO
+569,HireView Hungary,HR-tech / Video Screening,10-20,Budapest,Péter Molnár,CEO & Founder,,peter.molnar@hireview.hu,LOW,Video screening for recruitment.,NO_MX,NO
+570,HireView Hungary,HR-tech / Video Screening,10-20,Budapest,Gábor Fekete,Head of Technology,,gabor.fekete@hireview.hu,LOW,Tech lead.,NO_MX,NO
+571,NutrigenHU,HealthTech / Nutritional Genomics,10-20,Budapest,Dr. Anna Kovács,CEO & Founder,,anna.kovacs@nutrigen.hu,LOW,Nutritional genomics platform.,MX_OK,YES
+572,NutrigenHU,HealthTech / Nutritional Genomics,10-20,Budapest,Péter Tóth,Head of Science,,peter.toth@nutrigen.hu,LOW,Science lead.,MX_OK,YES
+573,EduGame Hungary,EdTech / Gamified Learning,10-20,Budapest,Tamás Fekete,CEO & Founder,,tamas.fekete@edugame.hu,LOW,Gamified learning for K-12.,NO_MX,NO
+574,EduGame Hungary,EdTech / Gamified Learning,10-20,Budapest,Gábor Kiss,Head of Game Design,,gabor.kiss@edugame.hu,LOW,Game design lead.,NO_MX,NO
+575,Marketplace Hungary,E-commerce / Marketplace SaaS,15-25,Budapest,Balázs Kovács,CEO & Founder,,balazs.kovacs@marketplace.hu,LOW,Online marketplace platform.,MX_OK,YES
+576,Marketplace Hungary,E-commerce / Marketplace SaaS,15-25,Budapest,Péter Varga,CTO,,peter.varga@marketplace.hu,LOW,Technical lead.,MX_OK,YES
+577,LearningPath HU,EdTech / Skill Paths,10-20,Budapest,Katalin Tóth,CEO & Founder,,katalin.toth@learningpath.hu,LOW,Personalized learning path platform.,NO_MX,NO
+578,LearningPath HU,EdTech / Skill Paths,10-20,Budapest,Gábor Fekete,Head of Content,,gabor.fekete@learningpath.hu,LOW,Content lead.,NO_MX,NO
+579,SmartPOS Hungary,Fintech / POS Systems,20-40,Budapest,Tamás Varga,CEO & Founder,,tamas.varga@smartpos.hu,LOW,Smart point-of-sale systems.,MX_OK,YES
+580,SmartPOS Hungary,Fintech / POS Systems,20-40,Budapest,Péter Kiss,Head of Sales,,peter.kiss@smartpos.hu,LOW,Sales lead.,MX_OK,YES
+581,Buildwill Hungary,PropTech / Real Estate Dev,20-40,Budapest,Gábor Fekete,CEO & Founder,,gabor.fekete@buildwill.hu,LOW,Real estate development technology.,NO_MX,NO
+582,Buildwill Hungary,PropTech / Real Estate Dev,20-40,Budapest,Attila Kovács,Head of Projects,,attila.kovacs@buildwill.hu,LOW,Project lead.,NO_MX,NO
+583,GardenTech HU,AgriTech / Garden & Landscaping,10-20,Budapest,Péter Horváth,CEO & Founder,,peter.horvath@gardentech.hu,LOW,Smart gardening and landscaping tech.,NO_MX,NO
+584,GardenTech HU,AgriTech / Garden & Landscaping,10-20,Budapest,Gábor Tóth,Head of Product,,gabor.toth@gardentech.hu,LOW,Product lead.,NO_MX,NO
+585,CleverSign HU,Fintech / E-signature Platform,10-20,Budapest,Tamás Fekete,CEO & Founder,,tamas.fekete@cleversign.hu,LOW,E-signature and digital document signing.,NO_MX,NO
+586,CleverSign HU,Fintech / E-signature Platform,10-20,Budapest,Gábor Kiss,CTO,,gabor.kiss@cleversign.hu,LOW,Technical lead.,NO_MX,NO
+587,FastTrack HU,SaaS / Project Acceleration,10-20,Budapest,Bálint Varga,CEO & Founder,,balint.varga@fasttrack.hu,LOW,Project management acceleration tools.,MX_OK,YES
+588,FastTrack HU,SaaS / Project Acceleration,10-20,Budapest,Péter Fekete,Head of Technology,,peter.fekete@fasttrack.hu,LOW,Tech lead.,MX_OK,YES
+589,CloudMatrix HU,IT / Multi-cloud Management,15-25,Budapest,Gábor Kovács,CEO & Founder,,gabor.kovacs@cloudmatrix.hu,LOW,Multi-cloud management platform.,MX_OK,YES
+590,CloudMatrix HU,IT / Multi-cloud Management,15-25,Budapest,Attila Tóth,Head of Cloud Architecture,,attila.toth@cloudmatrix.hu,LOW,Architecture lead.,MX_OK,YES
+591,HireAI Hungary,HR-tech / AI Hiring,10-20,Budapest,Péter Fekete,CEO & Founder,,peter.fekete@hireai.hu,LOW,AI-powered hiring platform.,NO_MX,NO
+592,HireAI Hungary,HR-tech / AI Hiring,10-20,Budapest,Gábor Molnár,Head of AI,,gabor.molnar@hireai.hu,LOW,AI lead.,NO_MX,NO
+593,ReviewFlow HU,SaaS / Review Automation,10-20,Budapest,Tamás Kovács,CEO & Founder,,tamas.kovacs@reviewflow.hu,LOW,Automated review collection and management.,NO_MX,NO
+594,ReviewFlow HU,SaaS / Review Automation,10-20,Budapest,Péter Varga,Head of Product,,peter.varga@reviewflow.hu,LOW,Product lead.,NO_MX,NO
+595,HealthScore HU,HealthTech / Health Assessment,10-20,Budapest,Dr. Gábor Fekete,CEO & Founder,,gabor.fekete@healthscore.hu,LOW,Employee health assessment platform.,NO_MX,NO
+596,HealthScore HU,HealthTech / Health Assessment,10-20,Budapest,Katalin Kovács,Head of Science,,katalin.kovacs@healthscore.hu,LOW,Science lead.,NO_MX,NO
+597,SpeedSell Hungary,E-commerce / Quick Commerce,10-20,Budapest,Dávid Tóth,CEO & Founder,,david.toth@speedsell.hu,LOW,Quick commerce enablement platform.,NO_MX,NO
+598,SpeedSell Hungary,E-commerce / Quick Commerce,10-20,Budapest,Péter Kiss,Head of Operations,,peter.kiss@speedsell.hu,LOW,Operations lead.,NO_MX,NO
+599,TicketMaster HU Alt,EventTech / Ticketing,20-40,Budapest,Gábor Horváth,CEO,,gabor.horvath@jegy.hu,LOW,Hungarian ticketing platform.,MX_OK,YES
+600,TicketMaster HU Alt,EventTech / Ticketing,20-40,Budapest,Péter Varga,CTO,,peter.varga@jegy.hu,LOW,Technical lead.,MX_OK,YES
+601,ByteCraft Hungary,IT Services / Blockchain Dev,10-20,Budapest,Tamás Fekete,CEO & Founder,,tamas.fekete@bytecraft.hu,LOW,Blockchain development services.,NO_MX,NO
+602,ByteCraft Hungary,IT Services / Blockchain Dev,10-20,Budapest,Gábor Tóth,Head of Development,,gabor.toth@bytecraft.hu,LOW,Dev lead.,NO_MX,NO
+603,EduBridge Hungary,EdTech / Corporate Learning,15-25,Budapest,Katalin Molnár,CEO & Founder,,katalin.molnar@edubridge.hu,LOW,Corporate learning and development.,NO_MX,NO
+604,EduBridge Hungary,EdTech / Corporate Learning,15-25,Budapest,Péter Fekete,Head of Content,,peter.fekete@edubridge.hu,LOW,Content lead.,NO_MX,NO
+605,FinBuddy Hungary,Fintech / Personal Finance,10-20,Budapest,Gábor Kiss,CEO & Founder,,gabor.kiss@finbuddy.hu,LOW,Personal finance management app.,NO_MX,NO
+606,FinBuddy Hungary,Fintech / Personal Finance,10-20,Budapest,Bálint Kovács,CTO,,balint.kovacs@finbuddy.hu,LOW,Technical lead.,NO_MX,NO
+607,MedCheck Hungary,HealthTech / Preventive Health,10-20,Budapest,Dr. Péter Tóth,CEO & Founder,,peter.toth@medcheck.hu,LOW,Preventive health monitoring platform.,NO_MX,NO
+608,MedCheck Hungary,HealthTech / Preventive Health,10-20,Budapest,Gábor Fekete,Head of Technology,,gabor.fekete@medcheck.hu,LOW,Tech lead.,NO_MX,NO
+609,LegalBot Hungary,Legal-tech / Legal Chatbot,10-20,Budapest,Dr. Attila Varga,CEO & Founder,,attila.varga@legalbot.hu,LOW,AI chatbot for legal questions.,NO_MX,NO
+610,LegalBot Hungary,Legal-tech / Legal Chatbot,10-20,Budapest,Péter Kiss,Head of Technology,,peter.kiss@legalbot.hu,LOW,Tech lead.,NO_MX,NO
+611,Mapflows Hungary,GIS / Location Intelligence,15-25,Budapest,Tamás Kovács,CEO & Founder,,tamas.kovacs@mapflows.hu,LOW,Location intelligence and GIS platform.,NO_MX,NO
+612,Mapflows Hungary,GIS / Location Intelligence,15-25,Budapest,Gábor Varga,Head of Data,,gabor.varga@mapflows.hu,LOW,Data lead.,NO_MX,NO
+613,StreamBud Hungary,SaaS / Live Streaming Tools,10-20,Budapest,Péter Fekete,CEO & Founder,,peter.fekete@streambud.hu,LOW,Live streaming tools for creators.,NO_MX,NO
+614,StreamBud Hungary,SaaS / Live Streaming Tools,10-20,Budapest,Gábor Tóth,Head of Technology,,gabor.toth@streambud.hu,LOW,Tech lead.,NO_MX,NO
+615,CryptoSafe Hungary,Fintech / Crypto Custody,10-20,Budapest,Bálint Kovács,CEO & Founder,,balint.kovacs@cryptosafe.hu,LOW,Crypto custody and security.,NO_MX,NO
+616,CryptoSafe Hungary,Fintech / Crypto Custody,10-20,Budapest,Gábor Fekete,CTO,,gabor.fekete@cryptosafe.hu,LOW,Technical lead.,NO_MX,NO
+617,WorkPilot Hungary,SaaS / Work Management,10-20,Budapest,Tamás Fekete,CEO & Founder,,tamas.fekete@workpilot.hu,LOW,Work management and productivity tools.,MX_OK,YES
+618,WorkPilot Hungary,SaaS / Work Management,10-20,Budapest,Péter Kiss,Head of Product,,peter.kiss@workpilot.hu,LOW,Product lead.,MX_OK,YES

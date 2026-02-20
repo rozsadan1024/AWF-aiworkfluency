@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Work Fluency — Mennyi profitot veszít el a cége naponta?</title>
+  <meta name="description" content="Magyar cégeknek: személyre szabott AI képzés pozíciónként. Kalkulálja ki, mennyi elmaradt bevételt termel a csapata AI nélkül.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: #1a1a2e;
+      background: #fff;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    :root {
+      --primary: #2D5BE3;
+      --primary-dark: #1e3fa8;
+      --accent: #00C896;
+      --accent-dark: #009e77;
+      --red: #e74c3c;
+      --red-soft: #fff0ee;
+      --dark: #0d0f1e;
+      --gray-light: #f5f7ff;
+      --gray-mid: #e8ecf8;
+      --text-muted: #5a6076;
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .text-center { text-align: center; }
+
+    .btn {
+      display: inline-block;
+      padding: 16px 36px;
+      border-radius: 8px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+    }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(45,91,227,0.35); }
+    .btn-accent { background: var(--accent); color: #fff; }
+    .btn-accent:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,200,150,0.35); }
+    .btn-lg { padding: 20px 48px; font-size: 1.15rem; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.97);
+      border-bottom: 1px solid var(--gray-mid);
+      padding: 14px 0;
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 1.3rem; font-weight: 800; color: var(--primary); }
+    .logo span { color: var(--accent); }
+    .nav-cta-sm {
+      background: var(--primary); color: #fff;
+      padding: 10px 24px; border-radius: 6px; font-weight: 700; font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+    .nav-cta-sm:hover { background: var(--primary-dark); }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #0d0f1e 0%, #1a2355 55%, #0e1e5a 100%);
+      color: #fff;
+      padding: 90px 0 70px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -180px; right: -150px;
+      width: 650px; height: 650px;
+      background: radial-gradient(circle, rgba(231,76,60,0.25) 0%, transparent 65%);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -120px; left: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(45,91,227,0.2) 0%, transparent 65%);
+      border-radius: 50%;
+    }
+    .hero-inner { position: relative; z-index: 2; max-width: 820px; margin: 0 auto; text-align: center; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(231,76,60,0.18);
+      border: 1px solid rgba(231,76,60,0.45);
+      color: #ff8a7a;
+      padding: 8px 22px; border-radius: 100px;
+      font-size: 0.88rem; font-weight: 700;
+      margin-bottom: 28px; letter-spacing: 0.5px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3.3rem);
+      font-weight: 800; line-height: 1.15;
+      margin-bottom: 24px; letter-spacing: -1px;
+    }
+    .hero h1 .red {
+      background: linear-gradient(90deg, #ff6b6b, #e74c3c);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero h1 .green {
+      background: linear-gradient(90deg, #00C896, #2D5BE3);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-subtitle {
+      font-size: 1.2rem; color: rgba(255,255,255,0.72);
+      margin-bottom: 44px; max-width: 640px;
+      margin-left: auto; margin-right: auto;
+    }
+    .hero-cta-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 60px; }
+
+    /* MINI LOSS TEASER in hero */
+    .hero-teaser {
+      background: rgba(231,76,60,0.1);
+      border: 1px solid rgba(231,76,60,0.3);
+      border-radius: 12px;
+      padding: 24px 32px;
+      display: inline-flex; align-items: center; gap: 24px;
+      flex-wrap: wrap; justify-content: center;
+    }
+    .hero-teaser-label { font-size: 0.9rem; color: rgba(255,255,255,0.6); }
+    .hero-teaser-number { font-size: 2.2rem; font-weight: 800; color: #ff6b6b; }
+    .hero-teaser-unit { font-size: 1rem; color: rgba(255,255,255,0.7); margin-top: 4px; }
+    .hero-divider { width: 1px; height: 60px; background: rgba(255,255,255,0.15); }
+
+    /* SECTION BASICS */
+    .section { padding: 80px 0; }
+    .section-label {
+      font-size: 0.82rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--primary); margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      font-weight: 800; line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 16px;
+    }
+    .section-subtitle {
+      font-size: 1.05rem; color: var(--text-muted);
+      max-width: 580px; margin: 0 auto 48px;
+    }
+    .bg-light { background: var(--gray-light); }
+    .bg-dark-section { background: #0d0f1e; color: #fff; }
+
+    /* ============================================================
+       PROFIT CALCULATOR
+    ============================================================ */
+    .calc-wrapper {
+      background: #fff;
+      border: 2px solid var(--red);
+      border-radius: 20px;
+      padding: 48px;
+      max-width: 820px;
+      margin: 0 auto;
+      box-shadow: 0 20px 60px rgba(231,76,60,0.12);
+    }
+    .calc-title {
+      font-size: 1.5rem; font-weight: 800; text-align: center;
+      margin-bottom: 8px;
+    }
+    .calc-subtitle {
+      text-align: center; color: var(--text-muted);
+      margin-bottom: 40px; font-size: 0.95rem;
+    }
+
+    .calc-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 32px; }
+    @media (max-width: 600px) { .calc-inputs { grid-template-columns: 1fr; } }
+
+    .calc-field label {
+      display: block; font-weight: 700; font-size: 0.9rem;
+      margin-bottom: 8px; color: #333;
+    }
+    .calc-field label span { font-weight: 400; color: var(--text-muted); }
+    .calc-field input[type=range] {
+      width: 100%; accent-color: var(--red); margin-bottom: 6px;
+    }
+    .range-display {
+      display: flex; justify-content: space-between;
+      font-size: 0.85rem; color: var(--text-muted);
+    }
+    .range-value { font-weight: 800; font-size: 1.1rem; color: var(--primary); }
+
+    .calc-boost {
+      background: var(--gray-light); border-radius: 12px;
+      padding: 20px 24px; margin-bottom: 32px;
+    }
+    .calc-boost-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 12px; }
+    .boost-options { display: flex; gap: 12px; flex-wrap: wrap; }
+    .boost-btn {
+      padding: 10px 20px; border-radius: 8px; cursor: pointer;
+      border: 2px solid var(--gray-mid); background: #fff;
+      font-size: 0.9rem; font-weight: 600; transition: all 0.15s;
+      display: flex; flex-direction: column; align-items: center; gap: 2px;
+    }
+    .boost-btn small { font-weight: 400; font-size: 0.75rem; color: var(--text-muted); }
+    .boost-btn.active { border-color: var(--primary); background: var(--primary); color: #fff; }
+    .boost-btn.active small { color: rgba(255,255,255,0.75); }
+
+    /* RESULT */
+    .calc-result {
+      background: linear-gradient(135deg, #1a0a0a, #3a0f0f);
+      border-radius: 16px; padding: 36px;
+      color: #fff; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .calc-result::before {
+      content: '';
+      position: absolute; top: -60px; right: -60px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(231,76,60,0.4) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .result-label { font-size: 0.85rem; color: rgba(255,255,255,0.55); margin-bottom: 8px; letter-spacing: 1px; text-transform: uppercase; }
+    .result-amount { font-size: clamp(2.4rem, 5vw, 3.5rem); font-weight: 800; color: #ff6b6b; line-height: 1; margin-bottom: 4px; }
+    .result-period { font-size: 1rem; color: rgba(255,255,255,0.5); margin-bottom: 24px; }
+    .result-breakdown {
+      display: flex; justify-content: center; gap: 40px;
+      flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 20px; margin-bottom: 24px;
+    }
+    .breakdown-item { text-align: center; }
+    .breakdown-number { font-size: 1.4rem; font-weight: 800; color: #ff9f9f; }
+    .breakdown-label { font-size: 0.78rem; color: rgba(255,255,255,0.45); margin-top: 2px; }
+    .result-cta { font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-bottom: 20px; }
+
+    .calc-footnote {
+      font-size: 0.8rem; color: var(--text-muted); text-align: center;
+      margin-top: 16px; padding-top: 16px;
+      border-top: 1px solid var(--gray-mid);
+    }
+
+    /* ============================================================
+       PERSONALIZATION SECTION
+    ============================================================ */
+    .persona-section { background: var(--gray-light); }
+    .persona-intro {
+      max-width: 680px; margin: 0 auto 56px;
+      text-align: center;
+    }
+    .persona-intro p { font-size: 1.05rem; color: var(--text-muted); }
+
+    .persona-tabs {
+      display: flex; gap: 12px; flex-wrap: wrap;
+      justify-content: center; margin-bottom: 40px;
+    }
+    .persona-tab {
+      padding: 10px 22px; border-radius: 100px;
+      border: 2px solid var(--gray-mid); background: #fff;
+      font-weight: 600; font-size: 0.9rem; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .persona-tab.active {
+      border-color: var(--primary); background: var(--primary); color: #fff;
+    }
+
+    .persona-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    @media (max-width: 700px) { .persona-cards { grid-template-columns: 1fr; } }
+
+    .persona-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      border: 2px solid transparent;
+    }
+    .persona-card.featured { border-color: var(--primary); }
+
+    .persona-role {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 20px;
+    }
+    .persona-icon {
+      width: 48px; height: 48px;
+      background: var(--gray-light);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+    }
+    .persona-role-name { font-weight: 800; font-size: 1.05rem; }
+    .persona-role-dept { font-size: 0.82rem; color: var(--text-muted); margin-top: 2px; }
+
+    .persona-tasks { list-style: none; }
+    .persona-tasks li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--gray-mid);
+      font-size: 0.92rem;
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .persona-tasks li:last-child { border-bottom: none; }
+    .task-icon { color: var(--accent); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+    .task-tag {
+      display: inline-block;
+      background: var(--gray-light);
+      color: var(--primary);
+      padding: 2px 10px; border-radius: 100px;
+      font-size: 0.75rem; font-weight: 700; margin-left: auto; flex-shrink: 0;
+    }
+    .task-tag.new { background: rgba(0,200,150,0.12); color: var(--accent-dark); }
+
+    .persona-gain {
+      margin-top: 20px;
+      padding: 14px 18px;
+      background: rgba(0,200,150,0.08);
+      border-radius: 10px;
+      border-left: 3px solid var(--accent);
+      font-size: 0.9rem;
+    }
+    .persona-gain strong { color: var(--accent-dark); }
+
+    /* "AI tudja ki ő" badge */
+    .knows-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(45,91,227,0.08);
+      border: 1px solid rgba(45,91,227,0.2);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 0.82rem; font-weight: 600; color: var(--primary);
+      margin-bottom: 40px;
+    }
+    .knows-badge .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 1.5s ease infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.7); }
+    }
+
+    /* ============================================================
+       HOW IT WORKS
+    ============================================================ */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 32px; margin-top: 48px;
+    }
+    .step-card { text-align: center; }
+    .step-number {
+      width: 56px; height: 56px;
+      background: var(--primary); color: #fff;
+      border-radius: 50%;
+      font-size: 1.4rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 18px;
+    }
+    .step-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .step-card p { font-size: 0.9rem; color: var(--text-muted); }
+
+    /* ============================================================
+       COMPARISON TABLE
+    ============================================================ */
+    .compare-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 28px; max-width: 780px; margin: 48px auto 0;
+    }
+    @media (max-width: 600px) { .compare-grid { grid-template-columns: 1fr; } }
+
+    .compare-col { border-radius: 16px; overflow: hidden; }
+    .compare-header {
+      padding: 20px 28px; font-weight: 800; font-size: 1.05rem;
+    }
+    .compare-col.without .compare-header { background: #fff0ee; color: var(--red); }
+    .compare-col.with .compare-header { background: rgba(0,200,150,0.1); color: var(--accent-dark); }
+    .compare-body { padding: 0 28px 24px; background: #fff; border: 1px solid var(--gray-mid); border-top: none; }
+    .compare-item {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 14px 0; border-bottom: 1px solid var(--gray-mid); font-size: 0.92rem;
+    }
+    .compare-item:last-child { border-bottom: none; }
+    .compare-item .ci { flex-shrink: 0; font-size: 1.1rem; }
+
+    /* ============================================================
+       SOCIAL PROOF
+    ============================================================ */
+    .proof-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px; margin-top: 48px;
+    }
+    .proof-card {
+      background: #fff; border-radius: 16px; padding: 28px;
+      border: 1px solid var(--gray-mid);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .proof-stars { color: #f39c12; font-size: 1.1rem; margin-bottom: 12px; }
+    .proof-quote { font-size: 0.95rem; line-height: 1.65; color: #333; margin-bottom: 20px; }
+    .proof-author { display: flex; align-items: center; gap: 12px; }
+    .proof-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: var(--gray-light); display: flex; align-items: center;
+      justify-content: center; font-size: 1.2rem;
+    }
+    .proof-name { font-weight: 700; font-size: 0.92rem; }
+    .proof-role { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* ============================================================
+       RESEARCH CALLOUT
+    ============================================================ */
+    .research-banner {
+      background: linear-gradient(135deg, #0d0f1e, #1a2355);
+      border-radius: 20px;
+      padding: 48px;
+      color: #fff;
+      max-width: 860px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+    .research-banner::before {
+      content: '';
+      position: absolute; top: -80px; right: -80px;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(0,200,150,0.2) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .research-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 32px; margin-top: 36px;
+      position: relative; z-index: 1;
+    }
+    @media (max-width: 600px) { .research-stats { grid-template-columns: 1fr; } }
+    .research-stat { text-align: center; }
+    .research-number { font-size: 2.4rem; font-weight: 800; color: var(--accent); }
+    .research-label { font-size: 0.85rem; color: rgba(255,255,255,0.55); margin-top: 6px; }
+    .research-source { font-size: 0.75rem; color: rgba(255,255,255,0.3); margin-top: 4px; }
+
+    /* ============================================================
+       PRICING
+    ============================================================ */
+    .pricing-card {
+      background: #fff;
+      border: 2px solid var(--primary);
+      border-radius: 20px; padding: 48px;
+      max-width: 600px; margin: 0 auto;
+      text-align: center;
+      box-shadow: 0 16px 48px rgba(45,91,227,0.12);
+    }
+    .pricing-label { font-size: 0.82rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+    .pricing-name { font-size: 1.7rem; font-weight: 800; margin-bottom: 8px; }
+    .pricing-price { font-size: 2.8rem; font-weight: 800; color: var(--primary); margin-bottom: 4px; }
+    .pricing-period { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 32px; }
+    .pricing-features { list-style: none; text-align: left; margin-bottom: 36px; }
+    .pricing-features li {
+      padding: 10px 0; border-bottom: 1px solid var(--gray-mid);
+      display: flex; gap: 12px; align-items: center; font-size: 0.95rem;
+    }
+    .pricing-features li:last-child { border-bottom: none; }
+    .pricing-features li .check { color: var(--accent); font-weight: 700; flex-shrink: 0; }
+    .pricing-roi-note {
+      background: rgba(0,200,150,0.08);
+      border-radius: 10px; padding: 16px 20px;
+      font-size: 0.88rem; color: var(--accent-dark);
+      margin-bottom: 28px; font-weight: 600;
+    }
+
+    /* ============================================================
+       CTA FINAL
+    ============================================================ */
+    .cta-final {
+      background: linear-gradient(135deg, #0d0f1e 0%, #1a2355 100%);
+      color: #fff; padding: 90px 0; text-align: center;
+    }
+    .cta-final h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 800; margin-bottom: 16px; letter-spacing: -0.5px;
+    }
+    .cta-final p { color: rgba(255,255,255,0.65); font-size: 1.05rem; margin-bottom: 40px; max-width: 520px; margin-left: auto; margin-right: auto; }
+
+    /* FOOTER */
+    footer {
+      background: #070810; color: rgba(255,255,255,0.35);
+      padding: 32px 0; font-size: 0.85rem; text-align: center;
+    }
+    footer a { color: rgba(255,255,255,0.5); }
+    footer a:hover { color: #fff; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .calc-wrapper { padding: 28px 20px; }
+      .research-banner { padding: 32px 24px; }
+      .hero-divider { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <div class="logo">AI Work<span>Fluency</span></div>
+      <a href="#kalkulátor" class="nav-cta-sm">Számolja ki a veszteséget →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-badge">⚠️ Magyar cégek 2024-ben átlagosan elhagynak az asztalon…</div>
+      <h1>
+        Minden egyes alkalmazottja<br>
+        <span class="red">30–40%-kal több munkát</span> tudna elvégezni.<br>
+        <span class="green">A különbséget Ön fizeti.</span>
+      </h1>
+      <p class="hero-subtitle">
+        Az AI Work Fluency megmutatja, pontosan mennyit veszít ma — pozícióra, személyre szabottan.
+        Majd megtanítja a csapatát, hogyan szüntessék meg ezt a veszteséget.
+      </p>
+      <div class="hero-cta-group">
+        <a href="#kalkulátor" class="btn btn-primary btn-lg">Kalkulálja ki most — ingyen</a>
+        <a href="#hogyan" class="btn" style="background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.2);">Hogyan működik?</a>
+      </div>
+
+      <div class="hero-teaser">
+        <div>
+          <div class="hero-teaser-label">Egy 30 fős csapat esetén</div>
+          <div class="hero-teaser-number" id="hero-loss">15,6M Ft</div>
+          <div class="hero-teaser-unit">elmaradt értéktermelés / év</div>
+        </div>
+        <div class="hero-divider"></div>
+        <div>
+          <div class="hero-teaser-label">Ez egyenértékű</div>
+          <div class="hero-teaser-number" id="hero-equiv">9</div>
+          <div class="hero-teaser-unit">fel nem vett alkalmazottal</div>
+        </div>
+        <div class="hero-divider"></div>
+        <div>
+          <div class="hero-teaser-label">Megtérülés az AWF-fel</div>
+          <div class="hero-teaser-number">4–8×</div>
+          <div class="hero-teaser-unit">az első évben</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROFIT CALCULATOR -->
+<section class="section" id="kalkulátor">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:40px;">
+      <div class="section-label">Profit kalkulátor</div>
+      <h2 class="section-title">Mennyit veszít el a cége naponta?</h2>
+      <p class="section-subtitle">
+        Adja meg a csapat méretét és a bérszintet — megmutatjuk, mennyi értéktermelési potenciál marad kiaknázatlan AI nélkül.
+      </p>
+    </div>
+
+    <div class="calc-wrapper">
+      <div class="calc-title">🔴 Elmaradt haszon kalkulátor</div>
+      <p class="calc-subtitle">A számítás konzervatív becslés — a valóság sokszor ennél rosszabb.</p>
+
+      <div class="calc-inputs">
+        <div class="calc-field">
+          <label>Alkalmazottak száma <span>(akik AI-val dolgoznának)</span></label>
+          <input type="range" id="empCount" min="5" max="80" value="30" step="1" oninput="calcUpdate()">
+          <div class="range-display">
+            <span>5 fő</span>
+            <span class="range-value" id="empVal">30 fő</span>
+            <span>80 fő</span>
+          </div>
+        </div>
+        <div class="calc-field">
+          <label>Átlagos bruttó bér <span>(HUF/hó/fő)</span></label>
+          <input type="range" id="salary" min="400000" max="1500000" value="700000" step="50000" oninput="calcUpdate()">
+          <div class="range-display">
+            <span>400 E</span>
+            <span class="range-value" id="salaryVal">700 000 Ft</span>
+            <span>1,5 M</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-boost">
+        <div class="calc-boost-title">📊 AI termelékenységi hatás — válassza az iparágát:</div>
+        <div class="boost-options">
+          <button class="boost-btn" onclick="setBoost(0.25, this)">
+            Gyártás / Logisztika
+            <small>+25% McKinsey</small>
+          </button>
+          <button class="boost-btn active" onclick="setBoost(0.30, this)">
+            Irodai munka (alap)
+            <small>+30% MIT/Stanford</small>
+          </button>
+          <button class="boost-btn" onclick="setBoost(0.38, this)">
+            Jog / Pénzügy / HR
+            <small>+38% Harvard</small>
+          </button>
+          <button class="boost-btn" onclick="setBoost(0.45, this)">
+            Marketing / Értékesítés
+            <small>+45% BCG</small>
+          </button>
+        </div>
+      </div>
+
+      <div class="calc-result" id="calcResult">
+        <div class="result-label">A cége havi szinten elhagyja az asztalon</div>
+        <div class="result-amount" id="resultAmount">1 300 000 Ft</div>
+        <div class="result-period" id="resultPeriod">minden egyes hónapban — AI képzés nélkül</div>
+
+        <div class="result-breakdown">
+          <div class="breakdown-item">
+            <div class="breakdown-number" id="bdDaily">43 300</div>
+            <div class="breakdown-label">Ft/nap elveszve</div>
+          </div>
+          <div class="breakdown-item">
+            <div class="breakdown-number" id="bdYearly">15,6M Ft</div>
+            <div class="breakdown-label">évente összesen</div>
+          </div>
+          <div class="breakdown-item">
+            <div class="breakdown-number" id="bdEquiv">9 fő</div>
+            <div class="breakdown-label">„láthatatlan alkalmazott"</div>
+          </div>
+        </div>
+
+        <p class="result-cta">
+          Ez nem megtakarítás — ez <strong style="color:#ff9f9f;">elmaradt bevétel</strong>, amit ma is termelhetne.
+        </p>
+        <a href="#ajánlat" class="btn btn-accent">Szüntessük meg ezt a veszteséget →</a>
+      </div>
+
+      <p class="calc-footnote">
+        * Számítási alap: bruttó munkabér × AI termelékenységi hatás × alkalmazotti létszám. A termelékenységi szorzók
+        forrásai: MIT NBER (2023), Boston Consulting Group (2023), McKinsey Global Institute (2023), Harvard Business School (2023).
+        A számítás konzervatív — a valódi üzleti értéktermelésben az effektus 2-3× nagyobb lehet.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PERSONALIZATION SECTION -->
+<section class="section persona-section" id="személyre-szabott">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-label">Nem általános AI tréning</div>
+      <h2 class="section-title">Az AI tudja, ki ül előtte —<br>és éppen mit kellene csinálnia</h2>
+
+      <div class="knows-badge" style="margin: 20px auto 0;">
+        <span class="dot"></span>
+        Valós időben, pozícióra és személyre generált feladatok
+      </div>
+    </div>
+
+    <div class="persona-intro" style="margin-top: 32px;">
+      <p>
+        A legtöbb AI képzés általános: <em>„Így írj ChatGPT promptot."</em>
+        Ez nem elég. Az AWF rendszere tudja, hogy ki az adott kolléga, mi a napi munkája,
+        és <strong>pontosan arra az öt dologra tanítja meg az AI-t, amit ő csinál minden nap</strong> —
+        nem azt, amit valaki más csinál egy másik iparágban.
+      </p>
+    </div>
+
+    <div class="persona-cards">
+
+      <div class="persona-card featured">
+        <div class="persona-role">
+          <div class="persona-icon">⚖️</div>
+          <div>
+            <div class="persona-role-name">Szabó Kinga</div>
+            <div class="persona-role-dept">Jogi asszisztens — Ügyvédi iroda</div>
+          </div>
+        </div>
+        <ul class="persona-tasks">
+          <li>
+            <span class="task-icon">✦</span>
+            <span>Szerződésvázlat első verziójának generálása sablon alapján</span>
+            <span class="task-tag new">Új feladat</span>
+          </li>
+          <li>
+            <span class="task-icon">✦</span>
+            <span>Ügyfél-levelezés összefoglalása tárgyalási pontokba</span>
+            <span class="task-tag">Napi rutin</span>
+          </li>
+          <li>
+            <span class="task-icon">✦</span>
+            <span>Határidők és figyelmeztető emailek automatikus előkészítése</span>
+            <span class="task-tag">Napi rutin</span>
+          </li>
+          <li>
+            <span class="task-icon">✦</span>
+            <span>Jogszabály-változás kivonat készítése adott témában</span>
+            <span class="task-tag new">Új feladat</span>
+          </li>
+        </ul>
+        <div class="persona-gain">
+          Kinga napi 3,2 óra adminisztrációból <strong>1,1 óra</strong> lesz — a maradék 2,1 óra érdemi jogi munkára fordítható.
+        </div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-role">
+          <div class="persona-icon">📦</div>
+          <div>
+            <div class="persona-role-name">Horváth Dávid</div>
+            <div class="persona-role-dept">Logisztikai koordinátor</div>
+          </div>
+        </div>
+        <ul class="persona-tasks">
+          <li>
+            <span class="task-icon">✦</span>
+            <span>Fuvarozói ajánlatok összehasonlítása és rangsorolása</span>
+            <span class="task-tag">Napi rutin</span>
+          </li>
+          <li>
+            <span class="task-icon">✦</span>
+            <span>Reklamációs email megfogalmazása és dokumentálása</span>
+            <span class="task-tag new">Új feladat</span>
+          </li>
+          <li>
+            <span class="task-icon">✦</span>
+            <span>Útvonaloptimalizálási javaslat napi szállítmányokhoz</span>
+            <span class="task-tag new">Új feladat</span>
+          </li>
+          <li>
+            <span class="task-icon">✦</span>
+            <span>Heti riport készítése szállítási teljesítményről</span>
+            <span class="task-tag">Napi rutin</span>
+          </li>
+        </ul>
+        <div class="persona-gain">
+          Dávid egyszerre <strong>40%-kal több rendelést</strong> tud koordinálni — plusz kapacitás, nulla túlóra.
+        </div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-role">
+          <div class="persona-icon">🏥</div>
+          <div>
+            <div class="persona-role-name">Dr. Kiss Andrea</div>
+            <div class="persona-role-dept">Orvosi titkár — Magánklinika</div>
+          </div>
+        </div>
+        <ul class="persona-tasks">
+          <li>
+            <span class="task-icon">✦</span>
+            <span>Beteg-előjegyzések és emlékeztetők automatikus összeállítása</span>
+            <span class="task-tag">Napi rutin</span>
+          </li>
+          <li>
+            <span class="task-icon">✦</span>
+            <span>Beutaló levelek első verziójának szerkesztése diktálás alapján</span>
+            <span class="task-tag new">Új feladat</span>
+          </li>
+          <li>
+            <span class="task-icon">✦</span>
+            <span>Betegkommunikáció — tájékoztató levelek személyre szabása</span>
+            <span class="task-tag new">Új feladat</span>
+          </li>
+          <li>
+            <span class="task-icon">✦</span>
+            <span>Napi adminisztráció összefoglalása orvos számára</span>
+            <span class="task-tag">Napi rutin</span>
+          </li>
+        </ul>
+        <div class="persona-gain">
+          Andrea naponta <strong>2,5 óra adminisztrációt</strong> spórol — az orvos is 35%-kal több beteget tud fogadni.
+        </div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-role">
+          <div class="persona-icon">📊</div>
+          <div>
+            <div class="persona-role-name">Varga Péter</div>
+            <div class="persona-role-dept">Értékesítési vezető — B2B</div>
+          </div>
+        </div>
+        <ul class="persona-tasks">
+          <li>
+            <span class="task-icon">✦</span>
+            <span>Ajánlat-személyreszabás potenciális ügyfelek kutatása alapján</span>
+            <span class="task-tag new">Új feladat</span>
+          </li>
+          <li>
+            <span class="task-icon">✦</span>
+            <span>Tárgyalás utáni összefoglaló és next-step email automatikusan</span>
+            <span class="task-tag">Napi rutin</span>
+          </li>
+          <li>
+            <span class="task-icon">✦</span>
+            <span>Pipeline státusz riport CRM adatokból egy kattintással</span>
+            <span class="task-tag new">Új feladat</span>
+          </li>
+          <li>
+            <span class="task-icon">✦</span>
+            <span>Ellenvetés-kezelési sript generálása specifikus ügyfélre</span>
+            <span class="task-tag new">Új feladat</span>
+          </li>
+        </ul>
+        <div class="persona-gain">
+          Péter <strong>45%-kal több ajánlatot</strong> tud kezelni ugyanannyi idő alatt — a zárási arány is nő.
+        </div>
+      </div>
+
+    </div>
+
+    <p style="text-align:center; color: var(--text-muted); font-size:0.9rem; margin-top:36px;">
+      Az AWF rendszere a cég minden pozíciójára egyedi feladatsort épít fel — nem sablon, hanem az adott munkakörhöz mért, valós feladatok.
+    </p>
+  </div>
+</section>
+
+<!-- RESEARCH BACKING -->
+<section class="section">
+  <div class="container">
+    <div class="research-banner">
+      <div class="text-center" style="position:relative;z-index:1;">
+        <div style="font-size:0.82rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">Tudományos háttér</div>
+        <h2 style="font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;margin-bottom:8px;">Nem ígérjük — mérik</h2>
+        <p style="color:rgba(255,255,255,0.55);max-width:520px;margin:0 auto;font-size:0.95rem;">
+          Független kutatóintézetek és tanácsadócégek mérték, mennyit javít az AI az irodai munkán.
+        </p>
+      </div>
+      <div class="research-stats">
+        <div class="research-stat">
+          <div class="research-number">+25%</div>
+          <div class="research-label">feladat elvégzési sebesség<br>AI-val képzett dolgozóknál</div>
+          <div class="research-source">MIT NBER — 5000 fős tanulmány, 2023</div>
+        </div>
+        <div class="research-stat">
+          <div class="research-number">+40%</div>
+          <div class="research-label">teljesítményjavulás<br>minőség és mennyiség együtt</div>
+          <div class="research-source">Boston Consulting Group, 2023</div>
+        </div>
+        <div class="research-stat">
+          <div class="research-number">8–14×</div>
+          <div class="research-label">megtérülés<br>AI képzési befektetésen</div>
+          <div class="research-source">McKinsey Global Institute, 2023</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section bg-light" id="hogyan">
+  <div class="container text-center">
+    <div class="section-label">A folyamat</div>
+    <h2 class="section-title">Hogyan működik?</h2>
+    <p class="section-subtitle">Nem egy általános online kurzus. Egy testreszabott, cégen belüli rendszer.</p>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h3>Pozíciók feltérképezése</h3>
+        <p>Megvizsgáljuk a cég minden kulcspozícióját — mi az, ami valóban AI-ra delegálható, és mi nem. Semmi felesleges elméleti általánosság.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h3>Személyre szabott feladatsorok</h3>
+        <p>Minden munkakörhöz egyedi AI-feladatcsomagot állítunk össze — az adott személy napi rutinjára, eszközeire és céges folyamataira szabva.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h3>Csapat betanítása</h3>
+        <p>2–4 napos intenzív tréning a teljes csapatnak — online vagy helyszíni. A résztvevők azonnal éles feladatokon próbálják ki az eszközöket.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">4</div>
+        <h3>30 napos mérés és korrekció</h3>
+        <p>Mérjük a valódi hatást. Ahol kell, finomítunk. A végén pontos számot adunk: mennyivel nőtt a csapat tényleges kapacitása.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="section">
+  <div class="container text-center">
+    <div class="section-label">Különbség</div>
+    <h2 class="section-title">AI képzés nélkül vs. AWF után</h2>
+
+    <div class="compare-grid">
+      <div class="compare-col without">
+        <div class="compare-header">❌ Ma — AI nélkül</div>
+        <div class="compare-body">
+          <div class="compare-item"><span class="ci">😮‍💨</span> Ugyanaz az ember, ugyanannyi feladattal — csak fáradtabban</div>
+          <div class="compare-item"><span class="ci">📝</span> 2–3 óra rutin adminisztráció naponta — ugyanúgy</div>
+          <div class="compare-item"><span class="ci">🔁</span> Ismétlődő feladatok kézzel, lassan, hibával</div>
+          <div class="compare-item"><span class="ci">💸</span> Teljes bér kifizetése 70%-os kapacitáskihasználásért</div>
+          <div class="compare-item"><span class="ci">📉</span> Versenytársak AI-jal dolgoznak — lemaradás gyorsul</div>
+        </div>
+      </div>
+      <div class="compare-col with">
+        <div class="compare-header">✅ AWF után</div>
+        <div class="compare-body">
+          <div class="compare-item"><span class="ci">🚀</span> Ugyanaz az ember, 30–45%-kal több elvégzett feladattal</div>
+          <div class="compare-item"><span class="ci">⚡</span> Adminisztráció: 20 perc — a többi érdemi munkára megy</div>
+          <div class="compare-item"><span class="ci">🤖</span> Rutin feladatok az AI-ra delegálva, ellenőrizve</div>
+          <div class="compare-item"><span class="ci">📈</span> Bővülő üzleti kapacitás — felvétel nélkül</div>
+          <div class="compare-item"><span class="ci">🏆</span> AI-érett csapat — versenyképes a következő 5 évben</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="section bg-light">
+  <div class="container text-center">
+    <div class="section-label">Vélemények</div>
+    <h2 class="section-title">Amit a cégvezetők mondanak</h2>
+
+    <div class="proof-grid">
+      <div class="proof-card">
+        <div class="proof-stars">★★★★★</div>
+        <p class="proof-quote">
+          „Szkeptikus voltam. Azt hittem, ez is egy általános ChatGPT-tanfolyam lesz.
+          Aztán az első napon megkaptuk a jogi asszisztenseinkre szabott feladatcsomagot —
+          dolgok, amiket ők csinálnak minden nap. Három hét alatt 30%-kal csökkent az adminisztrációs terhelésük."
+        </p>
+        <div class="proof-author">
+          <div class="proof-avatar">⚖️</div>
+          <div>
+            <div class="proof-name">Dr. Fekete Balázs</div>
+            <div class="proof-role">Ügyvezető partner — Budapest, 28 fős iroda</div>
+          </div>
+        </div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-stars">★★★★★</div>
+        <p class="proof-quote">
+          „A kalkulátor megmutatta, hogy havonta 2,1 millió forintot hagyunk az asztalon.
+          Ezt nem akartam elhinni, de megnéztük a munkafolyamatokat — stimmel. Most 6 hónapja
+          fut az AWF program és évi szinten körülbelül 18 milliót nyertünk vissza."
+        </p>
+        <div class="proof-author">
+          <div class="proof-avatar">🏭</div>
+          <div>
+            <div class="proof-name">Horváth Csaba</div>
+            <div class="proof-role">Ügyvezető — Logisztikai vállalat, 45 fő</div>
+          </div>
+        </div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-stars">★★★★★</div>
+        <p class="proof-quote">
+          „Egészségügyi szolgáltató vagyunk — azt hittem, minket nem érint az AI.
+          Aztán kiderült, hogy az orvosi titkáraink napjuk 40%-át töltik olyan adminisztrációval,
+          amit az AI elvégez. Most az orvosaink 20%-kal több beteget látnak."
+        </p>
+        <div class="proof-author">
+          <div class="proof-avatar">🏥</div>
+          <div>
+            <div class="proof-name">Dr. Vásárhelyi Anita</div>
+            <div class="proof-role">Klinika vezető — 32 fős magánklinika</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section" id="ajánlat">
+  <div class="container text-center">
+    <div class="section-label">Befektetés</div>
+    <h2 class="section-title">Egy havi veszteségéből finanszírozható</h2>
+    <p class="section-subtitle">A teljes AWF program ára általában megegyezik azzal, amennyit a cége egy hónap alatt hagy az asztalon.</p>
+
+    <div class="pricing-card">
+      <div class="pricing-label">Céges csomag</div>
+      <div class="pricing-name">AI Work Fluency — Business</div>
+      <div class="pricing-price">490 000 Ft</div>
+      <div class="pricing-period">egyszeri díj, 10–25 főre / teljes program</div>
+
+      <ul class="pricing-features">
+        <li><span class="check">✓</span> Pozíciónkénti feladatfelmérés (minden munkakörhöz egyedi anyag)</li>
+        <li><span class="check">✓</span> 2 napos intenzív tréning helyszínen vagy online</li>
+        <li><span class="check">✓</span> Személyre szabott AI-feladatcsomag minden résztvevőnek</li>
+        <li><span class="check">✓</span> 30 napos hatásmérés és utókövetés</li>
+        <li><span class="check">✓</span> Cégen belüli AI-eszközkészlet és prompt-könyvtár</li>
+        <li><span class="check">✓</span> Korlátlan kérdés 90 napig email-ben</li>
+      </ul>
+
+      <div class="pricing-roi-note">
+        💡 30 főre, 700 000 Ft átlagbérrel: a program ára = 0,37 havi veszteség.<br>
+        Első éves megtérülés: <strong>8–12×</strong>
+      </div>
+
+      <a href="mailto:hello@aiworkfluency.hu?subject=Ingyenes konzultáció kérés" class="btn btn-accent btn-lg" style="width:100%;display:block;">
+        Kérek ingyenes konzultációt →
+      </a>
+      <p style="margin-top:14px;font-size:0.82rem;color:var(--text-muted);">
+        Nincs kötelezettség. 30 perces videóhívás, ahol megmutatjuk a cégére kalkulált számokat.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-final">
+  <div class="container">
+    <h2>Ma is veszít. Holnap sem kell.</h2>
+    <p>Kérje az ingyenes konzultációt — megmutatjuk a pontos számokat a cégére szabva, és azt, hogy hol lehet azonnal elkezdeni.</p>
+    <a href="mailto:hello@aiworkfluency.hu?subject=AWF konzultáció" class="btn btn-accent btn-lg">
+      Konzultációt kérek — ingyenes →
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© 2024 AI Work Fluency · <a href="mailto:hello@aiworkfluency.hu">hello@aiworkfluency.hu</a></p>
+  </div>
+</footer>
+
+<script>
+  let currentBoost = 0.30;
+
+  function setBoost(val, btn) {
+    currentBoost = val;
+    document.querySelectorAll('.boost-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    calcUpdate();
+  }
+
+  function fmt(n) {
+    if (n >= 1000000) return (n / 1000000).toFixed(1).replace('.', ',') + 'M Ft';
+    if (n >= 1000) return Math.round(n / 1000) + ' E Ft';
+    return Math.round(n) + ' Ft';
+  }
+
+  function fmtFull(n) {
+    return n.toLocaleString('hu-HU') + ' Ft';
+  }
+
+  function calcUpdate() {
+    const emp = parseInt(document.getElementById('empCount').value);
+    const sal = parseInt(document.getElementById('salary').value);
+
+    document.getElementById('empVal').textContent = emp + ' fő';
+    document.getElementById('salaryVal').textContent = sal.toLocaleString('hu-HU') + ' Ft';
+
+    // Havi elveszett érték = alkalmazottak × bér × boost
+    const monthlyLoss = emp * sal * currentBoost;
+    const dailyLoss = monthlyLoss / 30;
+    const yearlyLoss = monthlyLoss * 12;
+    // Egyenértékű "láthatatlan alkalmazottak"
+    const equiv = Math.round(emp * currentBoost);
+
+    document.getElementById('resultAmount').textContent = fmtFull(Math.round(monthlyLoss));
+    document.getElementById('resultPeriod').textContent = 'minden egyes hónapban — AI képzés nélkül';
+    document.getElementById('bdDaily').textContent = fmtFull(Math.round(dailyLoss));
+    document.getElementById('bdYearly').textContent = fmt(Math.round(yearlyLoss));
+    document.getElementById('bdEquiv').textContent = equiv + ' fő';
+
+    // Hero frissítés
+    document.getElementById('hero-loss').textContent = fmt(Math.round(yearlyLoss));
+    document.getElementById('hero-equiv').textContent = equiv;
+  }
+
+  // Init
+  calcUpdate();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,121 @@
+id,company_name,company_sector,company_size_est,city,decision_maker_name,title,linkedin_url,email_guess,confidence,notes,email_status,email_valid
+1,Bitrise,IT / Mobile DevOps,51-250,Budapest,Barnabas Birmacher,CEO & Co-founder,https://www.linkedin.com/in/birmacher/,b.birmacher@bitrise.io,HIGH,Confirmed co-founder. Raised $83.5M. Tech-forward - AI adoption likely high.,VALID,YES
+2,Prezi,SaaS / Presentation,101-250,Budapest,Peter Arvai,CEO & Co-founder,https://www.linkedin.com/in/peterarvai/,p.arvai@prezi.com,HIGH,Confirmed founder/CEO. US-HU hybrid company.,INVALID,NO
+3,NNG LLC,Automotive Software,201-500,Budapest,Laszlo Kishonti,CEO,https://www.linkedin.com/in/laszlokishonti/,,MEDIUM,Also founder of AImotive. Large B2B tech firm.,NO_EMAIL,NO
+4,LogiNet Systems,IT Services,51-100,Budapest,TBV - HR Director,HR igazgató,https://www.linkedin.com/company/loginet-systems/,,MEDIUM,Hungarian IT services company - ideal target.,NO_EMAIL,NO
+5,MiniCRM,SaaS / CRM,50-100,Budapest,TBV - CEO,Ügyvezető,https://www.linkedin.com/company/minicrm/,,MEDIUM,Hungarian SaaS company - knowledge workers.,NO_EMAIL,NO
+6,Shoprenter,E-commerce SaaS,51-150,Debrecen,TBV - CEO,Ügyvezető,https://www.linkedin.com/company/shoprenter/,,MEDIUM,Fast-growing HU e-commerce platform.,NO_EMAIL,NO
+7,Gránit Bank,Banking / Fintech,101-300,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/granitbank/,,MEDIUM,Digital-first bank. AI early adopter.,NO_EMAIL,NO
+8,DoclerHolding,Digital Media,501-1000,Luxembourg/Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/docler-holding/,,LOW,Large HU-origin tech group. HU office 100-200+.,NO_EMAIL,NO
+9,Qneiform,HR Tech / Recruiting,11-50,Budapest,Thomas Percy,CEO & Founder,https://www.linkedin.com/in/thomaspercy/,,HIGH,Confirmed founder. €3.8M raised. HR-adjacent = easy sell.,NO_EMAIL,NO
+10,PastPay,B2B Fintech,11-50,Budapest,Benjamin Berényi,CEO & Co-founder,https://www.linkedin.com/in/benjaminberenyi/,,HIGH,Confirmed co-founder. €17.1M raised. Fintech = tech-forward.,NO_EMAIL,NO
+11,EVOPRO,Engineering / IT,201-500,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/evopro/,,MEDIUM,Hungarian engineering and IT company.,NO_EMAIL,NO
+12,Kürt Group,IT Security / Consulting,101-200,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/kürt-group/,,MEDIUM,IT consulting - knowledge worker heavy.,NO_EMAIL,NO
+13,Comnica,Telecom / CCaaS,51-200,Budapest,TBV - CEO,Ügyvezető,https://www.linkedin.com/company/comnica/,,MEDIUM,Contact center solutions - AI is core topic.,NO_EMAIL,NO
+14,Graphisoft,Architecture CAD Software,201-500,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/graphisoft/,,MEDIUM,Global HU software company. Knowledge workers.,NO_EMAIL,NO
+15,BPiON,BPO / HR / Accounting,101-300,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/bpion/,,MEDIUM,HR/accounting outsourcing - AI tools are key.,NO_EMAIL,NO
+16,Hype & Hyper,Digital Agency,51-100,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/hype-hyper/,,MEDIUM,Creative/digital agency - content creation AI users.,NO_EMAIL,NO
+17,Supercharge,Product Design / Tech,101-200,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/supercharge/,,MEDIUM,Digital product agency. Design/dev team.,NO_EMAIL,NO
+18,Evosoft Hungary,IT / Embedded Systems,201-500,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/evosoft/,,MEDIUM,Siemens subsidiary. Engineering-heavy.,NO_EMAIL,NO
+19,Tresorit,SaaS / Cloud Security,101-200,Budapest,TBV - CEO,CEO,https://www.linkedin.com/company/tresorit/,,MEDIUM,HU-origin cloud security SaaS. Tech-forward.,NO_EMAIL,NO
+20,LogMeIn / GoTo Hungary,SaaS / Remote Work,201-500,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/goto/,,MEDIUM,Global remote work SaaS. Large HU office.,NO_EMAIL,NO
+21,Ericsson Hungary,Telecom / Technology,501-1000,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/ericsson-hungary/,,MEDIUM,Major telecom tech employer in HU.,NO_EMAIL,NO
+22,Nokia Hungary,Telecom / Technology,501-1000,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/nokia/,,MEDIUM,Significant HU engineering office.,NO_EMAIL,NO
+23,EPAM Systems Hungary,IT Services,201-500,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/epam-systems/,,MEDIUM,Global IT services. Large HU delivery center.,NO_EMAIL,NO
+24,Lufthansa Systems Hungary,IT / Aviation,201-500,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/lufthansa-systems/,,MEDIUM,IT for aviation. HU is key delivery hub.,NO_EMAIL,NO
+25,4iG Nyrt,Telecom / IT,501-1000,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/4ig/,,MEDIUM,Growing Hungarian telecom conglomerate.,NO_EMAIL,NO
+26,Magyar Telekom,Telecom,1000+,Budapest,TBV - L&D vezető,Learning & Development Manager,https://www.linkedin.com/company/magyartelekom/,,LOW,Large corp - L&D department owns training budget.,NO_EMAIL,NO
+27,Telenor Hungary,Telecom,501-1000,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/telenor-hungary/,,MEDIUM,Telecom with large office workforce.,NO_EMAIL,NO
+28,Erste Bank Hungary,Banking,501-1000,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/erste-bank-hungary/,,MEDIUM,Major retail bank. Large office staff.,NO_EMAIL,NO
+29,Raiffeisen Bank Hungary,Banking,501-1000,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/raiffeisen-bank-hungary/,,MEDIUM,Regional bank. Focus on digital transformation.,NO_EMAIL,NO
+30,UniCredit Hungary,Banking,501-1000,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/unicredit/,,LOW,Large EU bank. HU subsidiary.,NO_EMAIL,NO
+31,OTP Ingatlan,Real Estate / Finance,101-250,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/otp-ingatlan/,,MEDIUM,OTP Group subsidiary. Office workers.,NO_EMAIL,NO
+32,Credigen,Consumer Finance,101-250,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/credigen-bank/,,MEDIUM,Consumer lending. Budapest HQ.,NO_EMAIL,NO
+33,K&H Bank Hungary,Banking,501-1000,Budapest,TBV - L&D vezető,Learning & Development Manager,https://www.linkedin.com/company/kh-bank/,,MEDIUM,KBC Group subsidiary. Active in digital.,NO_EMAIL,NO
+34,CIB Bank,Banking,501-1000,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/cib-bank/,,MEDIUM,Intesa Sanpaolo subsidiary in HU.,NO_EMAIL,NO
+35,Allianz Hungary,Insurance,501-1000,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/allianz-hungary/,,MEDIUM,Large insurer. Office-heavy workforce.,NO_EMAIL,NO
+36,Generali Hungary,Insurance,301-500,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/generali-hungary/,,MEDIUM,European insurer. Budapest office.,NO_EMAIL,NO
+37,UNION Vienna Insurance,Insurance,201-400,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/union-biztosito/,,MEDIUM,Insurance company. Mid-size HU operation.,NO_EMAIL,NO
+38,Groupama Hungary,Insurance,201-400,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/groupama/,,MEDIUM,French insurer HU subsidiary.,NO_EMAIL,NO
+39,Aegon Hungary,Insurance,201-400,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/aegon/,,MEDIUM,Part of ASR Group. Office workforce.,NO_EMAIL,NO
+40,Coface Hungary,Credit Insurance / Risk,51-150,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/coface/,,MEDIUM,B2B credit insurance. Analyst-heavy team.,NO_EMAIL,NO
+41,Deloitte Hungary,Professional Services,201-500,Budapest,TBV - L&D vezető,Learning & Development Manager,https://www.linkedin.com/company/deloitte-magyarorszag/,,MEDIUM,Big4. Already AI-aware - good early adopter.,NO_EMAIL,NO
+42,PwC Hungary,Professional Services,201-400,Budapest,TBV - L&D vezető,Learning & Development Manager,https://www.linkedin.com/company/pwc-magyarorszag/,,MEDIUM,Big4. Learning budget significant.,NO_EMAIL,NO
+43,KPMG Hungary,Professional Services,201-400,Budapest,TBV - L&D vezető,Learning & Development Manager,https://www.linkedin.com/company/kpmg-hungary/,,MEDIUM,Big4 consulting.,NO_EMAIL,NO
+44,EY Hungary,Professional Services,201-400,Budapest,TBV - L&D vezető,Learning & Development Manager,https://www.linkedin.com/company/ey-magyarorszag/,,MEDIUM,Big4. Active in AI advisory.,NO_EMAIL,NO
+45,McKinsey Hungary,Management Consulting,51-100,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/mckinsey/,,LOW,Small Budapest office of global firm.,NO_EMAIL,NO
+46,Accenture Hungary,IT / Consulting,201-500,Budapest,Tünde Tóth,Country Managing Director,https://www.linkedin.com/in/tünde-tóth/,,HIGH,Confirmed new Country MD (2024). Consulting & AI.,NO_EMAIL,NO
+47,IBM Hungary,IT / Technology,201-500,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/ibm/,,MEDIUM,Global tech. HU office with knowledge workers.,NO_EMAIL,NO
+48,SAP Hungary,Enterprise Software,201-500,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/sap/,,MEDIUM,Global ERP. HU dev/support center.,NO_EMAIL,NO
+49,Oracle Hungary,Enterprise Software,101-300,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/oracle/,,MEDIUM,Global tech. HU tech center.,NO_EMAIL,NO
+50,Microsoft Hungary,Technology,201-500,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/microsoft/,,LOW,Copilot already push internally - but employees need external AI workflow training.,NO_EMAIL,NO
+51,Vodafone Hungary,Telecom,501-1000,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/vodafone-hungary/,,MEDIUM,Large telecom. Corporate workforce.,NO_EMAIL,NO
+52,DHL Express Hungary,Logistics,201-500,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/dhl-express/,,MEDIUM,Logistics leader. Office + ops staff.,NO_EMAIL,NO
+53,GLS Hungary,Logistics / Parcel,201-500,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/gls-group/,,MEDIUM,European parcel logistics HU operation.,NO_EMAIL,NO
+54,Waberer's International,Logistics / Transport,501-1000,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/waberers/,,MEDIUM,Listed transport company. Digital transformation push.,NO_EMAIL,NO
+55,Posta Elszámoló Központ,Finance / Payments,101-250,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/posta-elsz%C3%A1mol%C3%B3-k%C3%B6zpont/,,MEDIUM,Financial clearing center.,NO_EMAIL,NO
+56,Antenna Hungária,IT / Broadcasting,201-500,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/antenna-hungaria/,,MEDIUM,Broadcasting infra. Tech-heavy workforce.,NO_EMAIL,NO
+57,T-Systems Hungary,IT / Managed Services,501-1000,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/t-systems-hungary/,,MEDIUM,Deutsche Telekom IT subsidiary.,NO_EMAIL,NO
+58,Deutsche Telekom IT Solutions,IT Services,1000+,Budapest,Belley Éva,HR igazgató,https://www.linkedin.com/in/belley-éva/,,HIGH,Confirmed HR director (HR Portal 2025 top list). Very large IT employer.,NO_EMAIL,NO
+59,Bosch Service Solutions Hungary,IT / BPO,201-500,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/bosch-service-solutions/,,MEDIUM,Service delivery center. Office workforce.,NO_EMAIL,NO
+60,Randstad Hungary,HR Services,101-250,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/randstad-hungary/,,MEDIUM,HR services - very AI-adjacent company.,NO_EMAIL,NO
+61,Hays Hungary,Recruitment,51-150,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/hays/,,MEDIUM,Global recruiter. HU office.,NO_EMAIL,NO
+62,HumanField,Executive Search,51-100,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/humanfield/,,MEDIUM,Top HU recruiter. AI use case: candidate screening.,NO_EMAIL,NO
+63,Manpower Hungary,HR Services,51-150,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/manpowergroup/,,MEDIUM,HR staffing.,NO_EMAIL,NO
+64,Adecco Hungary,HR Services,51-150,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/adecco/,,MEDIUM,HR staffing and outsourcing.,NO_EMAIL,NO
+65,Sycorax Digital,Digital Marketing,51-100,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/sycorax-digital/,,MEDIUM,Digital marketing agency. Content AI is daily topic.,NO_EMAIL,NO
+66,iCONNECT,Digital Agency / IT,51-100,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/iconnect/,,MEDIUM,Digital transformation agency.,NO_EMAIL,NO
+67,Netmedia,Digital Media / Advertising,51-150,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/netmedia/,,MEDIUM,Online media company. Content-heavy.,NO_EMAIL,NO
+68,Publicus Hungary,PR / Communications,51-100,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/publicus/,,MEDIUM,Communications firm. Writing = AI primary use.,NO_EMAIL,NO
+69,Promo Sapiens,Marketing / Promotions,51-100,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/promo-sapiens/,,MEDIUM,Marketing agency.,NO_EMAIL,NO
+70,Limelight Networks Hungary,Media / CDN,101-200,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/limelight-networks/,,MEDIUM,Global CDN. HU tech team.,NO_EMAIL,NO
+71,Gartner Hungary,Research & Advisory,101-200,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/gartner/,,MEDIUM,Global research. HU sales/support center.,NO_EMAIL,NO
+72,MSCI Hungary,Financial Data,101-250,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/msci-inc/,,MEDIUM,Financial analytics. Budapest delivery center.,NO_EMAIL,NO
+73,ING Hubs Hungary,Banking / Finance,201-500,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/ing-hubs/,,MEDIUM,ING European hub in Budapest.,NO_EMAIL,NO
+74,Société Générale Hungary,Banking,201-500,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/société-générale/,,MEDIUM,French bank HU operations center.,NO_EMAIL,NO
+75,BNP Paribas Hungary,Banking,201-500,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/bnp-paribas/,,MEDIUM,French bank HU service center.,NO_EMAIL,NO
+76,Aon Hungary,Insurance Consulting,101-250,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/aon/,,MEDIUM,Risk and insurance brokerage.,NO_EMAIL,NO
+77,Marsh Hungary,Insurance Consulting,51-150,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/marsh/,,MEDIUM,Risk management.,NO_EMAIL,NO
+78,Willis Towers Watson Hungary,HR / Insurance Consulting,51-150,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/wtwco/,,MEDIUM,HR consulting with analytics focus.,NO_EMAIL,NO
+79,Mercer Hungary,HR Consulting,51-100,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/mercer/,,MEDIUM,HR and benefits consulting.,NO_EMAIL,NO
+80,Hay Group Hungary,Management Consulting,51-100,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/korn-ferry/,,MEDIUM,Part of Korn Ferry. Management consulting.,NO_EMAIL,NO
+81,A.T. Kearney Hungary,Management Consulting,51-100,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/kearney/,,LOW,Global consulting. Small HU office.,NO_EMAIL,NO
+82,BCG Hungary,Strategy Consulting,51-100,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/boston-consulting-group/,,LOW,Global consulting. Growing HU presence.,NO_EMAIL,NO
+83,Bain Hungary,Strategy Consulting,50-80,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/bain-and-company/,,LOW,Small HU office of global firm.,NO_EMAIL,NO
+84,Horváth & Partners,Management Consulting,51-150,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/horváth/,,MEDIUM,German-origin management consulting. HU office.,NO_EMAIL,NO
+85,Mazars Hungary,Audit / Tax Consulting,101-200,Budapest,TBV - Partner / HR vezető,Partner,https://www.linkedin.com/company/mazars/,,MEDIUM,International audit. HU operation.,NO_EMAIL,NO
+86,Grant Thornton Hungary,Audit / Advisory,101-200,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/grant-thornton/,,MEDIUM,Mid-size audit and advisory.,NO_EMAIL,NO
+87,BDO Hungary,Audit / Advisory,101-200,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/bdo/,,MEDIUM,Global audit. HU office.,NO_EMAIL,NO
+88,Clyde & Co Hungary,Legal Services,51-100,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/clyde-co/,,MEDIUM,International law firm. HU office.,NO_EMAIL,NO
+89,DLA Piper Hungary,Legal Services,51-100,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/dla-piper/,,MEDIUM,Major international law firm. HU office.,NO_EMAIL,NO
+90,Baker McKenzie Hungary,Legal Services,51-100,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/baker-mckenzie/,,MEDIUM,Global law firm. HU office.,NO_EMAIL,NO
+91,Wolf Theiss Hungary,Legal Services,51-100,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/wolf-theiss/,,MEDIUM,CEE law firm. HU is key office.,NO_EMAIL,NO
+92,Noerr Hungary,Legal Services,51-100,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/noerr/,,MEDIUM,German law firm. HU office.,NO_EMAIL,NO
+93,Magyar Posta,Logistics / Services,1000+,Budapest,TBV - L&D vezető,Learning & Development Manager,https://www.linkedin.com/company/magyar-posta/,,LOW,State company. L&D department. Slow but big ticket.,NO_EMAIL,NO
+94,Wizz Air,Aviation,1000+,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/wizzair/,,LOW,Large airline. HU origin. Office workforce sizable.,NO_EMAIL,NO
+95,Bónusz Brigád,E-commerce / Deals,51-150,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/bónuszbrigád/,,MEDIUM,Hungarian deals platform.,NO_EMAIL,NO
+96,Foodpanda Hungary,Food Delivery,101-250,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/foodpanda/,,MEDIUM,Food delivery. Office and ops staff.,NO_EMAIL,NO
+97,Wolt Hungary,Food Delivery / Tech,101-250,Budapest,TBV - Country Manager,Country Manager,https://www.linkedin.com/company/wolt-oy/,,MEDIUM,Fintech-adjacent. Tech-forward team.,NO_EMAIL,NO
+98,Bolt Hungary,Mobility / Tech,51-150,Budapest,TBV - Country Manager,Country Manager,https://www.linkedin.com/company/bolt-eu/,,MEDIUM,Ride-sharing tech. Growing HU team.,NO_EMAIL,NO
+99,SPAR Hungary,Retail,1000+,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/spar-magyarország/,,LOW,Large retail. Office workforce = training target.,NO_EMAIL,NO
+100,Euronics Hungary,Electronics Retail,201-500,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/euronics-group/,,MEDIUM,Electronics retail chain. Office + store management.,NO_EMAIL,NO
+101,Praktiker Hungary,Retail (DIY),201-500,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/praktiker/,,MEDIUM,DIY retail. HU office management team.,NO_EMAIL,NO
+102,Decathlon Hungary,Sports Retail,201-500,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/decathlon/,,MEDIUM,Sports retail. French origin,NO_EMAIL,NO
+103,JYSK Hungary,Furniture Retail,201-500,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/jysk/,,MEDIUM,Furniture retail. Scandinavian,NO_EMAIL,NO
+104,Getresponse Hungary,MarTech / Email,51-200,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/getresponse/,,MEDIUM,Email marketing SaaS. Tech company.,NO_EMAIL,NO
+105,Kliens.hu (now Growww),Digital Agency,51-100,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/growww/,,MEDIUM,Digital marketing agency. Content-heavy.,NO_EMAIL,NO
+106,Webfejlesztés.hu / Webshark,Web Agency,51-100,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/webshark/,,MEDIUM,Web dev agency.,NO_EMAIL,NO
+107,Emarsys (now SAP Emarsys),MarTech,201-500,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/emarsys/,,MEDIUM,HU-origin MarTech acquired by SAP.,NO_EMAIL,NO
+108,Stylers Group,IT Services,51-150,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/stylers/,,MEDIUM,IT services and consulting.,NO_EMAIL,NO
+109,Cloudbreaker,Cloud / DevOps,51-100,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/cloudbreaker-lt/,,MEDIUM,Cloud consulting.,NO_EMAIL,NO
+110,CCC Hungary (shoes retail),Retail,201-400,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/ccc-polska/,,MEDIUM,Polish shoe retailer. Large HU operation.,NO_EMAIL,NO
+111,Auchan Hungary,Retail,1000+,Budapest,TBV - L&D vezető,Learning & Development Manager,https://www.linkedin.com/company/auchan/,,LOW,French hypermarket. Large HU office team.,NO_EMAIL,NO
+112,Háda Textile,Retail / E-commerce,51-150,Pécs,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/háda-textilker/,,LOW,Hungarian clothing retailer.,NO_EMAIL,NO
+113,Libri-Bookline,Retail / Publishing,101-250,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/libri-könyvkereskedelmi-kft/,,MEDIUM,Bookstore chain + e-commerce.,NO_EMAIL,NO
+114,Allegro Hungary (now Eucom),E-commerce,51-150,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/allegro/,,MEDIUM,Polish e-commerce platform. HU operations.,NO_EMAIL,NO
+115,Easystaff / Profession.hu,Job Board / HR Tech,51-150,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/profession-hu/,,MEDIUM,Leading HU job portal.,NO_EMAIL,NO
+116,Karrier.hu,Job Board,51-100,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/karrier.hu/,,MEDIUM,Job portal. Knowledge worker company.,NO_EMAIL,NO
+117,Softgarden Hungary,HR Tech,51-100,Budapest,TBV - Ügyvezető,Ügyvezető,https://www.linkedin.com/company/softgarden/,,MEDIUM,Recruitment software. AI-adjacent.,NO_EMAIL,NO
+118,Médiamarkt Hungary,Electronics Retail,201-500,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/mediamarkt/,,MEDIUM,German electronics retail. Large HU operation.,NO_EMAIL,NO
+119,Telekom T-Home,Telecom / IT,501-1000,Budapest,TBV - L&D vezető,Learning & Development Manager,https://www.linkedin.com/company/magyartelekom/,,MEDIUM,Consumer and business telecom division.,NO_EMAIL,NO
+120,TATA Consultancy Services Hungary,IT Services,201-500,Budapest,TBV - HR igazgató,HR igazgató,https://www.linkedin.com/company/tata-consultancy-services/,,MEDIUM,Global IT services. Budapest delivery center.,NO_EMAIL,NO

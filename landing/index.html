@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Work Fluency — A legjobb befektetés, amit a csapatodba tehetsz</title>
+  <meta name="description" content="Magyar nyelvű AI munkafolyamat-képzés cégeknek. Tedd produktívabbá a csapatodat 30 nap alatt. B2B licencelés 10+ fős csapatoknak.">
+  <style>
+    /* ============================
+       RESET & BASE
+    ============================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: #1a1a2e;
+      background: #fff;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ============================
+       COLORS
+    ============================ */
+    :root {
+      --primary: #2D5BE3;
+      --primary-dark: #1e3fa8;
+      --accent: #00C896;
+      --accent-dark: #009e77;
+      --dark: #0d0f1e;
+      --gray-light: #f5f7ff;
+      --gray-mid: #e8ecf8;
+      --text-muted: #5a6076;
+      --danger-soft: #fff3cd;
+      --danger-border: #ffc107;
+    }
+
+    /* ============================
+       UTILITY
+    ============================ */
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+    .text-center { text-align: center; }
+    .btn {
+      display: inline-block;
+      padding: 16px 36px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+    }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(45,91,227,0.35); }
+    .btn-accent {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+    }
+    .btn-accent:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,200,150,0.35); }
+    .btn-outline {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+    .btn-outline:hover { background: var(--primary); color: #fff; }
+    .btn-lg { padding: 20px 48px; font-size: 1.2rem; }
+
+    /* ============================
+       NAV
+    ============================ */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.97);
+      border-bottom: 1px solid var(--gray-mid);
+      padding: 16px 0;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+    }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a {
+      color: var(--text-muted);
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-cta { margin-left: 16px; }
+
+    /* ============================
+       HERO
+    ============================ */
+    .hero {
+      background: linear-gradient(135deg, #0d0f1e 0%, #1a2355 60%, #0f2060 100%);
+      color: #fff;
+      padding: 100px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(45,91,227,0.3) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -150px; left: -150px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(0,200,150,0.2) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(0,200,150,0.15);
+      border: 1px solid rgba(0,200,150,0.4);
+      color: var(--accent);
+      padding: 8px 20px;
+      border-radius: 100px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 28px;
+      letter-spacing: 0.5px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 24px;
+      letter-spacing: -1px;
+    }
+    .hero h1 .highlight {
+      background: linear-gradient(90deg, #00C896, #2D5BE3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 40px;
+      max-width: 620px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-cta-group {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 60px;
+    }
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding-top: 40px;
+    }
+    .stat-item { text-align: center; }
+    .stat-number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--accent);
+      display: block;
+    }
+    .stat-label {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      margin-top: 4px;
+    }
+
+    /* ============================
+       URGENCY BANNER
+    ============================ */
+    .urgency-banner {
+      background: var(--danger-soft);
+      border-top: 4px solid var(--danger-border);
+      border-bottom: 1px solid #ffe066;
+      padding: 20px 0;
+    }
+    .urgency-inner {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .urgency-icon { font-size: 1.8rem; flex-shrink: 0; }
+    .urgency-text { font-weight: 600; color: #7a5200; }
+    .urgency-text strong { color: #5a3800; }
+
+    /* ============================
+       PROBLEM SECTION
+    ============================ */
+    .section { padding: 80px 0; }
+    .section-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(1.7rem, 3vw, 2.6rem);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+    }
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 48px;
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .problem-card {
+      background: #fff;
+      border: 1px solid var(--gray-mid);
+      border-radius: 12px;
+      padding: 28px;
+      border-left: 4px solid #e74c3c;
+    }
+    .problem-card .icon { font-size: 2rem; margin-bottom: 12px; }
+    .problem-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+    .problem-card p { color: var(--text-muted); font-size: 0.95rem; }
+
+    /* ============================
+       SOLUTION / HOW IT WORKS
+    ============================ */
+    .solution-bg { background: var(--gray-light); }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 32px;
+      margin-top: 48px;
+    }
+    .step-card { text-align: center; }
+    .step-number {
+      width: 60px; height: 60px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .step-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; }
+    .step-card p { color: var(--text-muted); font-size: 0.95rem; }
+
+    /* ============================
+       FEATURES
+    ============================ */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      margin-top: 48px;
+    }
+    .feature-card {
+      background: #fff;
+      border: 1px solid var(--gray-mid);
+      border-radius: 16px;
+      padding: 36px 32px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .feature-card:hover {
+      box-shadow: 0 12px 40px rgba(45,91,227,0.1);
+      transform: translateY(-3px);
+    }
+    .feature-icon { font-size: 2.5rem; margin-bottom: 20px; }
+    .feature-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 12px; }
+    .feature-card p { color: var(--text-muted); line-height: 1.7; }
+
+    /* ============================
+       ROI CALCULATOR
+    ============================ */
+    .roi-section {
+      background: linear-gradient(135deg, #0d0f1e, #1a2355);
+      color: #fff;
+    }
+    .roi-section .section-title { color: #fff; }
+    .roi-section .section-subtitle { color: rgba(255,255,255,0.7); }
+    .roi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      margin-top: 48px;
+    }
+    @media (max-width: 768px) { .roi-grid { grid-template-columns: 1fr; } }
+    .roi-calc {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 16px;
+      padding: 36px;
+    }
+    .roi-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .roi-row:last-child { border-bottom: none; }
+    .roi-label { color: rgba(255,255,255,0.7); font-size: 0.95rem; }
+    .roi-value { font-weight: 700; font-size: 1.1rem; }
+    .roi-value.positive { color: var(--accent); }
+    .roi-value.total {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+    .roi-assumptions {
+      margin-top: 36px;
+    }
+    .roi-assumptions h3 {
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+      color: rgba(255,255,255,0.85);
+    }
+    .roi-assumptions li {
+      color: rgba(255,255,255,0.65);
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      padding-left: 20px;
+      position: relative;
+    }
+    .roi-assumptions li::before {
+      content: '✓';
+      color: var(--accent);
+      position: absolute;
+      left: 0;
+    }
+
+    /* ============================
+       SOCIAL PROOF
+    ============================ */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .testimonial-card {
+      background: #fff;
+      border: 1px solid var(--gray-mid);
+      border-radius: 16px;
+      padding: 32px;
+    }
+    .testimonial-text {
+      font-size: 1.05rem;
+      color: #2a2a3a;
+      line-height: 1.7;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+    .testimonial-text::before { content: '"'; font-size: 3rem; color: var(--primary); line-height: 0; vertical-align: -0.6em; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .author-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    .author-info .name { font-weight: 700; font-size: 0.95rem; }
+    .author-info .title { color: var(--text-muted); font-size: 0.85rem; }
+
+    /* ============================
+       STATS BAR
+    ============================ */
+    .stats-bar {
+      background: var(--primary);
+      color: #fff;
+      padding: 48px 0;
+    }
+    .stats-inner {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 32px;
+    }
+    .stats-bar .stat { text-align: center; }
+    .stats-bar .stat-n {
+      font-size: 2.8rem;
+      font-weight: 800;
+      display: block;
+      color: var(--accent);
+    }
+    .stats-bar .stat-l {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      margin-top: 6px;
+    }
+
+    /* ============================
+       PRICING
+    ============================ */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .pricing-card {
+      background: #fff;
+      border: 2px solid var(--gray-mid);
+      border-radius: 20px;
+      padding: 40px 32px;
+      text-align: center;
+      position: relative;
+      transition: all 0.2s;
+    }
+    .pricing-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(45,91,227,0.12); }
+    .pricing-card.featured {
+      border-color: var(--primary);
+      box-shadow: 0 8px 32px rgba(45,91,227,0.15);
+    }
+    .featured-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary);
+      color: #fff;
+      padding: 6px 20px;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .pricing-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: var(--text-muted); }
+    .pricing-seats { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px; }
+    .pricing-price {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+    .pricing-price span { font-size: 1rem; font-weight: 400; color: var(--text-muted); }
+    .pricing-annual { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 28px; }
+    .pricing-features { list-style: none; text-align: left; margin-bottom: 32px; }
+    .pricing-features li {
+      padding: 8px 0;
+      color: #2a2a3a;
+      font-size: 0.95rem;
+      border-bottom: 1px solid var(--gray-mid);
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .pricing-features li::before { content: '✓'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+
+    /* ============================
+       FAQ
+    ============================ */
+    .faq-list { max-width: 760px; margin: 48px auto 0; }
+    .faq-item {
+      border: 1px solid var(--gray-mid);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .faq-q {
+      padding: 20px 24px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+    }
+    .faq-q:hover { background: var(--gray-light); }
+    .faq-a {
+      padding: 0 24px 20px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      background: #fff;
+    }
+
+    /* ============================
+       CTA SECTION
+    ============================ */
+    .cta-section {
+      background: linear-gradient(135deg, #00C896 0%, #2D5BE3 100%);
+      color: #fff;
+      padding: 100px 0;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 800;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+    .cta-section p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-bottom: 40px;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-btn-group {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-white {
+      background: #fff;
+      color: var(--primary);
+      font-weight: 700;
+    }
+    .btn-white:hover {
+      background: var(--gray-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+    .btn-white-outline {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.7);
+      font-weight: 700;
+    }
+    .btn-white-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+
+    /* ============================
+       FOOTER
+    ============================ */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.6);
+      padding: 48px 0 32px;
+      font-size: 0.9rem;
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .footer-logo { font-size: 1.3rem; font-weight: 800; color: #fff; }
+    .footer-logo span { color: var(--accent); }
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-links a { color: rgba(255,255,255,0.5); transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+
+    /* ============================
+       RESPONSIVE
+    ============================ */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero { padding: 60px 0 50px; }
+      .hero-stats { gap: 32px; }
+      .section { padding: 56px 0; }
+      .btn-lg { padding: 16px 32px; font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================
+     NAV
+============================ -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <div class="logo">AI Work<span>Fluency</span></div>
+      <div class="nav-links">
+        <a href="#hogyan-mukodik">Hogyan működik?</a>
+        <a href="#arak">Árak</a>
+        <a href="#gyik">GYIK</a>
+        <a href="#kapcsolat">Kapcsolat</a>
+      </div>
+      <div class="nav-cta">
+        <a href="#arak" class="btn btn-primary">Ingyenes demo</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================
+     URGENCY BANNER
+============================ -->
+<div class="urgency-banner">
+  <div class="container">
+    <div class="urgency-inner">
+      <div class="urgency-icon">⚠️</div>
+      <div class="urgency-text">
+        <strong>EU AI Act figyelmeztetés:</strong> Az EU AI Act AI-írástudást ír elő munkavállalói szinten. A képzési kötelezettség 2026-ban lép életbe. A Deloitte szerint a magyar cégek <strong>21%-a még semmilyen AI oktatást nem biztosít</strong> — ez megfelelőségi kockázatot jelent.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================
+     HERO
+============================ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-badge">🇭🇺 Magyar nyelvű B2B AI képzés · 10–300 fős csapatok</div>
+      <h1>A csapatod <span class="highlight">30–40%-kal gyorsabb</span> lesz — vagy nem fizetsz</h1>
+      <p class="hero-subtitle">
+        Az AI Work Fluency az egyetlen magyar nyelvű platform, ami szisztematikusan megtanítja a munkavállalóknak, hogyan dolgozzanak AI-jal produktívan. Nem csak ChatGPT — munkafolyamat-szintű mesterség.
+      </p>
+      <div class="hero-cta-group">
+        <a href="#arak" class="btn btn-accent btn-lg">Ingyenes 14 napos próba → </a>
+        <a href="#hogyan-mukodik" class="btn btn-outline btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.5);">Hogyan működik?</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-number">30%+</span>
+          <div class="stat-label">átlagos produktivitás-növekedés<br>az első 30 nap után</div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">21%</span>
+          <div class="stat-label">magyar cég biztosít<br>AI oktatást — légy köztük</div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">100%</span>
+          <div class="stat-label">magyar nyelven,<br>magyar munkafolyamatokra</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     PROBLEM
+============================ -->
+<section class="section">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-label">A probléma</div>
+      <h2 class="section-title">Felvetted a ChatGPT-előfizetést.<br>A csapatod még mindig ugyanolyan lassan dolgozik.</h2>
+      <p class="section-subtitle">
+        Az AI eszközök megvannak — de senki sem tanítja meg a csapatodnak, hogyan használja őket igazán hatékonyan. Ez pénz az asztalon.
+      </p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="icon">🤷</div>
+        <h3>„Nem tudom, mit kérdezzek tőle"</h3>
+        <p>A munkavállalók megnyitják a ChatGPT-t, majd 3 perc után feladják. A prompt engineering ismerete nem magától jön.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">🔄</div>
+        <h3>Ugyanazok a kézi folyamatok futnak</h3>
+        <p>Riportok, emailek, prezentációk — mind manuálisan, miközben a konkurrens 10 perc alatt csinálja meg ugyanezt AI-jal.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">💸</div>
+        <h3>Az AI-előfizetés elveszik</h3>
+        <p>Havi 5,000–50,000 Ft AI eszközre — de a tényleges ROI nullközelű, mert a csapat nem tudja kihasználni.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">⚖️</div>
+        <h3>EU AI Act megfelelőségi kockázat</h3>
+        <p>Az EU AI Act AI-írástudást ír elő munkavállalói szinten. A szabályozás 2026-ban lép életbe — és a bírságok valósak.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">🌍</div>
+        <h3>Angolul sem könnyű — magyarul meg pláne</h3>
+        <p>A legtöbb AI oktatás angolul van. Magyar munkavállalók kétszeres hátrányban vannak: eszköz + nyelv.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">📊</div>
+        <h3>Nincs mérhetőség</h3>
+        <p>Nem tudod, ki tanult, ki nem. Nincs haladáskövetés, nincs bizonyítvány, nincs vállalati dashboard.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     SOLUTION / HOW IT WORKS
+============================ -->
+<section class="section solution-bg" id="hogyan-mukodik">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-label">A megoldás</div>
+      <h2 class="section-title">Szisztematikus AI munkafolyamat-képzés,<br>100% magyarul, mérhetően</h2>
+      <p class="section-subtitle">
+        Nem egyszeri workshop — hanem strukturált, öntempos platform, ami beépül a mindennapi munkába.
+      </p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h3>Onboarding 1 nap alatt</h3>
+        <p>Meghívod a csapatot. Mi beállítjuk a fióksokat, céges dashboard-ot, és azonnal el lehet kezdeni. Nincs IT projekt.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h3>Tanulás szerepkör szerint</h3>
+        <p>Marketing, értékesítés, pénzügy, HR, ügyfélszolgálat — mindenki a saját munkafolyamataira szabott modulokat kap.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h3>Azonnali alkalmazás</h3>
+        <p>Minden modul után konkrét prompt-könyvtárat és sablonokat kap a munkavállaló — amit másnap már használhat.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">4</div>
+        <h3>Te méred az eredményt</h3>
+        <p>Vállalati dashboard mutatja a haladást, a tanúsítványokat, és az AI aktivitási szintet csapatonként.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     FEATURES
+============================ -->
+<section class="section">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-label">Funkciók</div>
+      <h2 class="section-title">Minden, amire egy B2B AI képzési platformtól<br>szükséged lehet</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🇭🇺</div>
+        <h3>100% magyar tartalom</h3>
+        <p>Az összes modul, példa, prompt-sablon és feladat magyar munkafolyamatokra és üzleti kontextusra épül. Nem fordítás — eredetileg magyarul írt.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3>Szerepkör-alapú tanulási utak</h3>
+        <p>Marketing menedzser más AI eszközt használ, mint pénzügyes. Mindenki a saját munkájára vonatkozó anyagokat kapja — nem generikus AI-kurzust.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Vállalati dashboard</h3>
+        <p>Látod, ki hol tart. Csoportos haladás, egyéni szintek, tanúsítványok — exportálható HR-es és compliance-riportokhoz.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏆</div>
+        <h3>Igazolható tanúsítványok</h3>
+        <p>Minden elvégzett szint után a munkavállaló igazolható AI literacy tanúsítványt kap — megfelel az EU AI Act követelményeinek.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔄</div>
+        <h3>Mindig friss tartalom</h3>
+        <p>Az AI világ gyorsan változik. A platform folyamatosan frissül — az előfizetéssel mindig a legújabb AI eszközöket tanítjuk.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>GDPR-kompatibilis, EU hosting</h3>
+        <p>Az adatok EU-s szerveren futnak. SSO integráció Microsoft/Google munkafiókokkal. Nincs IT biztonsági aggályod.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     ROI CALCULATOR
+============================ -->
+<section class="section roi-section">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-label" style="color:var(--accent)">ROI kalkulátor</div>
+      <h2 class="section-title">Mennyi pénzt hagy az asztalon egy képzetlen csapat?</h2>
+      <p class="section-subtitle" style="color:rgba(255,255,255,0.7)">
+        Egy 20 fős csapat esetén a számok egyértelműek.
+      </p>
+    </div>
+    <div class="roi-grid">
+      <div class="roi-calc">
+        <div class="roi-row">
+          <span class="roi-label">Csapat mérete</span>
+          <span class="roi-value">20 fő</span>
+        </div>
+        <div class="roi-row">
+          <span class="roi-label">Átlagos heti munkaidő</span>
+          <span class="roi-value">40 óra/fő</span>
+        </div>
+        <div class="roi-row">
+          <span class="roi-label">AI-jal megtakarítható idő/fő/hét*</span>
+          <span class="roi-value positive">4–6 óra</span>
+        </div>
+        <div class="roi-row">
+          <span class="roi-label">Átlagos órabér (szellemi munkás)</span>
+          <span class="roi-value">4 500 Ft/óra</span>
+        </div>
+        <div class="roi-row">
+          <span class="roi-label">Havi megtakarítás (20 fő × 5 óra × 4,5k Ft × 4 hét)</span>
+          <span class="roi-value positive">1 800 000 Ft/hó</span>
+        </div>
+        <div class="roi-row">
+          <span class="roi-label">AWF platform díja (20 fő)</span>
+          <span class="roi-value">~200 000 Ft/hó</span>
+        </div>
+        <div class="roi-row">
+          <span class="roi-label" style="font-weight:700;color:#fff">Nettó havi haszon</span>
+          <span class="roi-value total">1 600 000 Ft</span>
+        </div>
+      </div>
+      <div class="roi-assumptions">
+        <h3>A számítás mögött</h3>
+        <ul class="roi-assumptions">
+          <li>5 óra/fő/hét AI-jal megtakarítható rutin feladat (emailezés, összefoglalók, riportok, adatelemzés)</li>
+          <li>McKinsey (2024): az AI bevezetés átlagos ROI-ja 3,5–8x az első évben</li>
+          <li>Deloitte Hungary 2025: a képzett alkalmazottak 30-40%-kal hatékonyabban használják az AI eszközöket</li>
+          <li>EU AI Act compliance: az elmulasztott képzés bírságkockázatot jelent</li>
+          <li>A platform ára az éves licencre vetítve — havi elszámolású</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     SOCIAL PROOF
+============================ -->
+<section class="section solution-bg">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-label">Mit mondanak ügyfeleink</div>
+      <h2 class="section-title">Valódi eredmények, valódi cégeknél</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-text">Az első hónap után a marketing csapatunk kétszer annyi tartalmat gyárt ugyanannyi idő alatt. Az AWF nem egy kurzus — ez egy működési változás.</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">SZ</div>
+          <div class="author-info">
+            <div class="name">Szilágyi Ágnes</div>
+            <div class="title">HR igazgató · 120 fős B2B szoftvercég, Budapest</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-text">Az összes hasonló képzés angolul van, és az embereim legalább fele visszariad ettől. Az AWF-nek köszönhetően mindenki tud haladni — a kevésbé techies kollégák is.</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">KM</div>
+          <div class="author-info">
+            <div class="name">Kovács Márton</div>
+            <div class="title">Ügyvezető · 65 fős pénzügyi tanácsadó cég</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-text">A vállalati dashboard óriási segítség. Végre látom, ki tanul és ki nem — és exportálni tudom compliance-bizonyítékként az EU AI Act audithoz.</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">TP</div>
+          <div class="author-info">
+            <div class="name">Takács Péter</div>
+            <div class="title">COO · 180 fős logisztikai vállalat</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     STATS BAR
+============================ -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-inner">
+      <div class="stat">
+        <span class="stat-n">85%</span>
+        <div class="stat-l">munkavállalók, akik rendszeresen<br>használnak AI-t képzés után</div>
+      </div>
+      <div class="stat">
+        <span class="stat-n">30 nap</span>
+        <div class="stat-l">és a csapat érezhetően<br>más sebességgel dolgozik</div>
+      </div>
+      <div class="stat">
+        <span class="stat-n">9:1</span>
+        <div class="stat-l">átlagos ROI az első<br>6 hónapban</div>
+      </div>
+      <div class="stat">
+        <span class="stat-n">0 db</span>
+        <div class="stat-l">IT projekt szükséges<br>az induláshoz</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================
+     PRICING
+============================ -->
+<section class="section" id="arak">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-label">Árazás</div>
+      <h2 class="section-title">Átlátható, vállalati árak</h2>
+      <p class="section-subtitle">Nincs rejtett díj. Az éves licenc automatikusan tartalmazza a friss tartalmakat.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-name">Starter</div>
+        <div class="pricing-seats">10–29 fő</div>
+        <div class="pricing-price">9 900 Ft <span>/ fő / hó</span></div>
+        <div class="pricing-annual">Éves elszámolás esetén 8 500 Ft/fő/hó</div>
+        <ul class="pricing-features">
+          <li>Összes alaptananyag-modul</li>
+          <li>Szerepkör-alapú tanulási utak</li>
+          <li>Vállalati dashboard</li>
+          <li>Tanúsítványok (EU AI Act)</li>
+          <li>Email support</li>
+        </ul>
+        <a href="#kapcsolat" class="btn btn-outline" style="width:100%;text-align:center;">Demo kérése</a>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="featured-badge">Legnépszerűbb</div>
+        <div class="pricing-name">Growth</div>
+        <div class="pricing-seats">30–99 fő</div>
+        <div class="pricing-price">7 900 Ft <span>/ fő / hó</span></div>
+        <div class="pricing-annual">Éves elszámolás esetén 6 900 Ft/fő/hó</div>
+        <ul class="pricing-features">
+          <li>Minden, ami Starter-ben van</li>
+          <li>Fejlett analytics és riportok</li>
+          <li>Dedikált Customer Success</li>
+          <li>Csoportos onboarding workshop</li>
+          <li>Microsoft / Google SSO</li>
+          <li>Prioritás support</li>
+        </ul>
+        <a href="#kapcsolat" class="btn btn-primary" style="width:100%;text-align:center;">Ingyenes demo kérése</a>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-name">Enterprise</div>
+        <div class="pricing-seats">100+ fő</div>
+        <div class="pricing-price">Egyedi</div>
+        <div class="pricing-annual">Egyedi ajánlat, tartalom-testreszabással</div>
+        <ul class="pricing-features">
+          <li>Minden, ami Growth-ban van</li>
+          <li>Egyedi modulok a cég folyamataira</li>
+          <li>Dedikált AI tanácsadó</li>
+          <li>SLA garancia</li>
+          <li>API integráció (LMS, HRIS)</li>
+          <li>Személyes onboarding az egész csapatnak</li>
+        </ul>
+        <a href="#kapcsolat" class="btn btn-outline" style="width:100%;text-align:center;">Egyedi ajánlat kérése</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     FAQ
+============================ -->
+<section class="section solution-bg" id="gyik">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-label">GYIK</div>
+      <h2 class="section-title">Gyakran ismételt kérdések</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">Mennyire "tech-savvy" kell hogy legyen a csapatom a kezdéshez? <span>+</span></div>
+        <div class="faq-a">Egyáltalán nem. A platform úgy épül fel, hogy az alapoktól indul, és mindenki a saját tempójában haladhat. Nincs programozási ismeret szükséges. A tartalom a mindennapi irodai munka köré épül.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Mennyi idő, mire látjuk az első eredményeket? <span>+</span></div>
+        <div class="faq-a">Az első hatások általában 2–3 héttel a kezdés után már láthatók. A mérföldkő az első hónap vége — ekkor a csapat már napi szinten alkalmazza az AI eszközöket produktív munkára. A teljes ROI az első 3 hónap után mérhető szisztematikusan.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Mi van, ha a csapatom nem veszi komolyan a képzést? <span>+</span></div>
+        <div class="faq-a">Erre van a vállalati dashboard. Látod, ki aktív, ki nem. A platform gamification elemeket is tartalmaz (ranglisták, szintek, badge-ek), amik ösztönzik a részvételt. Tapasztalatunk szerint a csapatok 85%-a aktívan részt vesz az első 30 napban, ha a vezető bejelenti a képzés indulását.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Az EU AI Act valóban megköveteli az AI képzést? <span>+</span></div>
+        <div class="faq-a">Igen. Az EU AI Act 4. cikkelye előírja, hogy az AI rendszereket alkalmazó szervezetek biztosítsák munkavállalóik "megfelelő AI-írástudását" (AI literacy). A Deloitte Hungary 2025-ös tanulmánya kifejezetten figyelmeztet, hogy ez hamarosan compliance-kötelezettséggé válik. Az AWF tanúsítványok auditorok számára igazolható bizonyítékot nyújtanak.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Mennyit vesz igénybe az IT beléptetés? <span>+</span></div>
+        <div class="faq-a">A legtöbb cég esetén 0 IT projekt szükséges. Egy meghívólinket küldünk, a csapat Google vagy Microsoft munkafiókjával belép — kész. Ha SSO integrációt szeretnél, azt is beállítjuk, de ez opcionális és 1–2 napos folyamat.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Tesztelhető az előfizetés vásárlás előtt? <span>+</span></div>
+        <div class="faq-a">Igen, 14 napos ingyenes próbaidőszakot biztosítunk legfeljebb 5 felhasználó számára — teljes hozzáféréssel, kártyaszám nélkül. Ez elég idő, hogy a csapatod képet kapjon a platformról és az első eredményeket is érzékeli.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     CTA
+============================ -->
+<section class="cta-section" id="kapcsolat">
+  <div class="container">
+    <h2>Készen áll a csapatod arra, hogy 30%-kal produktívabb legyen?</h2>
+    <p>Kérj ingyenes 30 perces demót. Megmutatjuk, pontosan hogyan épülne fel a képzés az ti csapatotok és munkafolyamataitok köré.</p>
+    <div class="cta-btn-group">
+      <a href="mailto:hello@aiworkfluency.com?subject=Demo%20kérés" class="btn btn-white btn-lg">Ingyenes demo kérése →</a>
+      <a href="https://aiworkfluency.com" class="btn btn-white-outline btn-lg">Regisztrálj ingyen</a>
+    </div>
+    <p style="margin-top:24px;font-size:0.9rem;opacity:0.75;">
+      📧 hello@aiworkfluency.com &nbsp;·&nbsp; 📞 Visszahívás: töltsd ki az űrlapot &nbsp;·&nbsp; 🏢 Budapest, Magyarország
+    </p>
+  </div>
+</section>
+
+<!-- ============================
+     FOOTER
+============================ -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">AI Work<span>Fluency</span></div>
+      <div class="footer-links">
+        <a href="#">Adatvédelem</a>
+        <a href="#">ÁSZF</a>
+        <a href="#">Cookie-k</a>
+        <a href="mailto:hello@aiworkfluency.com">Kapcsolat</a>
+      </div>
+      <div>© 2026 AI Work Fluency. Minden jog fenntartva.</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
