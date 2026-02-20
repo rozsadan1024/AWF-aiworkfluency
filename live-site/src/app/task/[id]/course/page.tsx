@@ -1,0 +1,325 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import { createClient } from '@/lib/supabase/client';
+import { Task, Submission, PromptScorecard } from '@/types';
+import { useParams, useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { Shield, ArrowLeft, Copy, Check, Clock, Wrench, Lightbulb, BookOpen, Zap, ChevronDown, ChevronUp } from 'lucide-react';
+
+function CopyButton({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false);
+  return (
+    <button
+      onClick={() => { navigator.clipboard.writeText(text); setCopied(true); setTimeout(() => setCopied(false), 2000); }}
+      className="flex items-center gap-1 text-xs text-brand-600 hover:text-brand-700 font-medium"
+    >
+      {copied ? <><Check className="w-3 h-3" /> Copied!</> : <><Copy className="w-3 h-3" /> Copy prompt</>}
+    </button>
+  );
+}
+
+// Detect which WHAT/HOW/WHY dimensions are present in a prompt (heuristic, used for user prompts)
+function analyzePrompt(prompt: string) {
+  const lower = prompt.toLowerCase();
+  return {
+    hasRole: /you are|act as|as a |as an |expert|professional|specialist|senior|analyst|writer|assistant/.test(lower),
+    hasAudience: /\bfor\b.{0,30}(team|manager|client|customer|audience|reader|stakeholder|user|boss|colleague|vp|ceo|director|leadership|executive)|(vp|ceo|director|leadership|executive|team|manager|client|customer|audience|reader|stakeholder|user|boss|colleague).{0,30}\breads?\b/.test(lower),
+    hasFormat: /format|structure|bullet|list|table|paragraph|section|heading|summary|outline|numbered|markdown|json/.test(lower),
+    hasTone: /\btone\b|\bstyle\b|formal|informal|friendly|professional|concise|detailed|simple|casual|authoritative/.test(lower),
+    hasContext: /because|in order to|goal|purpose|context|background|so that|the reason|we need|we want|to help|to enable|deadline|situation/.test(lower),
+  };
+}
+
+// Uses structured scorecard for expert prompts (accurate), regex for user prompts (heuristic)
+function PromptDimensions({ prompt, isExpert = false, scorecard }: { prompt: string; isExpert?: boolean; scorecard?: PromptScorecard }) {
+  const a = analyzePrompt(prompt);
+  const dims = scorecard
+    ? [
+        { present: scorecard.defines_role,    label: 'WHO (role defined)' },
+        { present: scorecard.defines_audience, label: 'FOR WHOM (audience)' },
+        { present: scorecard.specifies_format, label: 'HOW (format/structure)' },
+        { present: scorecard.specifies_tone,   label: 'STYLE (tone)' },
+        { present: scorecard.provides_context, label: 'WHY (context/purpose)' },
+      ]
+    : [
+        { present: a.hasRole,     label: 'WHO (role defined)' },
+        { present: a.hasAudience, label: 'FOR WHOM (audience)' },
+        { present: a.hasFormat,   label: 'HOW (format/structure)' },
+        { present: a.hasTone,     label: 'STYLE (tone)' },
+        { present: a.hasContext,  label: 'WHY (context/purpose)' },
+      ];
+  return (
+    <div>
+      <div className="mt-2 flex flex-wrap gap-1">
+        {dims.map(({ present, label }) => (
+          <span key={label} className={`text-xs px-2 py-0.5 rounded-full font-medium ${
+            present
+              ? 'bg-green-100 text-green-700'
+              : isExpert
+                ? 'bg-amber-100 text-amber-700'
+                : 'bg-red-50 text-red-400 line-through'
+          }`}>
+            {present ? '✓' : '✗'} {label}
+          </span>
+        ))}
+      </div>
+      {scorecard?.rationale && (
+        <p className="text-xs text-gray-500 mt-2 italic">{scorecard.rationale}</p>
+      )}
+    </div>
+  );
+}
+
+function PromptGapExplanation({ userPrompt, expertPrompt }: { userPrompt: string; expertPrompt: string }) {
+  const userA = analyzePrompt(userPrompt);
+  const missing = [];
+  if (!userA.hasRole)     missing.push('a defined role ("You are a...")')
+  if (!userA.hasAudience) missing.push('the audience ("for your manager / VP / client...")');
+  if (!userA.hasFormat)   missing.push('the output format ("bullet list / table / summary...")');
+  if (!userA.hasTone)     missing.push('the tone/style ("professional / concise / friendly...")');
+  if (!userA.hasContext)  missing.push('the WHY / context ("because we need to... / the goal is...")');
+
+  if (missing.length === 0) return null;
+
+  return (
+    <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-4">
+      <p className="text-sm font-bold text-amber-800 mb-2">What your prompt was missing:</p>
+      <ul className="space-y-1">
+        {missing.map((m, i) => (
+          <li key={i} className="text-sm text-amber-700 flex items-start gap-2">
+            <span className="text-amber-500 flex-shrink-0 mt-0.5">→</span>
+            <span>{m}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default function CoursePage() {
+  const { id } = useParams();
+  const [task, setTask] = useState<Task | null>(null);
+  const [submission, setSubmission] = useState<Submission | null>(null);
+  const [showComparison, setShowComparison] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    async function load() {
+      const supabase = createClient();
+      const { data: taskData } = await supabase.from('tasks').select('*').eq('id', id).single();
+      if (!taskData) { router.push('/dashboard'); return; }
+      setTask(taskData);
+
+      const { data: subData } = await supabase
+        .from('submissions')
+        .select('*')
+        .eq('task_id', id)
+        .order('submitted_at', { ascending: false })
+        .limit(1)
+        .single();
+      if (subData) setSubmission(subData);
+    }
+    load();
+  }, [id, router]);
+
+  if (!task) return null;
+
+  const expert = task.expert_solution;
+  const course = task.micro_course_content;
+  const userPrompt = submission?.prompts_used;
+  const expertPrompt = expert?.example_prompts?.[0];
+  const hasComparison = !!(userPrompt && expertPrompt);
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <nav className="bg-white border-b border-gray-200 sticky top-0 z-10">
+        <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
+          <Link href={`/task/${id}/evaluation`} className="flex items-center gap-2 text-gray-600 hover:text-gray-900">
+            <ArrowLeft className="w-4 h-4" /> Evaluation
+          </Link>
+          <div className="flex items-center gap-2">
+            <Shield className="w-5 h-5 text-brand-600" />
+            <span className="font-semibold">AIProof</span>
+          </div>
+        </div>
+      </nav>
+
+      <div className="max-w-3xl mx-auto px-4 py-8">
+        <div className="flex items-center gap-2 mb-2">
+          <BookOpen className="w-5 h-5 text-brand-600" />
+          <span className="text-sm font-medium text-brand-600">Expert Approach</span>
+        </div>
+        <h1 className="text-2xl font-bold text-gray-900 mb-2">{task.title}</h1>
+        <p className="text-gray-600 mb-8">Here&apos;s exactly how an AI-skilled professional would approach this task.</p>
+
+        {/* Micro Course */}
+        {course && (
+          <div className="card mb-8">
+            <h2 className="text-lg font-bold text-gray-900 mb-3">The Lesson</h2>
+            <div className="prose prose-gray max-w-none">
+              {course.split('\n\n').map((p, i) => (
+                <p key={i} className="text-gray-700 leading-relaxed mb-3">{p}</p>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Expert Approach */}
+        {expert && (
+          <>
+            <div className="card mb-6">
+              <h2 className="text-lg font-bold text-gray-900 mb-3">Step-by-Step Approach</h2>
+              <div className="prose prose-gray max-w-none">
+                {expert.approach.split('\n').map((step, i) => (
+                  <p key={i} className="text-gray-700 leading-relaxed mb-2">{step}</p>
+                ))}
+              </div>
+            </div>
+
+            {/* Recommended Tools */}
+            <div className="card mb-6">
+              <div className="flex items-center gap-2 mb-3">
+                <Wrench className="w-5 h-5 text-brand-600" />
+                <h2 className="text-lg font-bold text-gray-900">Recommended Tools</h2>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {expert.recommended_tools?.map((tool, i) => (
+                  <span key={i} className="bg-brand-50 text-brand-700 px-3 py-1.5 rounded-full text-sm font-medium">
+                    {tool}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Expert Prompts — scorecard uses structured JSON, not regex */}
+            {expert.example_prompts?.length > 0 && (
+              <div className="card mb-6">
+                <div className="flex items-center gap-2 mb-3">
+                  <Lightbulb className="w-5 h-5 text-brand-600" />
+                  <h2 className="text-lg font-bold text-gray-900">Expert Prompts</h2>
+                </div>
+                <p className="text-sm text-gray-500 mb-4">These are the exact prompts an expert would use. Copy them and adapt to your needs.</p>
+                <div className="space-y-4">
+                  {expert.example_prompts.map((prompt, i) => (
+                    <div key={i} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                      <div className="flex justify-between items-start mb-2">
+                        <span className="text-xs font-medium text-gray-500">Prompt {i + 1}</span>
+                        <CopyButton text={prompt} />
+                      </div>
+                      <pre className="text-sm text-gray-800 whitespace-pre-wrap font-mono">{prompt}</pre>
+                      <PromptDimensions prompt={prompt} isExpert scorecard={i === 0 ? expert.prompt_scorecard : undefined} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* YOUR PROMPT vs EXPERT PROMPT COMPARISON */}
+            {hasComparison && (
+              <div className="card mb-6 border-2 border-brand-200">
+                <button
+                  onClick={() => setShowComparison(!showComparison)}
+                  className="w-full flex items-center justify-between"
+                >
+                  <div className="flex items-center gap-2">
+                    <Zap className="w-5 h-5 text-brand-600" />
+                    <h2 className="text-lg font-bold text-gray-900">Why the Expert Prompt Works Better</h2>
+                  </div>
+                  {showComparison
+                    ? <ChevronUp className="w-5 h-5 text-gray-400" />
+                    : <ChevronDown className="w-5 h-5 text-gray-400" />
+                  }
+                </button>
+                <p className="text-sm text-gray-500 mt-1 mb-0">See exactly what your prompt was missing — and how to fix it.</p>
+
+                {showComparison && (
+                  <div className="mt-6">
+                    <div className="grid md:grid-cols-2 gap-4 mb-5">
+                      {/* User prompt */}
+                      <div>
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="bg-gray-200 text-gray-700 text-xs font-bold px-2 py-1 rounded-full">YOUR PROMPT</span>
+                        </div>
+                        <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 min-h-[120px]">
+                          <pre className="text-sm text-gray-700 whitespace-pre-wrap font-mono">{userPrompt}</pre>
+                        </div>
+                        <PromptDimensions prompt={userPrompt!} />
+                      </div>
+
+                      {/* Expert prompt */}
+                      <div>
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-full">EXPERT PROMPT</span>
+                        </div>
+                        <div className="bg-green-50 border border-green-200 rounded-lg p-4 min-h-[120px]">
+                          <pre className="text-sm text-green-800 whitespace-pre-wrap font-mono">{expertPrompt}</pre>
+                        </div>
+                        <PromptDimensions prompt={expertPrompt!} isExpert scorecard={expert.prompt_scorecard} />
+                      </div>
+                    </div>
+
+                    <PromptGapExplanation userPrompt={userPrompt!} expertPrompt={expertPrompt!} />
+
+                    {/* Key Lesson */}
+                    <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-4">
+                      <p className="text-sm font-bold text-amber-800 mb-1">The #1 Lesson</p>
+                      <p className="text-sm text-amber-700">
+                        {expert.key_lesson ||
+                          "You asked WHAT you want but not HOW you want it or WHY it matters. Expert prompts always answer: Who's reading this? What do they need to know? How should it look? — These details transform an average AI response into a professional-grade output."}
+                      </p>
+                    </div>
+
+                    {/* Practice Exercise */}
+                    <div className="bg-brand-50 border border-brand-200 rounded-lg p-4">
+                      <p className="text-sm font-bold text-brand-800 mb-2">Now Try It: Rewrite Your Prompt</p>
+                      <p className="text-sm text-brand-700 mb-3">
+                        {expert.practice_exercise
+                          ? expert.practice_exercise.split("Format:")[0].trim()
+                          : "Use this template to rewrite your prompt. Fill in each bracket with specifics:"}
+                      </p>
+                      <div className="bg-white border border-brand-200 rounded-lg p-3 mb-3">
+                        <pre className="text-sm text-brand-900 font-mono whitespace-pre-wrap">
+{`You are a [role].
+[Task] for [audience],
+focusing on [2-3 specific points].
+Format: [structure — bullet list / table / paragraphs].
+Tone: [style — professional / concise / friendly].`}
+                        </pre>
+                      </div>
+                      <CopyButton text={`You are a [role].\n[Task] for [audience],\nfocusing on [2-3 specific points].\nFormat: [structure].\nTone: [style].`} />
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Key Insights */}
+            {expert.key_insights && (
+              <div className="card mb-6 bg-purple-50 border-purple-200">
+                <h2 className="text-lg font-bold text-purple-900 mb-2">Key Insight</h2>
+                <p className="text-purple-800">{expert.key_insights}</p>
+              </div>
+            )}
+
+            {/* Time Benchmark */}
+            <div className="card mb-8 flex items-center gap-3">
+              <Clock className="w-5 h-5 text-gray-400" />
+              <div>
+                <span className="text-sm text-gray-600">Expert time benchmark: </span>
+                <span className="font-bold text-gray-900">{expert.time_benchmark} minutes</span>
+                <span className="text-xs text-gray-400 ml-2">(AI-fluent professional, working carefully)</span>
+              </div>
+            </div>
+          </>
+        )}
+
+        <div className="flex gap-4">
+          <Link href="/dashboard" className="btn-primary">
+            Back to Dashboard — Next Task
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}

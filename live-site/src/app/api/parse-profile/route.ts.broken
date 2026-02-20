@@ -1,0 +1,52 @@
+import { NextResponse } from 'next/server';
+import { kimi, KIMI_MODEL } from '@/lib/kimi/client';
+import { PROFILE_PARSER_PROMPT } from '@/lib/kimi/prompts';
+
+export async function POST(request: Request) {
+  try {
+    const { jobDescription, painPoint, typicalMorning, tools } = await request.json();
+
+    const completion = await kimi.chat.completions.create({
+      model: KIMI_MODEL,
+      temperature: 1.0,
+      max_tokens: 500,
+      messages: [
+        { role: 'system', content: PROFILE_PARSER_PROMPT },
+        {
+          role: 'user',
+          content: `Analyze this professional's role:
+
+JOB DESCRIPTION: ${jobDescription}
+
+TASK THAT TOOK TOO LONG THIS WEEK: ${painPoint}
+
+TYPICAL MONDAY MORNING: ${typicalMorning}
+
+TOOLS USED DAILY: ${tools}`,
+        },
+      ],
+    });
+
+    const raw = completion.choices[0]?.message?.content || '{}';
+    // Strip markdown code fences if present
+    const cleaned = raw.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+    const profile = JSON.parse(cleaned);
+
+    return NextResponse.json({ profile });
+  } catch (error) {
+    console.error('Profile parsing error:', error);
+    // Fallback profile
+    return NextResponse.json({
+      profile: {
+        role_type: 'Administrative Professional',
+        sub_role_match: 'admin_assistant',
+        industry: 'general',
+        company_size: 'medium',
+        key_tasks: ['email management', 'document preparation', 'scheduling'],
+        tools: ['Microsoft Office'],
+        pain_points: ['time-consuming manual tasks'],
+        ai_familiarity: 'basic',
+      },
+    });
+  }
+}
