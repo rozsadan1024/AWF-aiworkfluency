@@ -33,8 +33,8 @@ export default function HomePage() {
               <span className="text-brand-600">Are you ready?</span>
             </h1>
             <p className="text-xl text-gray-600 mb-8 leading-relaxed max-w-2xl">
-              AIProof gives you personalized practice tasks that mirror your actual daily work.
-              Use AI to solve them, get scored on your approach, and learn the expert way.
+              Every practice task is generated just for you — based on your actual job, not pulled from a library.
+              Solve real scenarios with AI, get scored on your approach, and learn the expert way.
               Think Duolingo, but for keeping your job.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -43,6 +43,23 @@ export default function HomePage() {
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <p className="text-sm text-gray-500 self-center">5 minutes. No signup required. See your AI Exposure Score.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How Personalization Works */}
+      <section className="py-16 bg-white border-b border-gray-200">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">How Personalization Works</h2>
+          <div className="grid md:grid-cols-2 gap-8 text-left max-w-3xl mx-auto">
+            <div>
+              <div className="text-brand-600 font-semibold mb-2">You tell us:</div>
+              <p className="text-gray-700">Your job title, your actual daily tasks, your tools, your industry.</p>
+            </div>
+            <div>
+              <div className="text-brand-600 font-semibold mb-2">We generate:</div>
+              <p className="text-gray-700">Practice scenarios that feel like they came from your boss, not a textbook.</p>
             </div>
           </div>
         </div>
@@ -106,6 +123,99 @@ export default function HomePage() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Task Examples */}
+      <section className="py-20 bg-gradient-to-br from-brand-50 to-white">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Same Job Title. Different Companies. Unique Tasks.</h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Every task is generated just for you — not pulled from a template library.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            {/* Marketing Manager - Startup */}
+            <div className="card bg-white">
+              <div className="text-sm font-semibold text-brand-600 mb-2">Marketing Manager</div>
+              <div className="text-xs text-gray-500 mb-3">SaaS Startup, 25 employees, Series A</div>
+              <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                <p className="text-sm text-gray-700 leading-relaxed">
+                  "Your CEO wants to cut the paid ads budget by 30% but maintain lead volume. 
+                  Draft a reallocation plan: which channels to pause, which to double down on, 
+                  and a content strategy to fill the gap. Present it in a Notion doc by EOD."
+                </p>
+              </div>
+            </div>
+            {/* Marketing Manager - Enterprise */}
+            <div className="card bg-white">
+              <div className="text-sm font-semibold text-brand-600 mb-2">Marketing Manager</div>
+              <div className="text-xs text-gray-500 mb-3">Fortune 500 Manufacturing, Enterprise B2B</div>
+              <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                <p className="text-sm text-gray-700 leading-relaxed">
+                  "Sales is complaining that marketing leads aren't qualified. Your CMO wants 
+                  a joint presentation for next week's exec meeting: current lead scoring criteria, 
+                  proposed changes, and a 90-day implementation plan. Use Salesforce data to back it up."
+                </p>
+              </div>
+            </div>
+            {/* HR Coordinator */}
+            <div className="card bg-white">
+              <div className="text-sm font-semibold text-brand-600 mb-2">HR Coordinator</div>
+              <div className="text-xs text-gray-500 mb-3">80-person Remote Tech Startup</div>
+              <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                <p className="text-sm text-gray-700 leading-relaxed">
+                  "A new engineer starts Monday in a different timezone (APAC). Create their full 
+                  onboarding schedule, coordinate with IT for laptop shipping, draft the welcome 
+                  Slack message, and set up their first 1:1s. They need to feel connected from day one."
+                </p>
+              </div>
+            </div>
+            {/* Project Manager */}
+            <div className="card bg-white">
+              <div className="text-sm font-semibold text-brand-600 mb-2">Project Manager</div>
+              <div className="text-xs text-gray-500 mb-3">Regional Construction Firm, Commercial Projects</div>
+              <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                <p className="text-sm text-gray-700 leading-relaxed">
+                  "A subcontractor missed the electrical deadline by 3 days, pushing the inspector visit. 
+                  Draft an email to the client explaining the delay, update the Procore timeline, and 
+                  propose a recovery plan without overtime costs."
+                </p>
+              </div>
+            </div>
+            {/* Sales Lead - Mid-Market */}
+            <div className="card bg-white">
+              <div className="text-sm font-semibold text-brand-600 mb-2">Sales Lead</div>
+              <div className="text-xs text-gray-500 mb-3">B2B SaaS, Mid-Market (50-500 employees)</div>
+              <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                <p className="text-sm text-gray-700 leading-relaxed">
+                  "One of your AEs has a $120k deal stuck in legal review for 6 weeks. The prospect's 
+                  counsel is nitpicking the data processing clause. Draft a Slack message to your AE 
+                  with 3 tactical moves to unstick it, then write the follow-up email to the prospect's VP."
+                </p>
+              </div>
+            </div>
+            {/* Sales Lead - Enterprise */}
+            <div className="card bg-white">
+              <div className="text-sm font-semibold text-brand-600 mb-2">Sales Lead</div>
+              <div className="text-xs text-gray-500 mb-3">Enterprise SaaS, Fortune 1000 Accounts</div>
+              <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                <p className="text-sm text-gray-700 leading-relaxed">
+                  "A $2M deal with a Fortune 500 retailer is at risk — their new CTO wants to 're-evaluate 
+                  all vendors.' You have one shot: a 15-minute call next Tuesday. Draft the deck outline 
+                  (max 5 slides), prep 3 objection responses, and write the LinkedIn message to their CFO 
+                  (your champion) asking for intel."
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="text-center">
+            <p className="text-lg font-semibold text-gray-700 mb-4">
+              Same job title. Different companies. Completely unique tasks.
+            </p>
+            <p className="text-gray-600">That's personalization.</p>
           </div>
         </div>
       </section>
