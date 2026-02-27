@@ -8,7 +8,7 @@ import { AssessmentAnswer } from '@/types';
 import { Shield, ArrowLeft, ArrowRight, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 
-const BLOCKS = ['job_profile', 'ai_relationship', 'cognitive_flexibility', 'vulnerability', 'workplace', 'motivation'];
+const BLOCKS = ['your_work', 'ai_experience', 'your_goals'];
 
 export default function AssessmentPage() {
   const [currentBlock, setCurrentBlock] = useState(0);
@@ -51,7 +51,6 @@ export default function AssessmentPage() {
     );
     const scores = calculateScores(allAnswers);
 
-    // Store in sessionStorage for results page
     sessionStorage.setItem('assessment_answers', JSON.stringify(allAnswers));
     sessionStorage.setItem('assessment_scores', JSON.stringify(scores));
     router.push('/assessment/results');

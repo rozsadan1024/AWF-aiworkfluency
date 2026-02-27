@@ -109,7 +109,7 @@ export default function HomePage() {
                 icon: BarChart3,
                 step: '3',
                 title: 'Get Scored & Learn',
-                desc: "Our AI evaluates your work across 7 dimensions. Then you see exactly how an expert would've done it. The lesson sticks because you just experienced the challenge.",
+                desc: "Our AI evaluates your work across 5 dimensions. Then you see exactly how an expert would've done it. The lesson sticks because you just experienced the challenge.",
               },
             ].map((item) => (
               <div key={item.step} className="card relative">
@@ -241,20 +241,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 7 Dimensions */}
+      {/* 5 Dimensions */}
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">We Score You on 7 Dimensions</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">We Score You on 5 Dimensions</h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
               { name: 'Output Quality', desc: 'Is your work professional and complete?' },
               { name: 'AI Leverage', desc: 'Did you use AI effectively, not blindly?' },
               { name: 'Prompt Skill', desc: 'Were your prompts specific and strategic?' },
-              { name: 'Iteration', desc: 'Did you refine or accept the first draft?' },
-              { name: 'Tool Selection', desc: 'Did you pick the right tools?' },
               { name: 'Efficiency', desc: 'How fast compared to expert benchmark?' },
               { name: 'Human Judgment', desc: 'Did you add value AI can\'t provide?' },
-              { name: 'Overall Score', desc: 'Your combined AI readiness rating' },
             ].map((dim) => (
               <div key={dim.name} className="p-4 rounded-lg border border-gray-200 hover:border-brand-300 hover:shadow-sm transition-all">
                 <div className="font-semibold text-gray-900 mb-1">{dim.name}</div>

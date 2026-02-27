@@ -1,10 +1,16 @@
 import { AssessmentQuestion } from '@/types';
 
+export const BLOCK_LABELS: Record<string, { title: string; description: string }> = {
+  your_work: { title: 'About Your Work', description: "Let's understand what you do every day." },
+  ai_experience: { title: 'Your AI Experience', description: 'Where are you now with AI tools?' },
+  your_goals: { title: 'Your Goals', description: 'Last few questions — almost done!' },
+};
+
 export const ASSESSMENT_QUESTIONS: AssessmentQuestion[] = [
-  // ---- BLOCK 1: Job Profile ----
+  // Block 1: Your Work (4 questions)
   {
     id: 'q1_work_area',
-    block: 'job_profile',
+    block: 'your_work',
     question: 'Which best describes your work area?',
     type: 'single',
     options: [
@@ -23,7 +29,7 @@ export const ASSESSMENT_QUESTIONS: AssessmentQuestion[] = [
   },
   {
     id: 'q2_daily_tasks',
-    block: 'job_profile',
+    block: 'your_work',
     question: 'What do you spend the most time on in a typical work week? (Select your top 3)',
     type: 'multi',
     options: [
@@ -43,16 +49,16 @@ export const ASSESSMENT_QUESTIONS: AssessmentQuestion[] = [
   },
   {
     id: 'q3_computer_pct',
-    block: 'job_profile',
+    block: 'your_work',
     question: 'What percentage of your workday is spent in front of a computer?',
     type: 'slider',
     slider_min: 0,
     slider_max: 100,
-    slider_labels: ['0% — Never', '100% — All day'],
+    slider_labels: ['0%', '100%'],
   },
   {
     id: 'q4_repetitive',
-    block: 'job_profile',
+    block: 'your_work',
     question: 'How much of your daily work follows a predictable, repeatable pattern?',
     type: 'single',
     options: [
@@ -63,49 +69,11 @@ export const ASSESSMENT_QUESTIONS: AssessmentQuestion[] = [
       { value: '5', label: 'I do essentially the same things every day' },
     ],
   },
-  {
-    id: 'q5_physical_presence',
-    block: 'job_profile',
-    question: 'How often does your work require you to physically be somewhere specific?',
-    type: 'single',
-    options: [
-      { value: 'never', label: 'Never — fully remote' },
-      { value: 'rarely', label: 'Rarely' },
-      { value: 'sometimes', label: 'Sometimes' },
-      { value: 'often', label: 'Often' },
-      { value: 'always', label: 'Always' },
-    ],
-  },
-  {
-    id: 'q6_interactions',
-    block: 'job_profile',
-    question: 'How many people do you directly interact with (in person or live calls) in a typical workday?',
-    type: 'single',
-    options: [
-      { value: '0-2', label: '0–2 people' },
-      { value: '3-5', label: '3–5 people' },
-      { value: '6-10', label: '6–10 people' },
-      { value: '10+', label: '10+ people' },
-    ],
-  },
-  {
-    id: 'q7_experience',
-    block: 'job_profile',
-    question: 'How many years have you been in your current type of role?',
-    type: 'single',
-    options: [
-      { value: '<2', label: 'Less than 2 years' },
-      { value: '2-5', label: '2–5 years' },
-      { value: '5-10', label: '5–10 years' },
-      { value: '10-20', label: '10–20 years' },
-      { value: '20+', label: '20+ years' },
-    ],
-  },
 
-  // ---- BLOCK 2: Current AI Relationship ----
+  // Block 2: AI Experience (5 questions)
   {
     id: 'q8_tools_used',
-    block: 'ai_relationship',
+    block: 'ai_experience',
     question: 'Which of these have you personally used for work tasks?',
     type: 'multi',
     options: [
@@ -121,7 +89,7 @@ export const ASSESSMENT_QUESTIONS: AssessmentQuestion[] = [
   },
   {
     id: 'q9_ai_usage',
-    block: 'ai_relationship',
+    block: 'ai_experience',
     question: 'When you last used an AI tool for work, what did you do?',
     type: 'multi',
     options: [
@@ -136,7 +104,7 @@ export const ASSESSMENT_QUESTIONS: AssessmentQuestion[] = [
   },
   {
     id: 'q10_ai_output',
-    block: 'ai_relationship',
+    block: 'ai_experience',
     question: 'When AI gives you a response, what do you typically do?',
     type: 'single',
     options: [
@@ -150,20 +118,20 @@ export const ASSESSMENT_QUESTIONS: AssessmentQuestion[] = [
   },
   {
     id: 'q11_confidence',
-    block: 'ai_relationship',
+    block: 'ai_experience',
     question: 'If asked to use AI to turn a messy dataset into an executive summary with recommendations, how confident would you feel?',
     type: 'single',
     options: [
       { value: '1', label: "I wouldn't know where to start" },
       { value: '2', label: "I'd struggle but could try" },
-      { value: '3', label: "I could probably figure it out" },
+      { value: '3', label: 'I could probably figure it out' },
       { value: '4', label: "I'd be fairly comfortable" },
       { value: '5', label: 'I could do this easily right now' },
     ],
   },
   {
     id: 'q12_error_detection',
-    block: 'ai_relationship',
+    block: 'ai_experience',
     question: 'Have you ever gotten a result from AI that was clearly wrong or misleading?',
     type: 'single',
     options: [
@@ -175,186 +143,35 @@ export const ASSESSMENT_QUESTIONS: AssessmentQuestion[] = [
     ],
   },
 
-  // ---- BLOCK 3: Cognitive Flexibility ----
+  // Block 3: Your Goals (4 questions)
   {
-    id: 'q13_new_software',
-    block: 'cognitive_flexibility',
-    question: 'When your company introduces a new software tool, what\'s your typical first reaction?',
+    id: 'q_new_tools',
+    block: 'your_goals',
+    question: 'How do you typically react when a new tool or process is introduced at work?',
     type: 'single',
     options: [
-      { value: 'excited', label: 'Excited — I like learning new things' },
-      { value: 'cautious', label: "Cautious — I'll wait and see if it's useful" },
-      { value: 'stressed', label: 'Stressed — I was just getting comfortable with the old one' },
-      { value: 'skeptical', label: "Skeptical — new doesn't mean better" },
-      { value: 'leader', label: 'I figure it out quickly and help others' },
-    ],
-  },
-  {
-    id: 'q14_change_experience',
-    block: 'cognitive_flexibility',
-    question: 'Think about the last time you had to do something at work in a completely different way than usual. How did that go?',
-    type: 'single',
-    options: [
-      { value: 'energizing', label: 'It was energizing, I liked the change' },
-      { value: 'fine', label: 'It was fine, I adjusted' },
-      { value: 'uncomfortable', label: 'It was uncomfortable but I managed' },
-      { value: 'difficult', label: 'It was really difficult and stressful' },
-      { value: 'none', label: "I can't remember this happening recently" },
-    ],
-  },
-  {
-    id: 'q15_task_automated',
-    block: 'cognitive_flexibility',
-    question: 'If your most important daily task could suddenly be done by AI in 5 minutes, how would you feel?',
-    type: 'single',
-    options: [
-      { value: 'relieved', label: 'Relieved — I could focus on more interesting work' },
-      { value: 'curious', label: "Curious — I'd want to understand how" },
-      { value: 'threatened', label: "Threatened — that task is a big part of my value" },
-      { value: 'skeptical', label: "Skeptical — AI probably can't do it as well as I can" },
-      { value: 'anxious', label: "Anxious — I'm not sure what I'd do instead" },
-    ],
-  },
-  {
-    id: 'q16_learning_style',
-    block: 'cognitive_flexibility',
-    question: 'How do you typically learn a new skill?',
-    type: 'single',
-    options: [
-      { value: 'tutorials', label: 'I watch tutorials and follow along' },
-      { value: 'docs', label: 'I read documentation first' },
-      { value: 'jump_in', label: 'I just jump in and figure it out' },
-      { value: 'ask', label: 'I ask someone to show me' },
-      { value: 'avoid', label: "I avoid learning new things unless I absolutely have to" },
-    ],
-  },
-  {
-    id: 'q17_mistakes',
-    block: 'cognitive_flexibility',
-    question: "When you make a mistake at work, what's your most common response?",
-    type: 'single',
-    options: [
-      { value: 'analyze', label: 'I analyze what went wrong and adjust' },
-      { value: 'feel_bad', label: 'I feel bad but move on' },
-      { value: 'fix_quick', label: 'I try to fix it quickly' },
-      { value: 'ask_help', label: 'I ask for help' },
-      { value: 'external', label: 'I tend to blame external factors first' },
-    ],
-  },
-  {
-    id: 'q18_innovation',
-    block: 'cognitive_flexibility',
-    question: 'How often do you voluntarily try a new way of doing something at work, even when the old way still works?',
-    type: 'single',
-    options: [
-      { value: 'weekly', label: 'Weekly' },
-      { value: 'monthly', label: 'Monthly' },
-      { value: 'few_times', label: 'A few times a year' },
-      { value: 'rarely', label: 'Rarely' },
-      { value: 'never', label: 'Never — if it works, why change it?' },
-    ],
-  },
-
-  // ---- BLOCK 4: Perceived vs. Actual Vulnerability ----
-  {
-    id: 'q19_ai_impact_belief',
-    block: 'vulnerability',
-    question: 'How likely do you think it is that AI will significantly change your specific job in the next 3 years?',
-    type: 'single',
-    options: [
-      { value: '1', label: 'Very unlikely' },
-      { value: '2', label: 'Unlikely' },
-      { value: '3', label: 'Possible' },
-      { value: '4', label: 'Likely' },
-      { value: '5', label: 'Very likely' },
-    ],
-  },
-  {
-    id: 'q20_tech_skills_self',
-    block: 'vulnerability',
-    question: 'Compared to your colleagues in similar roles, how would you rate your technology skills?',
-    type: 'single',
-    options: [
-      { value: '1', label: 'Well below average' },
-      { value: '2', label: 'Below average' },
-      { value: '3', label: 'Average' },
-      { value: '4', label: 'Above average' },
-      { value: '5', label: 'Well above average' },
-    ],
-  },
-  {
-    id: 'q21_layoff_confidence',
-    block: 'vulnerability',
-    question: 'If your company announced layoffs due to AI automation tomorrow, how confident are you that you would NOT be among the first affected?',
-    type: 'single',
-    options: [
-      { value: '5', label: 'Very confident' },
-      { value: '4', label: 'Somewhat confident' },
-      { value: '3', label: 'Uncertain' },
-      { value: '2', label: 'Not very confident' },
-      { value: '1', label: 'Not confident at all' },
-    ],
-  },
-  {
-    id: 'q22_career_strategy',
-    block: 'vulnerability',
-    question: 'Which statement best describes your current career strategy?',
-    type: 'single',
-    options: [
-      { value: 'active', label: "I'm actively preparing for how AI will change my field" },
-      { value: 'watching', label: "I'm keeping an eye on it but haven't changed anything" },
-      { value: 'unsure', label: "I know I should do something but I'm not sure what" },
-      { value: 'not_thought', label: "I haven't really thought about it" },
-      { value: 'unaffected', label: "I don't think AI will affect my career significantly" },
-    ],
-  },
-
-  // ---- BLOCK 5: Workplace Context ----
-  {
-    id: 'q23_company_attitude',
-    block: 'workplace',
-    question: "How would you describe your organization's attitude toward AI?",
-    type: 'single',
-    options: [
-      { value: 'encouraging', label: 'Actively encouraging employees to use AI' },
-      { value: 'open', label: 'Open to it but no formal push' },
-      { value: 'neutral', label: 'Neutral — no policy either way' },
-      { value: 'cautious', label: 'Cautious or restrictive' },
-      { value: 'unsure', label: "I'm not sure" },
-      { value: 'self_employed', label: "I'm self-employed" },
-    ],
-  },
-  {
-    id: 'q24_permission',
-    block: 'workplace',
-    question: 'If you wanted to start using AI tools to do your job differently, would you need permission?',
-    type: 'single',
-    options: [
-      { value: 'autonomous', label: 'No, I have full autonomy' },
-      { value: 'probably_fine', label: "I'd need to check but it would probably be fine" },
-      { value: 'difficult', label: 'It would require approval and might be difficult' },
-      { value: 'restricted', label: 'AI tools are restricted or banned at my work' },
-      { value: 'unsure', label: 'Not sure' },
+      { value: 'jump_in', label: 'I jump in and figure it out' },
+      { value: 'show_me', label: "I'll try it if someone shows me first" },
+      { value: 'wait', label: 'I wait until I have to use it' },
+      { value: 'stick', label: 'I prefer sticking with what works' },
     ],
   },
   {
     id: 'q25_time_available',
-    block: 'workplace',
+    block: 'your_goals',
     question: 'How much time per week could you realistically dedicate to learning new skills?',
     type: 'single',
     options: [
       { value: '<1', label: 'Less than 1 hour' },
-      { value: '1-2', label: '1–2 hours' },
-      { value: '3-5', label: '3–5 hours' },
+      { value: '1-2', label: '1-2 hours' },
+      { value: '3-5', label: '3-5 hours' },
       { value: '5+', label: '5+ hours' },
       { value: 'none', label: 'I genuinely have no spare time' },
     ],
   },
-
-  // ---- BLOCK 6: Motivation ----
   {
     id: 'q26_reason',
-    block: 'motivation',
+    block: 'your_goals',
     question: "What's the main reason you're taking this assessment?",
     type: 'single',
     options: [
@@ -366,21 +183,8 @@ export const ASSESSMENT_QUESTIONS: AssessmentQuestion[] = [
     ],
   },
   {
-    id: 'q27_action',
-    block: 'motivation',
-    question: 'If this assessment revealed that your job is highly exposed to AI disruption, what would you most likely do?',
-    type: 'single',
-    options: [
-      { value: 'start_now', label: 'Immediately start learning AI skills' },
-      { value: 'research', label: 'Research the topic more' },
-      { value: 'anxious', label: "Feel anxious but probably not act right away" },
-      { value: 'career_change', label: 'Look for a different career path' },
-      { value: 'wait', label: "Not much — I'll deal with it when it happens" },
-    ],
-  },
-  {
     id: 'q28_value',
-    block: 'motivation',
+    block: 'your_goals',
     question: 'What would be most valuable to you right now?',
     type: 'single',
     options: [
@@ -392,30 +196,3 @@ export const ASSESSMENT_QUESTIONS: AssessmentQuestion[] = [
     ],
   },
 ];
-
-export const BLOCK_LABELS: Record<string, { title: string; description: string }> = {
-  job_profile: {
-    title: 'About Your Work',
-    description: "Let's understand what you do every day.",
-  },
-  ai_relationship: {
-    title: 'You & AI',
-    description: 'Where are you now with AI tools?',
-  },
-  cognitive_flexibility: {
-    title: 'How You Handle Change',
-    description: 'This helps us understand your natural adaptability.',
-  },
-  vulnerability: {
-    title: 'Your Perspective',
-    description: 'How you see your own situation.',
-  },
-  workplace: {
-    title: 'Your Workplace',
-    description: 'Your environment matters for what we recommend.',
-  },
-  motivation: {
-    title: 'What Brought You Here',
-    description: 'Last few questions — almost done.',
-  },
-};
