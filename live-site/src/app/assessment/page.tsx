@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useMemo } from 'react';
-import { useRouter } from 'next/navigation';
-import { ASSESSMENT_QUESTIONS, BLOCK_LABELS } from '@/lib/assessment/questions';
+import { Suspense, useState, useMemo } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { getQuestions, getBlockLabels } from '@/lib/assessment/questions';
 import { calculateScores } from '@/lib/assessment/scoring';
 import { AssessmentAnswer } from '@/types';
 import { Shield, ArrowLeft, ArrowRight, CheckCircle } from 'lucide-react';
@@ -11,16 +11,31 @@ import Link from 'next/link';
 const BLOCKS = ['your_work', 'ai_experience', 'your_goals'];
 
 export default function AssessmentPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-gray-50" />}>
+      <AssessmentContent />
+    </Suspense>
+  );
+}
+
+function AssessmentContent() {
+  const searchParams = useSearchParams();
+  const lang = searchParams.get('lang') || 'en';
+  const isHu = lang === 'hu';
+
+  const questions = useMemo(() => getQuestions(lang), [lang]);
+  const blockLabels = useMemo(() => getBlockLabels(lang), [lang]);
+
   const [currentBlock, setCurrentBlock] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string | string[] | number>>({});
   const router = useRouter();
 
   const blockQuestions = useMemo(
-    () => ASSESSMENT_QUESTIONS.filter(q => q.block === BLOCKS[currentBlock]),
-    [currentBlock]
+    () => questions.filter(q => q.block === BLOCKS[currentBlock]),
+    [currentBlock, questions]
   );
 
-  const blockInfo = BLOCK_LABELS[BLOCKS[currentBlock]];
+  const blockInfo = blockLabels[BLOCKS[currentBlock]];
   const progress = ((currentBlock + 1) / BLOCKS.length) * 100;
 
   function setAnswer(id: string, value: string | string[] | number) {
@@ -53,6 +68,7 @@ export default function AssessmentPage() {
 
     sessionStorage.setItem('assessment_answers', JSON.stringify(allAnswers));
     sessionStorage.setItem('assessment_scores', JSON.stringify(scores));
+    sessionStorage.setItem('assessment_lang', lang);
     router.push('/assessment/results');
   }
 
@@ -62,12 +78,12 @@ export default function AssessmentPage() {
       <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
         <div className="max-w-2xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between mb-3">
-            <Link href="/" className="flex items-center gap-2 text-gray-600 hover:text-gray-900">
+            <Link href={isHu ? '/hu' : '/'} className="flex items-center gap-2 text-gray-600 hover:text-gray-900">
               <Shield className="w-5 h-5 text-brand-600" />
-              <span className="font-semibold">AIProof</span>
+              <span className="font-semibold">AI Work Fluency</span>
             </Link>
             <span className="text-sm text-gray-500">
-              {currentBlock + 1} of {BLOCKS.length}
+              {currentBlock + 1} / {BLOCKS.length}
             </span>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2">
@@ -168,7 +184,7 @@ export default function AssessmentPage() {
             className="btn-secondary flex items-center gap-2"
             disabled={currentBlock === 0}
           >
-            <ArrowLeft className="w-4 h-4" /> Back
+            <ArrowLeft className="w-4 h-4" /> {isHu ? 'Vissza' : 'Back'}
           </button>
 
           {currentBlock < BLOCKS.length - 1 ? (
@@ -177,7 +193,7 @@ export default function AssessmentPage() {
               className="btn-primary flex items-center gap-2"
               disabled={!canProceed()}
             >
-              Continue <ArrowRight className="w-4 h-4" />
+              {isHu ? 'Tovább' : 'Continue'} <ArrowRight className="w-4 h-4" />
             </button>
           ) : (
             <button
@@ -185,7 +201,7 @@ export default function AssessmentPage() {
               className="btn-primary flex items-center gap-2 bg-green-600 hover:bg-green-700"
               disabled={!canProceed()}
             >
-              See My Results <ArrowRight className="w-4 h-4" />
+              {isHu ? 'Eredményeim megtekintése' : 'See My Results'} <ArrowRight className="w-4 h-4" />
             </button>
           )}
         </div>
