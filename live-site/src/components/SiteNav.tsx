@@ -16,7 +16,7 @@ export function SiteNav({ t }: { t: Record<string, string> }) {
         </div>
         <div className="flex items-center gap-3">
           <Link href="/auth/login" className="btn-secondary text-sm py-2 px-4 hidden sm:block">{t.nav_login}</Link>
-          <Link href="/assessment" className="btn-primary text-sm py-2 px-4">{t.nav_try}</Link>
+          <Link href="/assessment?lang=hu" className="btn-primary text-sm py-2 px-4">{t.nav_try}</Link>
         </div>
       </div>
     </nav>

@@ -44,9 +44,10 @@ export default function OnboardingPage() {
 
       if (dbError) throw dbError;
 
-      // Save pending assessment if exists
-      const pendingScores = sessionStorage.getItem('assessment_scores');
-      const pendingAnswers = sessionStorage.getItem('assessment_answers');
+      // Save pending assessment if exists — check localStorage first (persists across tabs),
+      // then fall back to sessionStorage (same tab only)
+      const pendingScores = localStorage.getItem('assessment_scores') || sessionStorage.getItem('assessment_scores');
+      const pendingAnswers = localStorage.getItem('assessment_answers') || sessionStorage.getItem('assessment_answers');
       if (pendingScores && pendingAnswers) {
         const scores = JSON.parse(pendingScores);
         const answers = JSON.parse(pendingAnswers);
@@ -60,9 +61,15 @@ export default function OnboardingPage() {
           awareness_gap: scores.awareness_gap,
           action_readiness: scores.action_readiness,
         });
+        // Clean up both storage locations
+        localStorage.removeItem('assessment_scores');
+        localStorage.removeItem('assessment_answers');
+        localStorage.removeItem('pending_assessment');
+        localStorage.removeItem('assessment_lang');
         sessionStorage.removeItem('assessment_scores');
         sessionStorage.removeItem('assessment_answers');
         sessionStorage.removeItem('pending_assessment');
+        sessionStorage.removeItem('assessment_lang');
       }
 
       // Mark onboarding complete
@@ -91,7 +98,7 @@ export default function OnboardingPage() {
       <nav className="bg-white border-b border-gray-200">
         <div className="max-w-2xl mx-auto px-4 py-4 flex items-center gap-2">
           <Shield className="w-6 h-6 text-brand-600" />
-          <span className="text-xl font-bold">AIProof</span>
+          <span className="text-xl font-bold">AI Work Fluency</span>
         </div>
       </nav>
 

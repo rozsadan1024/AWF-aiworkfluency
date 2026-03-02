@@ -150,7 +150,7 @@ export default function EuAiActPage() {
         <div className="max-w-3xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">Tegyük EU AI Act-megfelelővé a csapatodat</h2>
           <p className="text-lg text-brand-100 mb-8">Nézd meg, hogyan működik az AI Work Fluency a gyakorlatban.</p>
-          <Link href="/assessment" className="bg-white text-brand-700 hover:bg-gray-100 font-bold text-lg py-4 px-10 rounded-lg inline-flex items-center gap-2 transition-colors">
+          <Link href="/assessment?lang=hu" className="bg-white text-brand-700 hover:bg-gray-100 font-bold text-lg py-4 px-10 rounded-lg inline-flex items-center gap-2 transition-colors">
             Kipróbálom
             <ArrowRight className="w-5 h-5" />
           </Link>

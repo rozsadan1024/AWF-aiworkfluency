@@ -84,7 +84,7 @@ export default function AboutPage() {
               Nézd meg, hogyan működik az AI Work Fluency a gyakorlatban. Próbáld ki a platformot vagy foglalj egy demót.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/assessment" className="btn-primary flex items-center gap-2 justify-center">
+              <Link href="/assessment?lang=hu" className="btn-primary flex items-center gap-2 justify-center">
                 Kipróbálom
                 <ArrowRight className="w-5 h-5" />
               </Link>

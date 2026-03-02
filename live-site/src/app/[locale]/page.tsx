@@ -33,7 +33,7 @@ export default function B2BHomePage({ params }: { params: { locale: string } }) 
               ))}
             </div>
             <Link href="/auth/login" className="btn-secondary text-sm py-2 px-4 hidden sm:block">{t.nav_login}</Link>
-            <Link href="/assessment" className="btn-primary text-sm py-2 px-4">{t.nav_try}</Link>
+            <Link href={`/assessment${locale === 'hu' ? '?lang=hu' : ''}`} className="btn-primary text-sm py-2 px-4">{t.nav_try}</Link>
           </div>
         </div>
       </nav>
@@ -51,7 +51,7 @@ export default function B2BHomePage({ params }: { params: { locale: string } }) 
               {t.hero_sub}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/assessment" className="btn-primary text-lg py-4 px-8 flex items-center gap-2 justify-center">
+              <Link href={`/assessment${locale === 'hu' ? '?lang=hu' : ''}`} className="btn-primary text-lg py-4 px-8 flex items-center gap-2 justify-center">
                 {t.hero_cta}
                 <ArrowRight className="w-5 h-5" />
               </Link>
@@ -213,7 +213,7 @@ export default function B2BHomePage({ params }: { params: { locale: string } }) 
               <div className="font-bold text-lg text-gray-900 mb-1">{t.pricing_starter}</div>
               <div className="text-sm text-gray-500 mb-4">{t.pricing_starter_seats}</div>
               <div className="text-3xl font-extrabold text-gray-900 mb-1">&euro;19<span className="text-sm font-normal text-gray-500">{t.pricing_per_seat}</span></div>
-              <Link href="/assessment" className="btn-secondary w-full mt-4 text-sm py-2">{t.pricing_cta}</Link>
+              <Link href={`/assessment${locale === 'hu' ? '?lang=hu' : ''}`} className="btn-secondary w-full mt-4 text-sm py-2">{t.pricing_cta}</Link>
             </div>
             {/* Growth */}
             <div className="card text-center border-2 border-brand-500 shadow-lg relative">
@@ -221,7 +221,7 @@ export default function B2BHomePage({ params }: { params: { locale: string } }) 
               <div className="font-bold text-lg text-gray-900 mb-1">{t.pricing_growth}</div>
               <div className="text-sm text-gray-500 mb-4">{t.pricing_growth_seats}</div>
               <div className="text-3xl font-extrabold text-brand-600 mb-1">&euro;26<span className="text-sm font-normal text-gray-500">{t.pricing_per_seat}</span></div>
-              <Link href="/assessment" className="btn-primary w-full mt-4 text-sm py-2">{t.pricing_cta}</Link>
+              <Link href={`/assessment${locale === 'hu' ? '?lang=hu' : ''}`} className="btn-primary w-full mt-4 text-sm py-2">{t.pricing_cta}</Link>
             </div>
             {/* Enterprise */}
             <div className="card text-center border-2 border-gray-200">
@@ -241,7 +241,7 @@ export default function B2BHomePage({ params }: { params: { locale: string } }) 
         <div className="max-w-3xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">{t.cta_h2}</h2>
           <p className="text-lg text-brand-100 mb-8">{t.cta_sub}</p>
-          <Link href="/assessment" className="bg-white text-brand-700 hover:bg-gray-100 font-bold text-lg py-4 px-10 rounded-lg inline-flex items-center gap-2 transition-colors">
+          <Link href={`/assessment${locale === 'hu' ? '?lang=hu' : ''}`} className="bg-white text-brand-700 hover:bg-gray-100 font-bold text-lg py-4 px-10 rounded-lg inline-flex items-center gap-2 transition-colors">
             {t.cta_button}
             <ArrowRight className="w-5 h-5" />
           </Link>

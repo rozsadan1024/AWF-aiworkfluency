@@ -12,6 +12,7 @@ export default function SignupPage() {
   const [fullName, setFullName] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
   const router = useRouter();
 
   async function handleSignup(e: React.FormEvent) {
@@ -20,7 +21,7 @@ export default function SignupPage() {
     setError('');
 
     const supabase = createClient();
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
@@ -32,9 +33,14 @@ export default function SignupPage() {
     if (error) {
       setError(error.message);
       setLoading(false);
-    } else {
+    } else if (data.session) {
+      // Email confirmation disabled — session created immediately
       router.push('/onboarding');
       router.refresh();
+    } else {
+      // Email confirmation required — show check-your-email message
+      setEmailSent(true);
+      setLoading(false);
     }
   }
 
@@ -44,7 +50,7 @@ export default function SignupPage() {
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2 mb-4">
             <Shield className="w-8 h-8 text-brand-600" />
-            <span className="text-2xl font-bold">AIProof</span>
+            <span className="text-2xl font-bold">AI Work Fluency</span>
           </Link>
           <h1 className="text-2xl font-bold text-gray-900">Create your account</h1>
           <p className="text-gray-600 mt-1">Start practicing AI skills for your job</p>
@@ -102,6 +108,18 @@ export default function SignupPage() {
             <Link href="/auth/login" className="text-brand-600 font-medium hover:underline">Log in</Link>
           </div>
         </div>
+
+        {emailSent && (
+          <div className="mt-6 bg-green-50 border border-green-200 rounded-xl p-6 text-center">
+            <div className="text-3xl mb-3">📬</div>
+            <h3 className="font-bold text-green-800 mb-1">Check your email</h3>
+            <p className="text-green-700 text-sm">
+              We sent a confirmation link to <strong>{email}</strong>.<br />
+              Click it to activate your account and continue to onboarding.
+            </p>
+            <p className="text-green-600 text-xs mt-3">Your assessment results are saved and will be linked to your account.</p>
+          </div>
+        )}
       </div>
     </div>
   );

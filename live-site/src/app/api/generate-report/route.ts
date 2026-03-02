@@ -5,7 +5,12 @@ import { AssessmentScores } from '@/types';
 
 export async function POST(request: Request) {
   try {
-    const { scores } = await request.json() as { scores: AssessmentScores };
+    const { scores, lang } = await request.json() as { scores: AssessmentScores; lang?: string };
+    const isHu = lang === 'hu';
+
+    const languageInstruction = isHu
+      ? 'Write the entire report in Hungarian (magyar nyelven írj).'
+      : 'Write the entire report in English.';
 
     const response = await anthropic.messages.create({
       model: MODEL,
@@ -14,9 +19,11 @@ export async function POST(request: Request) {
       messages: [
         {
           role: 'user',
-          content: `Generate a personalized report for these scores:
+          content: `${languageInstruction}
+
+Generate a personalized report for these scores:
 - AI Exposure Score: ${scores.ai_exposure_score}/100
-- Current AI Competence: ${scores.current_ai_competence}/100  
+- Current AI Competence: ${scores.current_ai_competence}/100
 - Adaptability Index: ${scores.adaptability_index}/100
 - Awareness Gap: ${scores.awareness_gap}/100 (50 = accurate, >50 = underestimates risk)
 - Action Readiness: ${scores.action_readiness}/100`,
@@ -24,12 +31,12 @@ export async function POST(request: Request) {
       ],
     });
 
-    const report = response.content[0].type === 'text' ? response.content[0].text : 'Your assessment is complete.';
+    const report = response.content[0].type === 'text' ? response.content[0].text : '';
     return NextResponse.json({ report });
   } catch (error) {
     console.error('Report generation error:', error);
     return NextResponse.json(
-      { report: 'Your assessment is complete. Sign up to get personalized practice tasks based on your results.' },
+      { report: '' },
       { status: 200 }
     );
   }

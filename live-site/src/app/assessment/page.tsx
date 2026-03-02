@@ -60,6 +60,11 @@ function AssessmentContent() {
     });
   }
 
+  function goToBlock(index: number) {
+    setCurrentBlock(index);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   async function handleFinish() {
     const allAnswers: AssessmentAnswer[] = Object.entries(answers).map(
       ([question_id, value]) => ({ question_id, value })
@@ -180,7 +185,7 @@ function AssessmentContent() {
         {/* Navigation */}
         <div className="flex justify-between mt-10">
           <button
-            onClick={() => setCurrentBlock(Math.max(0, currentBlock - 1))}
+            onClick={() => goToBlock(Math.max(0, currentBlock - 1))}
             className="btn-secondary flex items-center gap-2"
             disabled={currentBlock === 0}
           >
@@ -189,7 +194,7 @@ function AssessmentContent() {
 
           {currentBlock < BLOCKS.length - 1 ? (
             <button
-              onClick={() => setCurrentBlock(currentBlock + 1)}
+              onClick={() => goToBlock(currentBlock + 1)}
               className="btn-primary flex items-center gap-2"
               disabled={!canProceed()}
             >
