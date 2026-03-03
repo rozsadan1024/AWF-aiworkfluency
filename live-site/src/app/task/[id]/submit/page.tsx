@@ -6,6 +6,7 @@ import { Task } from '@/types';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Shield, ArrowLeft, Send, Loader2, Clock } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 const TOOL_OPTIONS = [
   'ChatGPT', 'Claude', 'Copilot / Bing AI', 'Google Gemini',
@@ -17,14 +18,13 @@ export default function SubmitPage() {
   const { id } = useParams();
   const [task, setTask] = useState<Task | null>(null);
   const [output, setOutput] = useState('');
-  const [prompts, setPrompts] = useState('');
-  const [process, setProcess] = useState('');
   const [tools, setTools] = useState<string[]>([]);
   const [timeSpent, setTimeSpent] = useState('');
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
   const router = useRouter();
+  const { t } = useLanguage();
 
   useEffect(() => {
     async function load() {
@@ -52,23 +52,18 @@ export default function SubmitPage() {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) throw new Error('Not authenticated');
 
-      // Create submission
       const { data: submission, error: subError } = await supabase.from('submissions').insert({
         task_id: id,
         user_id: user.id,
         final_output: output,
-        prompts_used: prompts || null,
-        process_description: process || null,
         tools_used: tools,
         time_spent_minutes: timeSpent ? parseInt(timeSpent) : null,
       }).select().single();
 
       if (subError) throw subError;
 
-      // Update task status
       await supabase.from('tasks').update({ status: 'submitted' }).eq('id', id);
 
-      // Trigger evaluation
       const evalRes = await fetch('/api/evaluate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -79,7 +74,7 @@ export default function SubmitPage() {
 
       router.push(`/task/${id}/evaluation`);
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : 'Submission failed');
+      setError(err instanceof Error ? err.message : t.common_error);
       setSubmitting(false);
     }
   }
@@ -97,64 +92,34 @@ export default function SubmitPage() {
       <nav className="bg-white border-b border-gray-200 sticky top-0 z-10">
         <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link href={`/task/${id}`} className="flex items-center gap-2 text-gray-600 hover:text-gray-900">
-            <ArrowLeft className="w-4 h-4" /> Back to Task
+            <ArrowLeft className="w-4 h-4" /> {t.common_back_task}
           </Link>
           <div className="flex items-center gap-2">
             <Shield className="w-5 h-5 text-brand-600" />
-            <span className="font-semibold">AIProof</span>
+            <span className="font-semibold">{t.common_brand}</span>
           </div>
         </div>
       </nav>
 
       <div className="max-w-3xl mx-auto px-4 py-8">
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">Submit: {task.title}</h1>
-        <p className="text-gray-600 mb-8">Paste your work below. The more detail you share about your process, the better feedback you&apos;ll get.</p>
+        <h1 className="text-2xl font-bold text-gray-900 mb-2">{t.sub_title} {task.title}</h1>
+        <p className="text-gray-600 mb-8">{t.sub_subtitle}</p>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Final Output */}
           <div className="card">
-            <label className="font-semibold text-gray-900 block mb-2">Your Final Output *</label>
-            <p className="text-sm text-gray-500 mb-3">Paste the deliverable you created (email, summary, analysis, etc.)</p>
+            <label className="font-semibold text-gray-900 block mb-2">{t.sub_output_label}</label>
+            <p className="text-sm text-gray-500 mb-3">{t.sub_output_hint}</p>
             <textarea
               className="input-field min-h-[200px] font-mono text-sm"
               value={output}
               onChange={e => setOutput(e.target.value)}
               required
-              placeholder="Paste your completed work here..."
+              placeholder={t.sub_output_placeholder}
             />
           </div>
 
-          {/* Prompts Used */}
           <div className="card">
-            <label className="font-semibold text-gray-900 block mb-2">Prompts You Used</label>
-            <p className="text-sm text-gray-500 mb-3">
-              Copy-paste the prompts you gave to AI tools. This is key to scoring your approach.
-            </p>
-            <textarea
-              className="input-field min-h-[150px] font-mono text-sm"
-              value={prompts}
-              onChange={e => setPrompts(e.target.value)}
-              placeholder="Prompt 1: ...&#10;&#10;Prompt 2: ...&#10;&#10;(If you iterated, include follow-up prompts too)"
-            />
-          </div>
-
-          {/* Process Description */}
-          <div className="card">
-            <label className="font-semibold text-gray-900 block mb-2">Describe Your Process</label>
-            <p className="text-sm text-gray-500 mb-3">
-              Briefly explain your approach: what did you do first, what did you use AI for, what did you do manually?
-            </p>
-            <textarea
-              className="input-field min-h-[100px]"
-              value={process}
-              onChange={e => setProcess(e.target.value)}
-              placeholder="I started by reading the scenario carefully, then I used ChatGPT to..."
-            />
-          </div>
-
-          {/* Tools Used */}
-          <div className="card">
-            <label className="font-semibold text-gray-900 block mb-3">Tools You Used</label>
+            <label className="font-semibold text-gray-900 block mb-3">{t.sub_tools_label}</label>
             <div className="flex flex-wrap gap-2">
               {TOOL_OPTIONS.map(tool => (
                 <button
@@ -173,9 +138,8 @@ export default function SubmitPage() {
             </div>
           </div>
 
-          {/* Time Spent */}
           <div className="card">
-            <label className="font-semibold text-gray-900 block mb-2">Time Spent (minutes)</label>
+            <label className="font-semibold text-gray-900 block mb-2">{t.sub_time_label}</label>
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4 text-gray-400" />
               <input
@@ -185,9 +149,9 @@ export default function SubmitPage() {
                 onChange={e => setTimeSpent(e.target.value)}
                 min="1"
                 max="300"
-                placeholder="e.g. 20"
+                placeholder="pl. 20"
               />
-              <span className="text-sm text-gray-500">Expert benchmark: ~{task.estimated_minutes} min</span>
+              <span className="text-sm text-gray-500">{t.sub_time_benchmark} ~{task.estimated_minutes} {t.sub_time_min}</span>
             </div>
           </div>
 
@@ -203,12 +167,12 @@ export default function SubmitPage() {
             {submitting ? (
               <>
                 <Loader2 className="w-5 h-5 animate-spin" />
-                Evaluating your work... (15-30 sec)
+                {t.sub_submitting}
               </>
             ) : (
               <>
                 <Send className="w-5 h-5" />
-                Submit & Get Evaluated
+                {t.sub_submit_button}
               </>
             )}
           </button>

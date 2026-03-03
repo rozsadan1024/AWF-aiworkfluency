@@ -5,6 +5,7 @@ import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Shield, Loader2 } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -14,6 +15,7 @@ function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirect") || "/dashboard";
+  const { t } = useLanguage();
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
@@ -38,34 +40,34 @@ function LoginForm() {
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2 mb-4">
             <Shield className="w-8 h-8 text-brand-600" />
-            <span className="text-2xl font-bold">AIProof</span>
+            <span className="text-2xl font-bold">{t.common_brand}</span>
           </Link>
-          <h1 className="text-2xl font-bold text-gray-900">Welcome back</h1>
-          <p className="text-gray-600 mt-1">Log in to continue your practice</p>
+          <h1 className="text-2xl font-bold text-gray-900">{t.auth_login_title}</h1>
+          <p className="text-gray-600 mt-1">{t.auth_login_subtitle}</p>
         </div>
 
         <div className="card">
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
-              <label className="label">Email</label>
+              <label className="label">{t.auth_login_email}</label>
               <input
                 type="email"
                 className="input-field"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 required
-                placeholder="you@example.com"
+                placeholder={t.auth_login_email_placeholder}
               />
             </div>
             <div>
-              <label className="label">Password</label>
+              <label className="label">{t.auth_login_password}</label>
               <input
                 type="password"
                 className="input-field"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
                 required
-                placeholder="••••••••"
+                placeholder={t.auth_login_password_placeholder}
                 minLength={6}
               />
             </div>
@@ -76,13 +78,13 @@ function LoginForm() {
 
             <button type="submit" className="btn-primary w-full flex items-center justify-center gap-2" disabled={loading}>
               {loading && <Loader2 className="w-4 h-4 animate-spin" />}
-              Log in
+              {t.auth_login_button}
             </button>
           </form>
 
           <div className="mt-6 text-center text-sm text-gray-600">
-            Don't have an account?{" "}
-            <Link href="/auth/signup" className="text-brand-600 font-medium hover:underline">Sign up</Link>
+            {t.auth_login_no_account}{" "}
+            <Link href="/auth/signup" className="text-brand-600 font-medium hover:underline">{t.auth_login_signup_link}</Link>
           </div>
         </div>
       </div>

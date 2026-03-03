@@ -6,16 +6,17 @@ import { EvaluationResult, Task } from '@/types';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Shield, ArrowLeft, ArrowRight, Loader2, Star, TrendingUp, Lightbulb } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
-const DIMENSION_LABELS: Record<string, { label: string; weight: string }> = {
-  output_quality: { label: 'Output Quality', weight: '30%' },
-  ai_leverage: { label: 'AI Leverage', weight: '20%' },
-  prompt_sophistication: { label: 'Prompt Skill', weight: '15%' },
-  human_judgment: { label: 'Human Judgment', weight: '15%' },
-  iteration_skill: { label: 'Iteration', weight: '10%' },
-  time_efficiency: { label: 'Time Efficiency', weight: '5%' },
-  tool_selection: { label: 'Tool Selection', weight: '5%' },
-};
+const DIMENSION_KEYS = [
+  { key: 'output_quality', tKey: 'eval_dim_output_quality', weight: '30%' },
+  { key: 'ai_leverage', tKey: 'eval_dim_ai_leverage', weight: '20%' },
+  { key: 'prompt_sophistication', tKey: 'eval_dim_prompt_sophistication', weight: '15%' },
+  { key: 'human_judgment', tKey: 'eval_dim_human_judgment', weight: '15%' },
+  { key: 'iteration_skill', tKey: 'eval_dim_iteration_skill', weight: '10%' },
+  { key: 'time_efficiency', tKey: 'eval_dim_time_efficiency', weight: '5%' },
+  { key: 'tool_selection', tKey: 'eval_dim_tool_selection', weight: '5%' },
+];
 
 function scoreColor(score: number): string {
   if (score >= 80) return '#22c55e';
@@ -24,19 +25,20 @@ function scoreColor(score: number): string {
   return '#ef4444';
 }
 
-function scoreLabel(score: number): string {
-  if (score >= 80) return 'Excellent';
-  if (score >= 60) return 'Good';
-  if (score >= 40) return 'Developing';
-  return 'Needs Work';
-}
-
 export default function EvaluationPage() {
   const { id } = useParams();
   const [evaluation, setEvaluation] = useState<EvaluationResult | null>(null);
   const [task, setTask] = useState<Task | null>(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
+  const { t } = useLanguage();
+
+  function scoreLabel(score: number): string {
+    if (score >= 80) return t.eval_excellent;
+    if (score >= 60) return t.eval_good;
+    if (score >= 40) return t.eval_developing;
+    return t.eval_needs_work;
+  }
 
   useEffect(() => {
     async function load() {
@@ -70,8 +72,8 @@ export default function EvaluationPage() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="card text-center">
-          <p className="text-gray-600 mb-4">Evaluation not found or still processing.</p>
-          <Link href="/dashboard" className="btn-primary">Back to Dashboard</Link>
+          <p className="text-gray-600 mb-4">{t.eval_not_found}</p>
+          <Link href="/dashboard" className="btn-primary">{t.common_back_dashboard}</Link>
         </div>
       </div>
     );
@@ -84,11 +86,11 @@ export default function EvaluationPage() {
       <nav className="bg-white border-b border-gray-200 sticky top-0 z-10">
         <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/dashboard" className="flex items-center gap-2 text-gray-600 hover:text-gray-900">
-            <ArrowLeft className="w-4 h-4" /> Dashboard
+            <ArrowLeft className="w-4 h-4" /> {t.common_back_dashboard}
           </Link>
           <div className="flex items-center gap-2">
             <Shield className="w-5 h-5 text-brand-600" />
-            <span className="font-semibold">AIProof</span>
+            <span className="font-semibold">{t.common_brand}</span>
           </div>
         </div>
       </nav>
@@ -107,16 +109,16 @@ export default function EvaluationPage() {
 
         {/* Dimension Scores */}
         <div className="card mb-8">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">Score Breakdown</h2>
+          <h2 className="text-lg font-bold text-gray-900 mb-4">{t.eval_score_breakdown}</h2>
           <div className="space-y-5">
-            {Object.entries(DIMENSION_LABELS).map(([key, { label, weight }]) => {
+            {DIMENSION_KEYS.map(({ key, tKey, weight }) => {
               const dim = evaluation.dimension_scores[key as keyof typeof evaluation.dimension_scores];
               if (!dim) return null;
               return (
                 <div key={key}>
                   <div className="flex justify-between items-center mb-1">
                     <span className="text-sm font-medium text-gray-700">
-                      {label} <span className="text-gray-400 font-normal">({weight})</span>
+                      {t[tKey]} <span className="text-gray-400 font-normal">({weight})</span>
                     </span>
                     <span className="text-sm font-bold" style={{ color: scoreColor(dim.score) }}>
                       {dim.score}/100
@@ -137,7 +139,7 @@ export default function EvaluationPage() {
 
         {/* Overall Feedback */}
         <div className="card mb-8">
-          <h2 className="text-lg font-bold text-gray-900 mb-3">Overall Feedback</h2>
+          <h2 className="text-lg font-bold text-gray-900 mb-3">{t.eval_overall_feedback}</h2>
           <div className="prose prose-gray max-w-none">
             {evaluation.feedback_text.split('\n\n').map((p, i) => (
               <p key={i} className="text-gray-700 leading-relaxed mb-3">{p}</p>
@@ -150,16 +152,16 @@ export default function EvaluationPage() {
           <div className="card bg-green-50 border-green-200">
             <div className="flex items-center gap-2 mb-2">
               <Star className="w-5 h-5 text-green-600" />
-              <h3 className="font-semibold text-green-800">Top Strength</h3>
+              <h3 className="font-semibold text-green-800">{t.eval_top_strength}</h3>
             </div>
-            <p className="text-green-700 text-sm">{evaluation.top_strength || 'See detailed feedback above.'}</p>
+            <p className="text-green-700 text-sm">{evaluation.top_strength || t.eval_see_feedback}</p>
           </div>
           <div className="card bg-amber-50 border-amber-200">
             <div className="flex items-center gap-2 mb-2">
               <TrendingUp className="w-5 h-5 text-amber-600" />
-              <h3 className="font-semibold text-amber-800">Top Improvement Area</h3>
+              <h3 className="font-semibold text-amber-800">{t.eval_top_improvement}</h3>
             </div>
-            <p className="text-amber-700 text-sm">{evaluation.top_improvement || 'See detailed feedback above.'}</p>
+            <p className="text-amber-700 text-sm">{evaluation.top_improvement || t.eval_see_feedback}</p>
           </div>
         </div>
 
@@ -168,12 +170,12 @@ export default function EvaluationPage() {
           <div className="card mb-8">
             <div className="flex items-center gap-2 mb-3">
               <Lightbulb className="w-5 h-5 text-brand-600" />
-              <h2 className="text-lg font-bold text-gray-900">Quick Tips</h2>
+              <h2 className="text-lg font-bold text-gray-900">{t.eval_quick_tips}</h2>
             </div>
             <div className="space-y-2">
               {evaluation.improvement_tips.map((tip, i) => (
                 <div key={i} className="flex items-start gap-2 text-sm text-gray-700">
-                  <span className="text-brand-600 font-bold flex-shrink-0">→</span>
+                  <span className="text-brand-600 font-bold flex-shrink-0">&rarr;</span>
                   <span>{tip}</span>
                 </div>
               ))}
@@ -184,10 +186,10 @@ export default function EvaluationPage() {
         {/* CTA to Expert Course */}
         <div className="flex gap-4">
           <Link href={`/task/${id}/course`} className="btn-primary flex items-center gap-2 text-lg py-4 px-8">
-            See How an Expert Would Do This <ArrowRight className="w-5 h-5" />
+            {t.eval_see_expert} <ArrowRight className="w-5 h-5" />
           </Link>
           <Link href="/dashboard" className="btn-secondary flex items-center gap-2">
-            Dashboard
+            {t.common_back_dashboard}
           </Link>
         </div>
       </div>

@@ -159,3 +159,31 @@ CREATE POLICY "Users can insert own evaluations" ON public.evaluations FOR INSER
 CREATE POLICY "Users can view own progress" ON public.user_progress FOR SELECT USING (auth.uid() = user_id);
 CREATE POLICY "Users can insert own progress" ON public.user_progress FOR INSERT WITH CHECK (auth.uid() = user_id);
 CREATE POLICY "Users can update own progress" ON public.user_progress FOR UPDATE USING (auth.uid() = user_id);
+
+-- =============================================
+-- Conversations (Workspace Chat)
+-- =============================================
+
+CREATE TABLE public.conversations (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  task_id UUID REFERENCES public.tasks(id) ON DELETE CASCADE,
+  user_id UUID REFERENCES public.profiles(id) ON DELETE CASCADE,
+  turn_number INTEGER NOT NULL,
+  user_message TEXT NOT NULL,
+  ai_response TEXT NOT NULL,
+  model_used TEXT,
+  input_tokens INTEGER,
+  output_tokens INTEGER,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE public.conversations ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Users can view own conversations" ON public.conversations FOR SELECT USING (auth.uid() = user_id);
+CREATE POLICY "Users can insert own conversations" ON public.conversations FOR INSERT WITH CHECK (auth.uid() = user_id);
+
+-- =============================================
+-- Schema additions (added after initial deploy)
+-- =============================================
+
+ALTER TABLE public.evaluations ADD COLUMN IF NOT EXISTS top_strength TEXT;
+ALTER TABLE public.evaluations ADD COLUMN IF NOT EXISTS top_improvement TEXT;

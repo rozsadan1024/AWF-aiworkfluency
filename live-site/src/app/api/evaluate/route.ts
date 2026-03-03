@@ -10,9 +10,11 @@ export async function POST(request: Request) {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
-    const [subRes, taskRes] = await Promise.all([
+    const [subRes, taskRes, convRes] = await Promise.all([
       supabase.from('submissions').select('*').eq('id', submission_id).single(),
       supabase.from('tasks').select('*').eq('id', task_id).single(),
+      supabase.from('conversations').select('turn_number, user_message, ai_response')
+        .eq('task_id', task_id).order('turn_number', { ascending: true }),
     ]);
 
     const submission = subRes.data;
@@ -20,6 +22,20 @@ export async function POST(request: Request) {
     if (!submission || !task) {
       return NextResponse.json({ error: 'Submission or task not found' }, { status: 404 });
     }
+
+    // Build workspace conversation section
+    const conversations = convRes.data || [];
+    let conversationSection = '';
+    if (conversations.length > 0) {
+      conversationSection = `\nWORKSPACE CONVERSATION (${conversations.length} turns):
+${conversations.map(c => `--- Turn ${c.turn_number} ---\nUSER PROMPT: ${c.user_message}\nAI RESPONSE: ${c.ai_response}`).join('\n\n')}`;
+    }
+
+    // Include hidden trap if present in evaluation rubric
+    const hiddenTrap = task.evaluation_rubric?.hidden_trap;
+    const trapSection = hiddenTrap
+      ? `\n\nHIDDEN TRAP IN THIS TASK:\n${hiddenTrap}`
+      : '';
 
     const response = await anthropic.messages.create({
       model: MODEL,
@@ -34,17 +50,12 @@ Difficulty: ${task.difficulty}
 Scenario: ${task.scenario}
 Expected deliverable: ${JSON.stringify(task.evaluation_rubric)}
 Expert solution: ${JSON.stringify(task.expert_solution)}
-Expert time benchmark: ${task.estimated_minutes} minutes
+Expert time benchmark: ${task.estimated_minutes} minutes${trapSection}
 
 USER SUBMISSION:
 Final output:
 ${submission.final_output}
-
-Prompts used:
-${submission.prompts_used || '(User did not share prompts)'}
-
-Process description:
-${submission.process_description || '(User did not describe their process)'}
+${conversationSection}
 
 Tools used: ${submission.tools_used?.join(', ') || '(Not specified)'}
 Time spent: ${submission.time_spent_minutes || '(Not specified)'} minutes

@@ -6,7 +6,7 @@ OUTPUT FORMAT - respond with ONLY raw JSON. Do NOT use markdown code fences or b
   "difficulty": "beginner|intermediate|advanced",
   "estimated_minutes": 15-60,
   "skills_tested": ["prompting", "output_evaluation", "tool_selection", "iteration", "human_judgment", "efficiency"],
-  "scenario": "Detailed realistic scenario with fictional names, company context, and clear deliverables. Include at least one subtlety or trap that tests human judgment.",
+  "scenario": "Detailed realistic scenario with fictional names, company context, and clear deliverables. MUST contain one hidden trap woven naturally into the text or input_materials (see Rule #1).",
   "input_materials": "Any embedded data or context they need",
   "deliverables": "Exactly what they must submit",
   "evaluation_criteria": {
@@ -45,10 +45,19 @@ OUTPUT FORMAT - respond with ONLY raw JSON. Do NOT use markdown code fences or b
 }
 
 RULES:
-1. Tasks must feel like real work — specific, slightly messy, with fictional but realistic details
-2. Use Hungarian-sounding names for people and companies to match the primary market
-3. Beginner: single tool, single step, clear deliverable. Intermediate: multi-step, requires judgment. Advanced: multiple tools, iteration, ambiguity.
-4. Always include a subtle trap woven naturally into the scenario or input materials. Do NOT flag it, hint at it, or draw attention to it in the scenario text. The trap should be something a careful reader would catch (e.g., inconsistent numbers in a table, confidential data that shouldn't be forwarded, a tone mismatch for the audience, outdated information). Document the trap clearly in evaluation_criteria.hidden_trap so the evaluator can check if the user spotted it — but NEVER reveal it to the user.
+1. MANDATORY HIDDEN TRAP — THIS IS THE MOST IMPORTANT RULE. Every single task MUST contain exactly one hidden trap that tests human judgment. A task without a trap is INVALID and will be rejected. The trap must be woven naturally into the scenario or input_materials so it looks like a normal part of the brief. Do NOT flag it, hint at it, or draw attention to it. Examples of good traps:
+   - A table with numbers that don't add up (e.g., percentages totaling 115%)
+   - Confidential salary data included in materials that should NOT be forwarded to the recipient
+   - An email draft addressed to the wrong person or department
+   - A deadline that falls on a weekend or public holiday
+   - A name spelled two different ways in the same document
+   - An outdated price list mixed in with current data
+   - A tone that is inappropriate for the stated audience (e.g., casual language for a board presentation)
+   - A logical contradiction between the scenario text and the input materials
+   The user who catches and corrects the trap demonstrates human judgment and scores higher. The user who blindly forwards AI output containing the trap scores lower. Document the trap clearly in evaluation_criteria.hidden_trap — this field is ONLY visible to the evaluator, never to the user.
+2. Tasks must feel like real work — specific, slightly messy, with fictional but realistic details
+3. Use Hungarian-sounding names for people and companies to match the primary market
+4. Beginner: single tool, single step, clear deliverable. Intermediate: multi-step, requires judgment. Advanced: multiple tools, iteration, ambiguity.
 5. Scenario must be self-contained — no external research needed
 6. Match the user's specific industry, company size, and daily tasks
 7. Set time_benchmark to a realistic expert time for someone who is AI-fluent but working carefully — not racing, not in ideal conditions. Account for reading the brief, handling edge cases like missing information, reviewing output critically, and making manual corrections. A benchmark of 10-12 minutes means a highly experienced person doing everything right with no surprises. Add 5-8 minutes for realistic friction.

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { Shield, ArrowRight, Loader2, Briefcase, Clock, Wrench } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 export default function OnboardingPage() {
   const [jobDescription, setJobDescription] = useState('');
@@ -13,6 +14,7 @@ export default function OnboardingPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const router = useRouter();
+  const { t } = useLanguage();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -44,8 +46,7 @@ export default function OnboardingPage() {
 
       if (dbError) throw dbError;
 
-      // Save pending assessment if exists — check localStorage first (persists across tabs),
-      // then fall back to sessionStorage (same tab only)
+      // Save pending assessment if exists
       const pendingScores = localStorage.getItem('assessment_scores') || sessionStorage.getItem('assessment_scores');
       const pendingAnswers = localStorage.getItem('assessment_answers') || sessionStorage.getItem('assessment_answers');
       if (pendingScores && pendingAnswers) {
@@ -61,7 +62,6 @@ export default function OnboardingPage() {
           awareness_gap: scores.awareness_gap,
           action_readiness: scores.action_readiness,
         });
-        // Clean up both storage locations
         localStorage.removeItem('assessment_scores');
         localStorage.removeItem('assessment_answers');
         localStorage.removeItem('pending_assessment');
@@ -88,7 +88,7 @@ export default function OnboardingPage() {
       router.push('/dashboard');
       router.refresh();
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : 'Something went wrong');
+      setError(err instanceof Error ? err.message : t.common_error);
       setLoading(false);
     }
   }
@@ -98,84 +98,75 @@ export default function OnboardingPage() {
       <nav className="bg-white border-b border-gray-200">
         <div className="max-w-2xl mx-auto px-4 py-4 flex items-center gap-2">
           <Shield className="w-6 h-6 text-brand-600" />
-          <span className="text-xl font-bold">AI Work Fluency</span>
+          <span className="text-xl font-bold">{t.common_brand}</span>
         </div>
       </nav>
 
       <div className="max-w-2xl mx-auto px-4 py-10">
         <div className="mb-8">
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">Tell us about your actual job</h1>
-          <p className="text-gray-600">
-            The more detail you give, the more realistic your practice tasks will be.
-            Write naturally — there are no wrong answers.
-          </p>
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">{t.onb_title}</h1>
+          <p className="text-gray-600">{t.onb_subtitle}</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="card">
             <div className="flex items-center gap-2 mb-3">
               <Briefcase className="w-5 h-5 text-brand-600" />
-              <label className="font-semibold text-gray-900">Describe your actual job in your own words</label>
+              <label className="font-semibold text-gray-900">{t.onb_job_label}</label>
             </div>
-            <p className="text-sm text-gray-500 mb-3">
-              Not the official job title — what do you actually do? What lands on your desk?
-            </p>
+            <p className="text-sm text-gray-500 mb-3">{t.onb_job_hint}</p>
             <textarea
               className="input-field min-h-[120px]"
               value={jobDescription}
               onChange={e => setJobDescription(e.target.value)}
               required
-              placeholder="Example: I'm the office manager at a real estate company with about 50 people. I handle pretty much everything that isn't sales — scheduling, office supplies, coordinating with building management, helping with onboarding new people, managing the budget for office expenses, and creating reports for the monthly leadership meeting."
+              placeholder={t.onb_job_placeholder}
             />
           </div>
 
           <div className="card">
             <div className="flex items-center gap-2 mb-3">
               <Clock className="w-5 h-5 text-brand-600" />
-              <label className="font-semibold text-gray-900">What task this week took longer than you wished?</label>
+              <label className="font-semibold text-gray-900">{t.onb_pain_label}</label>
             </div>
-            <p className="text-sm text-gray-500 mb-3">
-              Think of something that felt like it should have been faster.
-            </p>
+            <p className="text-sm text-gray-500 mb-3">{t.onb_pain_hint}</p>
             <textarea
               className="input-field min-h-[100px]"
               value={painPoint}
               onChange={e => setPainPoint(e.target.value)}
               required
-              placeholder="Example: I spent almost 2 hours pulling together data from three different spreadsheets to create the monthly expense report. Then another hour formatting it into a nice-looking document for the CEO."
+              placeholder={t.onb_pain_placeholder}
             />
           </div>
 
           <div className="card">
             <div className="flex items-center gap-2 mb-3">
               <Clock className="w-5 h-5 text-brand-600" />
-              <label className="font-semibold text-gray-900">What does a typical Monday morning look like for you?</label>
+              <label className="font-semibold text-gray-900">{t.onb_morning_label}</label>
             </div>
-            <p className="text-sm text-gray-500 mb-3">
-              Walk us through your first 2 hours at work.
-            </p>
+            <p className="text-sm text-gray-500 mb-3">{t.onb_morning_hint}</p>
             <textarea
               className="input-field min-h-[100px]"
               value={typicalMorning}
               onChange={e => setTypicalMorning(e.target.value)}
               required
-              placeholder="Example: I get in around 8:30, check email (usually 30-40 new messages over the weekend), prioritize them, respond to urgent ones. Then I check the week's calendar for conflicts, prepare the Monday standup agenda, and make sure the meeting room is set up."
+              placeholder={t.onb_morning_placeholder}
             />
           </div>
 
           <div className="card">
             <div className="flex items-center gap-2 mb-3">
               <Wrench className="w-5 h-5 text-brand-600" />
-              <label className="font-semibold text-gray-900">What software and tools do you use daily?</label>
+              <label className="font-semibold text-gray-900">{t.onb_tools_label}</label>
             </div>
-            <p className="text-sm text-gray-500 mb-3">Separate with commas.</p>
+            <p className="text-sm text-gray-500 mb-3">{t.onb_tools_hint}</p>
             <input
               type="text"
               className="input-field"
               value={tools}
               onChange={e => setTools(e.target.value)}
               required
-              placeholder="Example: Outlook, Excel, Word, Teams, SharePoint, SAP"
+              placeholder={t.onb_tools_placeholder}
             />
           </div>
 
@@ -187,11 +178,11 @@ export default function OnboardingPage() {
             {loading ? (
               <>
                 <Loader2 className="w-5 h-5 animate-spin" />
-                Analyzing your role & generating tasks...
+                {t.onb_loading}
               </>
             ) : (
               <>
-                Generate My Practice Tasks
+                {t.onb_button}
                 <ArrowRight className="w-5 h-5" />
               </>
             )}

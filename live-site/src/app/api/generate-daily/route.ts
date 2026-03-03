@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createServerSupabase } from '@/lib/supabase/server';
 import { anthropic, MODEL, extractJSON } from '@/lib/kimi/client';
-import { QUICK_TASK_PROMPT } from '@/lib/kimi/prompts';
+import { DAILY_TASK_PROMPT } from '@/lib/kimi/prompts';
 import { ADMIN_KNOWLEDGE_BASE } from '@/lib/knowledge-base/admin';
 
 export async function POST() {
@@ -55,7 +55,7 @@ ${assessment ? `- AI Competence: ${assessment.current_ai_competence}/100\n- AI E
     const response = await anthropic.messages.create({
       model: MODEL,
       max_tokens: 3000,
-      system: `${QUICK_TASK_PROMPT}\n\n${ADMIN_KNOWLEDGE_BASE}`,
+      system: `${DAILY_TASK_PROMPT}\n\n${ADMIN_KNOWLEDGE_BASE}`,
       messages: [
         {
           role: 'user',

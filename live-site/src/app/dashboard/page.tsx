@@ -1,11 +1,12 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { Task, UserProgress, Profile } from '@/types';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Shield, LogOut, Clock, Zap, BarChart3, Award, Loader2, RefreshCw, ChevronRight } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 const DIFFICULTY_COLORS: Record<string, string> = {
   beginner: 'bg-green-100 text-green-700',
@@ -19,7 +20,22 @@ export default function DashboardPage() {
   const [progress, setProgress] = useState<UserProgress | null>(null);
   const [loading, setLoading] = useState(true);
   const [generating, setGenerating] = useState(false);
+  const [genCount, setGenCount] = useState(0);
   const router = useRouter();
+  const { t } = useLanguage();
+  const generatingRef = useRef(false);
+  const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const genStartRef = useRef<string | null>(null);
+
+  const difficultyLabel = (d: string) =>
+    t[`difficulty_${d}`] || d;
+
+  const stopPolling = useCallback(() => {
+    if (pollRef.current) {
+      clearInterval(pollRef.current);
+      pollRef.current = null;
+    }
+  }, []);
 
   const loadData = useCallback(async () => {
     const supabase = createClient();
@@ -40,27 +56,101 @@ export default function DashboardPage() {
     setProfile(profileRes.data);
     setTasks(tasksRes.data || []);
     setProgress(progressRes.data);
-    setLoading(false);
 
-    // Auto-generate tasks if none exist
-    if (!tasksRes.data?.length) {
-      await generateTasks();
+    // Auto-generate tasks if none exist — set generating BEFORE loading=false to avoid flash of empty state
+    if (!tasksRes.data?.length && !generatingRef.current) {
+      setGenerating(true);
+      setLoading(false);
+      generateTasks();
+    } else {
+      setLoading(false);
     }
   }, [router]);
 
   useEffect(() => { loadData(); }, [loadData]);
 
+  // Cleanup polling on unmount
+  useEffect(() => {
+    return () => { stopPolling(); };
+  }, [stopPolling]);
+
   async function generateTasks() {
+    // Guard against double generation
+    if (generatingRef.current) return;
+    generatingRef.current = true;
     setGenerating(true);
+    setGenCount(0);
+
+    const startTime = new Date().toISOString();
+    genStartRef.current = startTime;
+
+    // Fire-and-forget: start API call
+    const apiPromise = fetch("/api/generate-tasks", { method: "POST" })
+      .then(async (res) => {
+        if (!res.ok) console.error("Task generation failed:", await res.text());
+      })
+      .catch((e) => console.error("Task generation error:", e))
+      .finally(() => {
+        // API done — stop polling after a final check
+        setTimeout(() => {
+          stopPolling();
+          pollForTasks(startTime, true); // one final poll
+        }, 1000);
+      });
+
+    // Poll Supabase every 3s for new tasks
+    pollRef.current = setInterval(() => {
+      pollForTasks(startTime, false);
+    }, 3000);
+
+    // Timeout: stop after 180s
+    setTimeout(() => {
+      stopPolling();
+      if (generatingRef.current) {
+        generatingRef.current = false;
+        setGenerating(false);
+      }
+    }, 180000);
+
+    await apiPromise;
+  }
+
+  async function pollForTasks(startTime: string, isFinal: boolean) {
     try {
-      const res = await fetch('/api/generate-tasks', { method: 'POST' });
-      if (res.ok) {
-        await loadData();
+      const supabase = createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+
+      const { data: newTasks } = await supabase
+        .from('tasks')
+        .select('*')
+        .eq('user_id', user.id)
+        .gte('created_at', startTime)
+        .order('created_at', { ascending: true });
+
+      if (newTasks && newTasks.length > 0) {
+        setGenCount(newTasks.length);
+
+        // Merge new tasks into existing list (avoiding duplicates)
+        setTasks(prev => {
+          const existingIds = new Set(prev.map(t => t.id));
+          const toAdd = newTasks.filter(t => !existingIds.has(t.id));
+          if (toAdd.length === 0) return prev;
+          return [...toAdd, ...prev];
+        });
+
+        if (newTasks.length >= 3 || isFinal) {
+          stopPolling();
+          generatingRef.current = false;
+          setGenerating(false);
+        }
+      } else if (isFinal) {
+        generatingRef.current = false;
+        setGenerating(false);
       }
     } catch (e) {
-      console.error('Task generation failed:', e);
+      console.error('Poll error:', e);
     }
-    setGenerating(false);
   }
 
   async function handleLogout() {
@@ -70,12 +160,19 @@ export default function DashboardPage() {
     router.refresh();
   }
 
+  function handleNewTasks() {
+    if (!generating) {
+      generatingRef.current = false;
+      generateTasks();
+    }
+  }
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="flex flex-col items-center gap-3">
           <Loader2 className="w-8 h-8 animate-spin text-brand-600" />
-          <p className="text-gray-600">Loading your dashboard...</p>
+          <p className="text-gray-600">{t.auth_loading_dashboard}</p>
         </div>
       </div>
     );
@@ -91,11 +188,11 @@ export default function DashboardPage() {
         <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Shield className="w-6 h-6 text-brand-600" />
-            <span className="text-xl font-bold">AIProof</span>
+            <span className="text-xl font-bold">{t.common_brand}</span>
           </div>
           <div className="flex items-center gap-4">
             <span className="text-sm text-gray-600">{profile?.full_name || profile?.email}</span>
-            <button onClick={handleLogout} className="text-gray-400 hover:text-gray-600">
+            <button onClick={handleLogout} className="text-gray-400 hover:text-gray-600" title={t.common_logout}>
               <LogOut className="w-5 h-5" />
             </button>
           </div>
@@ -109,32 +206,48 @@ export default function DashboardPage() {
             <div className="card text-center">
               <Award className="w-6 h-6 text-brand-600 mx-auto mb-1" />
               <div className="text-2xl font-bold text-gray-900">{progress.tasks_completed}</div>
-              <div className="text-xs text-gray-500">Tasks Done</div>
+              <div className="text-xs text-gray-500">{t.dash_tasks_done}</div>
             </div>
             <div className="card text-center">
               <BarChart3 className="w-6 h-6 text-brand-600 mx-auto mb-1" />
               <div className="text-2xl font-bold text-gray-900">{Math.round(progress.average_score)}</div>
-              <div className="text-xs text-gray-500">Avg Score</div>
+              <div className="text-xs text-gray-500">{t.dash_avg_score}</div>
             </div>
             <div className="card text-center">
               <Zap className="w-6 h-6 text-amber-500 mx-auto mb-1" />
               <div className="text-2xl font-bold text-gray-900">{progress.streak_days}</div>
-              <div className="text-xs text-gray-500">Day Streak</div>
+              <div className="text-xs text-gray-500">{t.dash_streak}</div>
             </div>
             <div className="card text-center">
               <Award className="w-6 h-6 text-purple-600 mx-auto mb-1" />
               <div className="text-2xl font-bold text-gray-900 capitalize">{progress.level}</div>
-              <div className="text-xs text-gray-500">Level</div>
+              <div className="text-xs text-gray-500">{t.dash_level}</div>
             </div>
           </div>
         )}
 
-        {/* Generating state */}
+        {/* Generating state — incremental progress */}
         {generating && (
           <div className="card mb-8 text-center py-12">
             <Loader2 className="w-10 h-10 animate-spin text-brand-600 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">Generating your personalized tasks...</h3>
-            <p className="text-gray-600">This takes 15-30 seconds. We&apos;re creating realistic scenarios based on your role.</p>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              {genCount > 0
+                ? `${genCount} ${t.dash_gen_progress}`
+                : t.dash_gen_preparing
+              }
+            </h3>
+            <p className="text-gray-600">{t.dash_generating_desc}</p>
+            {/* Progress dots */}
+            <div className="flex justify-center gap-3 mt-4">
+              {[0, 1, 2].map(i => (
+                <div
+                  key={i}
+                  className={`w-3 h-3 rounded-full transition-colors duration-300 ${
+                    i < genCount ? 'bg-brand-600' : 'bg-gray-300'
+                  }`}
+                />
+              ))}
+            </div>
           </div>
         )}
 
@@ -142,9 +255,9 @@ export default function DashboardPage() {
         {pendingTasks.length > 0 && (
           <div className="mb-8">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-bold text-gray-900">Your Practice Tasks</h2>
-              <button onClick={generateTasks} className="text-sm text-brand-600 hover:text-brand-700 flex items-center gap-1" disabled={generating}>
-                <RefreshCw className="w-4 h-4" /> New Tasks
+              <h2 className="text-xl font-bold text-gray-900">{t.dash_your_tasks}</h2>
+              <button onClick={handleNewTasks} className="text-sm text-brand-600 hover:text-brand-700 flex items-center gap-1" disabled={generating}>
+                <RefreshCw className="w-4 h-4" /> {t.dash_new_tasks}
               </button>
             </div>
             <div className="grid gap-4">
@@ -154,10 +267,10 @@ export default function DashboardPage() {
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
                         <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${DIFFICULTY_COLORS[task.difficulty]}`}>
-                          {task.difficulty}
+                          {difficultyLabel(task.difficulty)}
                         </span>
                         <span className="text-xs text-gray-500 flex items-center gap-1">
-                          <Clock className="w-3 h-3" /> {task.estimated_minutes} min
+                          <Clock className="w-3 h-3" /> {task.estimated_minutes} {t.dash_min}
                         </span>
                       </div>
                       <h3 className="text-lg font-semibold text-gray-900 group-hover:text-brand-600 transition-colors">
@@ -183,7 +296,7 @@ export default function DashboardPage() {
         {/* Completed Tasks */}
         {completedTasks.length > 0 && (
           <div>
-            <h2 className="text-xl font-bold text-gray-900 mb-4">Completed</h2>
+            <h2 className="text-xl font-bold text-gray-900 mb-4">{t.dash_completed}</h2>
             <div className="grid gap-3">
               {completedTasks.map((task) => (
                 <Link key={task.id} href={`/task/${task.id}/evaluation`} className="card hover:shadow-sm transition-shadow opacity-80">
@@ -191,9 +304,9 @@ export default function DashboardPage() {
                     <div>
                       <div className="flex items-center gap-2 mb-1">
                         <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${DIFFICULTY_COLORS[task.difficulty]}`}>
-                          {task.difficulty}
+                          {difficultyLabel(task.difficulty)}
                         </span>
-                        <span className="text-xs text-green-600 font-medium">✓ Evaluated</span>
+                        <span className="text-xs text-green-600 font-medium">{t.dash_evaluated}</span>
                       </div>
                       <h3 className="font-medium text-gray-700">{task.title}</h3>
                     </div>
@@ -208,9 +321,9 @@ export default function DashboardPage() {
         {/* Empty state */}
         {!generating && tasks.length === 0 && (
           <div className="card text-center py-12">
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">No tasks yet</h3>
-            <p className="text-gray-600 mb-4">Let&apos;s generate your first batch of personalized practice tasks.</p>
-            <button onClick={generateTasks} className="btn-primary">Generate Tasks</button>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">{t.dash_no_tasks}</h3>
+            <p className="text-gray-600 mb-4">{t.dash_no_tasks_desc}</p>
+            <button onClick={handleNewTasks} className="btn-primary">{t.dash_generate_button}</button>
           </div>
         )}
       </div>

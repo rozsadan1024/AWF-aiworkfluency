@@ -1,4 +1,5 @@
 'use client';
+export const dynamic = 'force-dynamic';
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -88,7 +89,10 @@ export default function ResultsPage() {
   useEffect(() => {
     const raw = sessionStorage.getItem('assessment_scores');
     const rawAnswers = sessionStorage.getItem('assessment_answers');
-    const storedLang = (sessionStorage.getItem('assessment_lang') === 'hu' ? 'hu' : 'en') as 'en' | 'hu';
+    const urlLang = typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get('lang') : null;
+    // Note: urlLang will be null during SSR, falls back to sessionStorage
+    const sessionLang = typeof window !== 'undefined' ? sessionStorage.getItem('assessment_lang') : null;
+    const storedLang = (urlLang === 'hu' || sessionLang === 'hu' ? 'hu' : 'en') as 'en' | 'hu';
 
     // Set lang state for UI, but also use it synchronously for the report call
     setLang(storedLang);
@@ -124,23 +128,25 @@ export default function ResultsPage() {
 
   async function handleSignupAndSave() {
     setSaving(true);
-    // Copy to localStorage so data survives email confirmation in a different tab
-    const scoresRaw = sessionStorage.getItem('assessment_scores');
-    const answersRaw = sessionStorage.getItem('assessment_answers');
-    const langRaw = sessionStorage.getItem('assessment_lang');
-    if (scoresRaw) localStorage.setItem('assessment_scores', scoresRaw);
-    if (answersRaw) localStorage.setItem('assessment_answers', answersRaw);
-    if (langRaw) localStorage.setItem('assessment_lang', langRaw);
-    localStorage.setItem('pending_assessment', 'true');
+    try {
+      // Copy to localStorage so data survives email confirmation
+      const scoresRaw = sessionStorage.getItem("assessment_scores");
+      const answersRaw = sessionStorage.getItem("assessment_answers");
+      const langRaw = sessionStorage.getItem("assessment_lang");
+      if (scoresRaw) localStorage.setItem("assessment_scores", scoresRaw);
+      if (answersRaw) localStorage.setItem("assessment_answers", answersRaw);
+      if (langRaw) localStorage.setItem("assessment_lang", langRaw);
+      localStorage.setItem("pending_assessment", "true");
 
-    // If already logged in, skip signup and go straight to onboarding
-    const supabase = createClient();
-    const { data: { user } } = await supabase.auth.getUser();
-    if (user) {
-      router.push('/onboarding');
-    } else {
-      router.push('/auth/signup');
+      // Always redirect to signup - let auth flow handle logged-in users there
+      await router.push("/auth/signup");
+    } catch (err) {
+      console.error("Signup redirect error:", err);
+      try { await router.push("/auth/signup"); } catch (e) {}
+    } finally {
+      setSaving(false);
     }
+
   }
 
   if (!scores) return null;

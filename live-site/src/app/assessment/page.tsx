@@ -62,7 +62,7 @@ function AssessmentContent() {
 
   function goToBlock(index: number) {
     setCurrentBlock(index);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => window.scrollTo({ top: 0, behavior: "instant" }), 50);
   }
 
   async function handleFinish() {

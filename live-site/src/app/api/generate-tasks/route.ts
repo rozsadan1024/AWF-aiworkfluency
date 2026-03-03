@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server';
 import { createServerSupabase } from '@/lib/supabase/server';
-import { anthropic, MODEL, extractJSON } from '@/lib/kimi/client';
+import { anthropic, extractJSON } from '@/lib/kimi/client';
 import { TASK_GENERATION_PROMPT } from '@/lib/kimi/prompts';
 import { ADMIN_KNOWLEDGE_BASE } from '@/lib/knowledge-base/admin';
 
+const TASK_GEN_MODEL = process.env.TASK_GEN_MODEL || 'claude-haiku-4-5-20251001';
 const DIFFICULTIES = ['beginner', 'intermediate', 'advanced'] as const;
 
 export async function POST() {
@@ -30,12 +31,10 @@ export async function POST() {
 ${assessment ? `- AI Competence: ${assessment.current_ai_competence}/100\n- AI Exposure: ${assessment.ai_exposure_score}/100` : ''}`
       : 'USER PROFILE: Administrative professional, general office work, uses Microsoft Office.';
 
-    const tasks = [];
-
-    for (const difficulty of DIFFICULTIES) {
-      try {
+    const results = await Promise.allSettled(
+      DIFFICULTIES.map(async (difficulty) => {
         const response = await anthropic.messages.create({
-          model: MODEL,
+          model: TASK_GEN_MODEL,
           max_tokens: 6000,
           system: `${TASK_GENERATION_PROMPT}\n\n${ADMIN_KNOWLEDGE_BASE}`,
           messages: [
@@ -48,7 +47,29 @@ ${assessment ? `- AI Competence: ${assessment.current_ai_competence}/100\n- AI E
 
         const raw = response.content[0].type === 'text' ? response.content[0].text : '{}';
         const cleaned = extractJSON(raw);
-        const taskData = JSON.parse(cleaned);
+        let taskData: any;
+        try {
+          taskData = JSON.parse(cleaned);
+        } catch {
+          // Attempt repair: fix unescaped newlines in string values, trailing commas
+          const repaired = cleaned
+            .replace(/,\s*([\]}])/g, '$1')                    // trailing commas
+            .replace(/([^\\])\\n/g, '$1\\\\n')                 // unescaped \n in strings
+            .replace(/[\x00-\x1F\x7F]/g, ' ');                // control chars
+          try {
+            taskData = JSON.parse(repaired);
+          } catch {
+            // Last resort: truncated JSON — close all open braces/brackets
+            let attempt = repaired;
+            const opens = (attempt.match(/{/g) || []).length;
+            const closes = (attempt.match(/}/g) || []).length;
+            for (let i = 0; i < opens - closes; i++) attempt += '}';
+            const openB = (attempt.match(/\[/g) || []).length;
+            const closeB = (attempt.match(/\]/g) || []).length;
+            for (let i = 0; i < openB - closeB; i++) attempt += ']';
+            taskData = JSON.parse(attempt);
+          }
+        }
 
         console.log(`[${difficulty}] expert approach: ${taskData.expert_solution?.approach?.length || 0} chars, micro_course: ${taskData.micro_course_content?.length || 0} chars`);
 
@@ -66,15 +87,18 @@ ${assessment ? `- AI Competence: ${assessment.current_ai_competence}/100\n- AI E
           status: 'pending',
         }).select().single();
 
-        if (insertError) {
-          console.error(`Insert error for ${difficulty}:`, insertError);
-        } else {
-          tasks.push(inserted);
-        }
-      } catch (err) {
-        console.error(`Task generation error for ${difficulty}:`, err);
-      }
-    }
+        if (insertError) throw insertError;
+        return inserted;
+      })
+    );
+
+    const tasks = results
+      .filter((r): r is PromiseFulfilledResult<any> => r.status === 'fulfilled')
+      .map(r => r.value);
+
+    results
+      .filter((r): r is PromiseRejectedResult => r.status === 'rejected')
+      .forEach((r, i) => console.error(`Task generation error for ${DIFFICULTIES[i]}:`, r.reason));
 
     return NextResponse.json({ tasks });
   } catch (error) {
