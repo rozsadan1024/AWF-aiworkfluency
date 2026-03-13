@@ -48,14 +48,25 @@ ${conversations.map(c => `--- Turn ${c.turn_number} ---\nUSER PROMPT: ${c.user_m
 Title: ${task.title}
 Difficulty: ${task.difficulty}
 Scenario: ${task.scenario}
-Expected deliverable: ${JSON.stringify(task.evaluation_rubric)}
-Expert solution: ${JSON.stringify(task.expert_solution)}
+Evaluation criteria (rubric): ${JSON.stringify(task.evaluation_rubric)}
+Explicit deliverable: ${task.evaluation_rubric?.deliverables || '(See scenario)'}
+Expert solution reference (for calibration only — do NOT compare user output directly to this):
+- Time benchmark: ${task.expert_solution?.time_benchmark} minutes
+- Skills expected: ${task.skills_tested?.join(', ')}
+- Key lesson: ${task.expert_solution?.key_lesson || ''}
+- Prompt scorecard (what an expert prompt would contain): ${JSON.stringify(task.expert_solution?.prompt_scorecard || {})}
 Expert time benchmark: ${task.estimated_minutes} minutes${trapSection}
 
 USER SUBMISSION:
 Final output:
 ${submission.final_output}
 ${conversationSection}
+
+Prompts used by user:
+${submission.prompts_used || '(User did not share their prompts — score prompt_sophistication lower, max 35)'}
+
+Process description:
+${submission.process_description || '(Not provided)'}
 
 Tools used: ${submission.tools_used?.join(', ') || '(Not specified)'}
 Time spent: ${submission.time_spent_minutes || '(Not specified)'} minutes
@@ -65,10 +76,42 @@ Return a JSON object only.`,
       ],
     });
 
+    const evalInputTokens = response.usage?.input_tokens || 0;
+    const evalOutputTokens = response.usage?.output_tokens || 0;
+    console.log(`[evaluate] tokens: ${evalInputTokens} in / ${evalOutputTokens} out (total: ${evalInputTokens + evalOutputTokens})`);
+
     const raw = response.content[0].type === 'text' ? response.content[0].text : '{}';
     const cleaned = extractJSON(raw);
     console.log('[evaluate] raw length:', raw.length, 'cleaned length:', cleaned.length);
-    const evalResult = JSON.parse(cleaned);
+
+    let evalResult: any;
+    try {
+      evalResult = JSON.parse(cleaned);
+    } catch {
+      const repaired = cleaned
+        .replace(/,\s*([\]}])/g, '$1')
+        .replace(/([^\\])\\n/g, '$1\\\\n')
+        .replace(/[\x00-\x1F\x7F]/g, ' ');
+      try {
+        evalResult = JSON.parse(repaired);
+      } catch {
+        let attempt = repaired;
+        const opens = (attempt.match(/{/g) || []).length;
+        const closes = (attempt.match(/}/g) || []).length;
+        for (let i = 0; i < opens - closes; i++) attempt += '}';
+        evalResult = JSON.parse(attempt);
+      }
+    }
+
+    // Bug #3 fix: Server-side weighted average validation
+    const ds = evalResult.dimension_scores || {};
+    const oq = ds.output_quality?.score ?? 50;
+    const al = ds.ai_leverage?.score ?? 50;
+    const ps = ds.prompt_sophistication?.score ?? 50;
+    const hj = ds.human_judgment?.score ?? 50;
+    const is_ = ds.iteration_skill?.score ?? 50;
+    const weightedAvg = Math.round(oq * 0.35 + al * 0.25 + ps * 0.15 + hj * 0.15 + is_ * 0.10);
+    evalResult.overall_score = weightedAvg; // always override Claude's calculation
 
     console.log(`[evaluate] score:${evalResult.overall_score} feedback:${evalResult.feedback_text?.length || 0} chars`);
 

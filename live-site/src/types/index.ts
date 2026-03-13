@@ -6,6 +6,7 @@ export interface Profile {
   created_at: string;
   subscription_tier: 'free' | 'basic' | 'pro';
   subscription_expires_at: string | null;
+  stripe_customer_id: string | null;
   onboarding_completed: boolean;
 }
 
@@ -142,10 +143,8 @@ export interface EvaluationResult {
     output_quality: DimensionScore;
     ai_leverage: DimensionScore;
     prompt_sophistication: DimensionScore;
-    iteration_skill: DimensionScore;
-    tool_selection: DimensionScore;
-    time_efficiency: DimensionScore;
     human_judgment: DimensionScore;
+    iteration_skill: DimensionScore;
   };
   feedback_text: string;
   improvement_tips: string[];
