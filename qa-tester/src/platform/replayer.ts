@@ -279,24 +279,49 @@ Return a JSON object only.`,
 
   // Server-side dimension caps — same as evaluate route
   const ds = evalResult.dimension_scores || {};
+  const trapStatus: string = evalResult.trap_status || 'missed';
+  const deliverablesComplete: boolean = evalResult.deliverables_complete !== false;
+  const hasTrap = !!task.evaluation_rubric?.hidden_trap;
 
-  // No workspace conversation in QA tests → cap iteration_skill at 30
-  ds.iteration_skill && (ds.iteration_skill.score = Math.min(ds.iteration_skill.score, 30));
+  // Trap enforcement — server-side override based on Claude's trap_status
+  // Guard: if output_quality is very low, don't trust a "caught" claim — likely hallucinated
+  const oqRaw = ds.output_quality?.score ?? 50;
+  const trapClaimCredible = oqRaw >= 35;
 
-  // Cap prompt_sophistication at 35 if no prompts were shared
-  if (!promptsUsed && ds.prompt_sophistication) {
-    ds.prompt_sophistication.score = Math.min(ds.prompt_sophistication.score, 35);
+  if (ds.human_judgment) {
+    if (trapStatus === 'missed') {
+      ds.human_judgment.score = Math.min(ds.human_judgment.score, 30);
+    } else if (trapStatus === 'caught_but_failed') {
+      ds.human_judgment.score = Math.max(Math.min(ds.human_judgment.score, 50), 35);
+    } else if (trapStatus === 'caught_and_resolved' && trapClaimCredible) {
+      ds.human_judgment.score = Math.max(ds.human_judgment.score, 60);
+    } else if (trapStatus === 'caught_and_resolved' && !trapClaimCredible) {
+      // Low quality output claiming trap catch — treat as missed
+      ds.human_judgment.score = Math.min(ds.human_judgment.score, 30);
+    }
   }
 
-  // Detect truncated/incomplete submissions and cap output_quality
+  // Completeness enforcement — Claude's assessment + regex fallback
   const trimmed = responseText.trimEnd();
   const truncationSignals = [
     /\S$/.test(trimmed) && !/[.!?)"'\u2019\u201D]$/.test(trimmed),
     trimmed.endsWith('...') && responseText.length < 500,
     responseText.length < 100 && responseText.trim().length > 0,
   ];
-  if (truncationSignals.some(Boolean) && ds.output_quality) {
+  if ((!deliverablesComplete || truncationSignals.some(Boolean)) && ds.output_quality) {
     ds.output_quality.score = Math.min(ds.output_quality.score, 40);
+  }
+
+  // Cap prompt_sophistication at 35 if no prompts were shared
+  if (!promptsUsed && ds.prompt_sophistication) {
+    ds.prompt_sophistication.score = Math.min(ds.prompt_sophistication.score, 35);
+  }
+
+  // Iteration skill cap — conditional on quality of work
+  const oqForIter = ds.output_quality?.score ?? 0;
+  const iterCap = oqForIter >= 55 ? 50 : 30;
+  if (ds.iteration_skill) {
+    ds.iteration_skill.score = Math.min(ds.iteration_skill.score, iterCap);
   }
 
   // Server-side weighted average override — same as evaluate route
@@ -305,7 +330,13 @@ Return a JSON object only.`,
   const ps = ds.prompt_sophistication?.score ?? 50;
   const hj = ds.human_judgment?.score ?? 50;
   const is_ = ds.iteration_skill?.score ?? 50;
-  const weightedAvg = Math.round(oq * 0.35 + al * 0.25 + ps * 0.15 + hj * 0.15 + is_ * 0.10);
+  let weightedAvg = Math.round(oq * 0.35 + al * 0.25 + ps * 0.15 + hj * 0.15 + is_ * 0.10);
+
+  // Fatal flaw cap: if trap was missed entirely, overall score cannot exceed 45
+  if (trapStatus === 'missed' && hasTrap) {
+    weightedAvg = Math.min(weightedAvg, 45);
+  }
+
   evalResult.overall_score = weightedAvg;
 
   // Insert evaluation — same as evaluate route

@@ -130,6 +130,8 @@ OVERALL SCORE CALCULATION:
 OUTPUT FORMAT - respond with ONLY raw JSON. Do NOT use markdown code fences or backtick json tags. Just return the JSON object directly:
 {
   "overall_score": 0,
+  "deliverables_complete": true,
+  "trap_status": "missed",
   "dimension_scores": {
     "output_quality": { "score": 75, "feedback": "specific feedback referencing their actual work" },
     "ai_leverage": { "score": 60, "feedback": "..." },
@@ -142,6 +144,13 @@ OUTPUT FORMAT - respond with ONLY raw JSON. Do NOT use markdown code fences or b
   "top_improvement": "One specific sentence about the most important area to improve",
   "improvement_tips": ["Practical tip 1", "Practical tip 2", "Practical tip 3"]
 }
+
+REQUIRED METADATA FIELDS:
+- "deliverables_complete": Set to false if ANY required deliverable is missing, truncated, or incomplete. Set to true only if all deliverables specified in the task are present and substantially complete.
+- "trap_status": One of three values:
+  - "missed" — No evidence the user noticed the hidden trap
+  - "caught_and_resolved" — User identified AND correctly addressed the trap
+  - "caught_but_failed" — User noticed something was off but resolved it incorrectly or incompletely
 
 WHEN WORKSPACE CONVERSATION DATA IS PROVIDED:
 The evaluation input may include a full workspace conversation (all user prompts and AI responses) plus the final submitted output. Use this data for more accurate scoring:
@@ -158,16 +167,18 @@ Before scoring any dimension, check: is the submission COMPLETE? Look for:
 - Submission significantly shorter than what the deliverable demands
 If the submission is incomplete or truncated, cap output_quality at 40 maximum and note it explicitly in feedback. An incomplete deliverable is never "competent" regardless of what was written.
 
-HIDDEN TRAP EVALUATION — TWO-STEP PROCESS:
-Step 1: SEARCH the submission for any mention, correction, flag, or acknowledgment of the trap described in the HIDDEN TRAP section. Look for: corrections to wrong data, warnings about inconsistencies, notes questioning accuracy, modified outputs that fix the error, or any explicit reference to the issue.
-Step 2: DECIDE based on what you found:
-  - TRAP CAUGHT: You found explicit evidence in Step 1. Set human_judgment MINIMUM to 60. Quote the evidence in your feedback. Praise the critical thinking.
-  - TRAP MISSED: You found NO evidence in Step 1. Cap human_judgment at 30 MAXIMUM. Note constructively: "Next time, watch for [specific trap type]..."
-This is a BINARY decision. Do NOT give partial credit. Either the user demonstrated awareness or they did not.
+HIDDEN TRAP EVALUATION — THREE-STEP PROCESS:
+Step 1: SEARCH the submission for any mention, correction, flag, or acknowledgment of the trap described in the HIDDEN TRAP section.
+Step 2: If found, assess whether the user RESOLVED it correctly or incorrectly.
+Step 3: Set "trap_status" in your JSON output:
+  - "caught_and_resolved" — User found the trap AND fixed it correctly. Set human_judgment MINIMUM to 60. Quote the evidence.
+  - "caught_but_failed" — User noticed the issue but resolved it incorrectly or incompletely. Score human_judgment 35-50 (credit for awareness, penalize for wrong fix).
+  - "missed" — No evidence the user noticed the trap. Cap human_judgment at 30 MAXIMUM. Note constructively: "Next time, watch for [specific trap type]..."
+Do NOT infer trap detection. Do NOT give credit if the submission accidentally avoids the trap.
 
 PROMPT SOPHISTICATION RULE: If neither "Prompts used by user" nor workspace conversation turns are provided, score prompt_sophistication between 15-35 maximum. You have no evidence of prompt quality — do not guess upward.
 
-SINGLE-ATTEMPT PENALTY: If there is no evidence of iteration (no workspace conversation, no mention of refining, single submission), cap iteration_skill at 30 maximum.
+SINGLE-ATTEMPT PENALTY: If there is no evidence of iteration (no workspace conversation, no mention of refining, single submission), cap iteration_skill at 30 maximum. EXCEPTION: If prompt_sophistication > 60 AND output_quality > 60, the user achieved a strong result efficiently — cap iteration_skill at 50 instead.
 
 RULES:
 - Be encouraging but honest. Never condescending.

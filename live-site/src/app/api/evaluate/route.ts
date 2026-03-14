@@ -105,10 +105,38 @@ Return a JSON object only.`,
 
     // Server-side dimension caps (Claude doesn't always follow prompt rules)
     const ds = evalResult.dimension_scores || {};
+    const trapStatus: string = evalResult.trap_status || 'missed';
+    const deliverablesComplete: boolean = evalResult.deliverables_complete !== false;
 
-    // Cap iteration_skill at 30 if no workspace conversation exists
-    if (conversations.length === 0 && ds.iteration_skill) {
-      ds.iteration_skill.score = Math.min(ds.iteration_skill.score, 30);
+    // Trap enforcement — server-side override based on Claude's trap_status
+    // Guard: if output_quality is very low, don't trust a "caught" claim — likely hallucinated
+    const oqRaw = ds.output_quality?.score ?? 50;
+    const trapClaimCredible = oqRaw >= 35; // if output is garbage, trap catch claim is suspect
+
+    if (ds.human_judgment) {
+      if (trapStatus === 'missed') {
+        ds.human_judgment.score = Math.min(ds.human_judgment.score, 30);
+      } else if (trapStatus === 'caught_but_failed') {
+        ds.human_judgment.score = Math.max(Math.min(ds.human_judgment.score, 50), 35);
+      } else if (trapStatus === 'caught_and_resolved' && trapClaimCredible) {
+        ds.human_judgment.score = Math.max(ds.human_judgment.score, 60);
+      } else if (trapStatus === 'caught_and_resolved' && !trapClaimCredible) {
+        // Low quality output claiming trap catch — treat as missed
+        ds.human_judgment.score = Math.min(ds.human_judgment.score, 30);
+        console.log(`[evaluate] trap_status=caught_and_resolved but output_quality=${oqRaw} — treating as missed`);
+      }
+    }
+
+    // Completeness enforcement — if Claude reports deliverables incomplete, or regex detects truncation
+    const output = submission.final_output || '';
+    const truncationSignals = [
+      /\S$/.test(output.trimEnd()) && !/[.!?)"'\u2019\u201D]$/.test(output.trimEnd()),
+      output.trimEnd().endsWith('...') && output.length < 500,
+      output.length < 100 && output.trim().length > 0,
+    ];
+    if ((!deliverablesComplete || truncationSignals.some(Boolean)) && ds.output_quality) {
+      ds.output_quality.score = Math.min(ds.output_quality.score, 40);
+      console.log(`[evaluate] incomplete submission detected (deliverables_complete=${deliverablesComplete}), capped output_quality at 40`);
     }
 
     // Cap prompt_sophistication at 35 if no prompts were shared and no workspace conversation
@@ -116,16 +144,12 @@ Return a JSON object only.`,
       ds.prompt_sophistication.score = Math.min(ds.prompt_sophistication.score, 35);
     }
 
-    // Detect truncated/incomplete submissions and cap output_quality
-    const output = submission.final_output || '';
-    const truncationSignals = [
-      /\S$/.test(output.trimEnd()) && !/[.!?)"'\u2019\u201D]$/.test(output.trimEnd()), // ends mid-word
-      output.trimEnd().endsWith('...') && output.length < 500, // suspiciously short with ellipsis
-      output.length < 100 && output.trim().length > 0, // very short non-empty
-    ];
-    if (truncationSignals.some(Boolean) && ds.output_quality) {
-      ds.output_quality.score = Math.min(ds.output_quality.score, 40);
-      console.log(`[evaluate] truncation detected, capped output_quality at 40`);
+    // Iteration skill cap — conditional on quality of work
+    if (conversations.length === 0 && ds.iteration_skill) {
+      const oqScore = ds.output_quality?.score ?? 0;
+      // Efficient single-pass: if output quality is strong, user achieved goal without iteration — cap at 50
+      const iterCap = oqScore >= 55 ? 50 : 30;
+      ds.iteration_skill.score = Math.min(ds.iteration_skill.score, iterCap);
     }
 
     // Server-side weighted average validation
@@ -134,8 +158,14 @@ Return a JSON object only.`,
     const ps = ds.prompt_sophistication?.score ?? 50;
     const hj = ds.human_judgment?.score ?? 50;
     const is_ = ds.iteration_skill?.score ?? 50;
-    const weightedAvg = Math.round(oq * 0.35 + al * 0.25 + ps * 0.15 + hj * 0.15 + is_ * 0.10);
-    evalResult.overall_score = weightedAvg; // always override Claude's calculation
+    let weightedAvg = Math.round(oq * 0.35 + al * 0.25 + ps * 0.15 + hj * 0.15 + is_ * 0.10);
+
+    // Fatal flaw cap: if trap was missed entirely, overall score cannot exceed 45
+    if (trapStatus === 'missed' && hiddenTrap) {
+      weightedAvg = Math.min(weightedAvg, 45);
+    }
+
+    evalResult.overall_score = weightedAvg;
 
     console.log(`[evaluate] score:${evalResult.overall_score} feedback:${evalResult.feedback_text?.length || 0} chars`);
 
