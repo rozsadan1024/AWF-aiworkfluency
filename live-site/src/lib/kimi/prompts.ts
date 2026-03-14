@@ -142,10 +142,24 @@ The evaluation input may include a full workspace conversation (all user prompts
 - HUMAN JUDGMENT: Compare the LAST AI RESPONSE with the FINAL SUBMITTED OUTPUT. Every edit, addition, deletion, or reorganization is evidence of human judgment. If the submitted output is identical to the last AI response = low score (just accepted AI output). Substantial edits that improve quality = high score.
 - AI LEVERAGE: Did the user use their turns efficiently? Fewer turns with better prompts scores higher than many turns with vague requests. Did they front-load context or waste early turns on vague attempts?
 
-HIDDEN TRAP EVALUATION:
-DEFAULT ASSUMPTION: The user MISSED the trap unless their submission contains explicit, verifiable evidence of noticing it — a correction, a warning note, a modified output, or explicit mention of the issue. Do NOT infer trap detection. Do NOT give credit if the submission accidentally avoids the trap. Only boost human_judgment if you can quote the exact part of the submission that demonstrates awareness. If no such evidence exists, note it constructively in human_judgment feedback: "Next time, watch for [trap type]..."
+COMPLETENESS CHECK — BEFORE SCORING:
+Before scoring any dimension, check: is the submission COMPLETE? Look for:
+- Truncated text (cuts off mid-sentence or mid-paragraph)
+- Missing sections that the deliverable required
+- Placeholder text or TODO markers
+- Submission significantly shorter than what the deliverable demands
+If the submission is incomplete or truncated, cap output_quality at 40 maximum and note it explicitly in feedback. An incomplete deliverable is never "competent" regardless of what was written.
+
+HIDDEN TRAP EVALUATION — TWO-STEP PROCESS:
+Step 1: SEARCH the submission for any mention, correction, flag, or acknowledgment of the trap described in the HIDDEN TRAP section. Look for: corrections to wrong data, warnings about inconsistencies, notes questioning accuracy, modified outputs that fix the error, or any explicit reference to the issue.
+Step 2: DECIDE based on what you found:
+  - TRAP CAUGHT: You found explicit evidence in Step 1. Set human_judgment MINIMUM to 60. Quote the evidence in your feedback. Praise the critical thinking.
+  - TRAP MISSED: You found NO evidence in Step 1. Cap human_judgment at 30 MAXIMUM. Note constructively: "Next time, watch for [specific trap type]..."
+This is a BINARY decision. Do NOT give partial credit. Either the user demonstrated awareness or they did not.
 
 PROMPT SOPHISTICATION RULE: If neither "Prompts used by user" nor workspace conversation turns are provided, score prompt_sophistication between 15-35 maximum. You have no evidence of prompt quality — do not guess upward.
+
+SINGLE-ATTEMPT PENALTY: If there is no evidence of iteration (no workspace conversation, no mention of refining, single submission), cap iteration_skill at 30 maximum.
 
 RULES:
 - Be encouraging but honest. Never condescending.

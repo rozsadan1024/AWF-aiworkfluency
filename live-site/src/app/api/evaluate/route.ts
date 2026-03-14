@@ -103,8 +103,32 @@ Return a JSON object only.`,
       }
     }
 
-    // Bug #3 fix: Server-side weighted average validation
+    // Server-side dimension caps (Claude doesn't always follow prompt rules)
     const ds = evalResult.dimension_scores || {};
+
+    // Cap iteration_skill at 30 if no workspace conversation exists
+    if (conversations.length === 0 && ds.iteration_skill) {
+      ds.iteration_skill.score = Math.min(ds.iteration_skill.score, 30);
+    }
+
+    // Cap prompt_sophistication at 35 if no prompts were shared and no workspace conversation
+    if (!submission.prompts_used && conversations.length === 0 && ds.prompt_sophistication) {
+      ds.prompt_sophistication.score = Math.min(ds.prompt_sophistication.score, 35);
+    }
+
+    // Detect truncated/incomplete submissions and cap output_quality
+    const output = submission.final_output || '';
+    const truncationSignals = [
+      /\S$/.test(output.trimEnd()) && !/[.!?)"'\u2019\u201D]$/.test(output.trimEnd()), // ends mid-word
+      output.trimEnd().endsWith('...') && output.length < 500, // suspiciously short with ellipsis
+      output.length < 100 && output.trim().length > 0, // very short non-empty
+    ];
+    if (truncationSignals.some(Boolean) && ds.output_quality) {
+      ds.output_quality.score = Math.min(ds.output_quality.score, 40);
+      console.log(`[evaluate] truncation detected, capped output_quality at 40`);
+    }
+
+    // Server-side weighted average validation
     const oq = ds.output_quality?.score ?? 50;
     const al = ds.ai_leverage?.score ?? 50;
     const ps = ds.prompt_sophistication?.score ?? 50;
