@@ -9,6 +9,8 @@ import { generateHTMLReport } from './reporting/html-report.js';
 import { saveReport, listReports, loadReport } from './reporting/json-store.js';
 import { printSummary } from './reporting/console.js';
 import { getSupabase } from './platform/supabase.js';
+import { runQPTests } from './qp/runner.js';
+import { QPQuality } from './qp/response-generator.js';
 
 const program = new Command();
 
@@ -154,6 +156,36 @@ program
 
     const htmlPath = latestJson.replace('.json', '.html');
     console.log(`\nHTML report: ${htmlPath}`);
+  });
+
+program
+  .command('qp')
+  .description('Run Quick Pill QA tests')
+  .option('-n, --pills <n>', 'Number of pills to test (0 = all)', '0')
+  .option('-q, --qualities <names>', 'Comma-separated quality levels', 'excellent,good,bad,gibberish')
+  .option('-c, --concurrency <n>', 'Max parallel tests', '2')
+  .action(async (opts) => {
+    const qualities = opts.qualities.split(',').map((s: string) => s.trim()) as QPQuality[];
+    const validQualities: QPQuality[] = ['excellent', 'good', 'bad', 'gibberish'];
+    for (const q of qualities) {
+      if (!validQualities.includes(q)) {
+        console.error(`Unknown quality: ${q}. Available: ${validQualities.join(', ')}`);
+        process.exit(1);
+      }
+    }
+
+    try {
+      const report = await runQPTests({
+        pillCount: parseInt(opts.pills, 10),
+        qualities,
+        concurrency: parseInt(opts.concurrency, 10),
+      });
+
+      if (report.summary.fail > 0) process.exit(1);
+    } catch (e: any) {
+      console.error(`Fatal: ${e.message}`);
+      process.exit(2);
+    }
   });
 
 program.parse();

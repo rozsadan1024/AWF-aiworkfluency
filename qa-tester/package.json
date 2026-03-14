@@ -13,6 +13,9 @@
     "qa": "tsx src/index.ts run",
     "qa:quick": "tsx src/index.ts run --profiles junior_marketing --qualities good,bad",
     "qa:full": "tsx src/index.ts run --profiles all --qualities all",
+    "qp": "tsx src/index.ts qp",
+    "qp:quick": "tsx src/index.ts qp --pills 3 --qualities good,bad",
+    "qp:full": "tsx src/index.ts qp --pills 0 --qualities excellent,good,bad,gibberish",
     "cleanup": "tsx src/index.ts cleanup"
   },
   "dependencies": {

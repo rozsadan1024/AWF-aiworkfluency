@@ -294,6 +294,13 @@ OUTPUT FORMAT — respond with ONLY valid JSON:
   "practical_tip": "One specific thing they can do TOMORROW using this knowledge"
 }
 
+CALIBRATION — CRITICAL:
+- 50 is the median. A "decent" attempt with some gaps.
+- 75+ requires clearly correct application with no significant errors.
+- Below 30 means the user missed the point or barely tried.
+- If the response is very short (under 100 words) and vague, cap overall at 40.
+- If the response does not reference or apply the specific concept from the knowledge bit, cap understanding at 30.
+
 RULES:
 - ALL text in English
 - Be encouraging but honest
