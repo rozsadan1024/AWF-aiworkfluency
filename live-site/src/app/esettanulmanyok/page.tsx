@@ -1,61 +1,61 @@
 import Link from 'next/link';
 import { ArrowRight, TrendingUp, Users, Shield } from 'lucide-react';
-import { getDictionary } from '@/lib/i18n/dictionaries';
+import { getDictionary, defaultLocale } from '@/lib/i18n/dictionaries';
 import { SiteNav } from '@/components/SiteNav';
 import { SiteFooter } from '@/components/SiteFooter';
 
 export const metadata = {
-  title: 'Esettanulmányok — AI Work Fluency',
-  description: 'Hogyan segít az AI Work Fluency valódi cégeknek? Nézd meg az eredményeket.',
+  title: 'Case Studies — AI Work Fluency',
+  description: 'How does AI Work Fluency help real companies? See the results.',
 };
 
-const caseStudies = [
-  {
-    company: 'FinTech Startup',
-    location: 'Budapest, 35 fő',
-    icon: TrendingUp,
-    result: 'A sales csapat érezhetően gyorsabban készít ajánlatokat',
-    description: 'Egy gyorsan növekvő FinTech startup sales csapata küzdött az ajánlatkészítés sebességével. Az AI Work Fluency-vel minden sales munkatárs a saját munkakörére szabott feladatokon gyakorolt: ajánlat-sablonok AI-val történő készítése, ügyfél-kommunikáció optimalizálása, versenytárs-elemzés gyorsítása.',
-    quote: '"Néhány hét után az ajánlatkészítés egyértelműen felgyorsult. A csapat magabiztosabban használja az AI-t a napi munkában."',
-    quotee: 'Sales Director',
-    metrics: [
-      { label: 'Ajánlatkészítési idő', value: '~20% rövidebb' },
-      { label: 'AI-használat a csapatban', value: '~70%' },
-      { label: 'Időtartam', value: '6 hét' },
-    ],
-  },
-  {
-    company: 'HR SaaS Cég',
-    location: 'Bécs, 120 fő',
-    icon: Users,
-    result: 'A HR csapat hatékonyabban kezeli a toborzási folyamatot',
-    description: 'Egy nemzetközi HR SaaS vállalat saját HR csapata paradox módon nem használta hatékonyan az AI-t. Az AI Work Fluency segítségével a toborzók megtanulták AI-val szűrni az önéletrajzokat, gyorsítani az onboarding dokumentációt, és jobban előkészíteni az interjúkat.',
-    quote: '"Az onboarding dokumentáció jelentős részét sikerült egyszerűsíteni. A toborzók több időt fordítanak arra, ami igazán fontos: az emberekre."',
-    quotee: 'Head of People',
-    metrics: [
-      { label: 'Toborzási folyamat', value: 'gyorsabb' },
-      { label: 'Adminisztráció csökkenés', value: '~30%' },
-      { label: 'Időtartam', value: '8 hét' },
-    ],
-  },
-  {
-    company: 'Gyártóipari Vállalat',
-    location: 'Debrecen, 500 fő',
-    icon: Shield,
-    result: 'Az EU AI Act felkészülés beindult, a csapat elkezdett AI-t használni',
-    description: 'Egy nagyvállalat érintett dolgozóinak kellett AI-kompetencia képzést biztosítani az EU AI Act előírásaira felkészülve. Az AI Work Fluency minden dolgozónak a saját munkakörére szabott feladatokat generált — a minőségellenőrtől a logisztikai koordinátorig.',
-    quote: '"A kollégák elkezdték használni az AI-t a napi munkában, és közben az EU AI Act felkészülés is halad. Kétszeres eredmény."',
-    quotee: 'HR Igazgató',
-    metrics: [
-      { label: 'Érintett dolgozók', value: '85 fő' },
-      { label: 'AI-képzés állapota', value: 'folyamatban' },
-      { label: 'Bevezetés', value: '6 hét' },
-    ],
-  },
-];
-
 export default function CaseStudiesPage() {
-  const t = getDictionary('hu');
+  const t = getDictionary(defaultLocale);
+
+  const caseStudies = [
+    {
+      company: t.cases_1_company,
+      location: t.cases_1_location,
+      icon: TrendingUp,
+      result: t.cases_1_result,
+      description: t.cases_1_desc,
+      quote: t.cases_1_quote,
+      quotee: t.cases_1_quotee,
+      metrics: [
+        { label: t.cases_1_m1_label, value: t.cases_1_m1_value },
+        { label: t.cases_1_m2_label, value: t.cases_1_m2_value },
+        { label: t.cases_1_m3_label, value: t.cases_1_m3_value },
+      ],
+    },
+    {
+      company: t.cases_2_company,
+      location: t.cases_2_location,
+      icon: Users,
+      result: t.cases_2_result,
+      description: t.cases_2_desc,
+      quote: t.cases_2_quote,
+      quotee: t.cases_2_quotee,
+      metrics: [
+        { label: t.cases_2_m1_label, value: t.cases_2_m1_value },
+        { label: t.cases_2_m2_label, value: t.cases_2_m2_value },
+        { label: t.cases_2_m3_label, value: t.cases_2_m3_value },
+      ],
+    },
+    {
+      company: t.cases_3_company,
+      location: t.cases_3_location,
+      icon: Shield,
+      result: t.cases_3_result,
+      description: t.cases_3_desc,
+      quote: t.cases_3_quote,
+      quotee: t.cases_3_quotee,
+      metrics: [
+        { label: t.cases_3_m1_label, value: t.cases_3_m1_value },
+        { label: t.cases_3_m2_label, value: t.cases_3_m2_value },
+        { label: t.cases_3_m3_label, value: t.cases_3_m3_value },
+      ],
+    },
+  ];
 
   return (
     <div className="min-h-screen">
@@ -66,10 +66,10 @@ export default function CaseStudiesPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-brand-50 via-white to-orange-50" />
         <div className="relative max-w-6xl mx-auto px-4 pt-16 pb-12">
           <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
-            Esettanulmányok
+            {t.cases_title}
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl">
-            Hogyan segít az AI Work Fluency valódi cégeknek? Íme néhány példa.
+            {t.cases_subtitle}
           </p>
         </div>
       </section>
@@ -116,10 +116,10 @@ export default function CaseStudiesPage() {
       {/* CTA */}
       <section className="py-16 bg-brand-600">
         <div className="max-w-3xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">Hasonló eredményeket szeretnél?</h2>
-          <p className="text-lg text-brand-100 mb-8">Próbáld ki az AI Work Fluency-t és nézd meg, hogyan működik a gyakorlatban.</p>
-          <Link href="/assessment?lang=hu" className="bg-white text-brand-700 hover:bg-gray-100 font-bold text-lg py-4 px-10 rounded-lg inline-flex items-center gap-2 transition-colors">
-            Kipróbálom
+          <h2 className="text-3xl font-bold text-white mb-4">{t.cases_cta_title}</h2>
+          <p className="text-lg text-brand-100 mb-8">{t.cases_cta_desc}</p>
+          <Link href="/assessment" className="bg-white text-brand-700 hover:bg-gray-100 font-bold text-lg py-4 px-10 rounded-lg inline-flex items-center gap-2 transition-colors">
+            {t.cases_cta_button}
             <ArrowRight className="w-5 h-5" />
           </Link>
         </div>

@@ -1,11 +1,12 @@
 'use client';
 
-import { Suspense, useState, useMemo } from 'react';
+import { Suspense, useState, useMemo, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { getQuestions, getBlockLabels } from '@/lib/assessment/questions';
 import { calculateScores } from '@/lib/assessment/scoring';
 import { AssessmentAnswer } from '@/types';
 import { Shield, ArrowLeft, ArrowRight, CheckCircle } from 'lucide-react';
+import { createClient } from '@/lib/supabase/client';
 import Link from 'next/link';
 
 const BLOCKS = ['your_work', 'ai_experience', 'your_goals'];
@@ -22,13 +23,25 @@ function AssessmentContent() {
   const searchParams = useSearchParams();
   const lang = searchParams.get('lang') || 'en';
   const isHu = lang === 'hu';
+  const router = useRouter();
+
+  // Redirect logged-in users to dashboard
+  useEffect(() => {
+    async function checkAuth() {
+      const supabase = createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        router.push('/dashboard');
+      }
+    }
+    checkAuth();
+  }, [router]);
 
   const questions = useMemo(() => getQuestions(lang), [lang]);
   const blockLabels = useMemo(() => getBlockLabels(lang), [lang]);
 
   const [currentBlock, setCurrentBlock] = useState(0);
-  const [answers, setAnswers] = useState<Record<string, string | string[] | number>>({});
-  const router = useRouter();
+  const [answers, setAnswers] = useState<Record<string, string | string[] | number>>({ q3_computer_pct: 90 });
 
   const blockQuestions = useMemo(
     () => questions.filter(q => q.block === BLOCKS[currentBlock]),
@@ -167,13 +180,13 @@ function AssessmentContent() {
                     type="range"
                     min={q.slider_min}
                     max={q.slider_max}
-                    value={(answers[q.id] as number) ?? 50}
+                    value={(answers[q.id] as number) ?? 90}
                     onChange={e => setAnswer(q.id, parseInt(e.target.value))}
                     className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-brand-600"
                   />
                   <div className="flex justify-between text-xs text-gray-500 mt-2">
                     <span>{q.slider_labels?.[0]}</span>
-                    <span className="font-semibold text-brand-600 text-base">{(answers[q.id] as number) ?? 50}%</span>
+                    <span className="font-semibold text-brand-600 text-base">{(answers[q.id] as number) ?? 90}%</span>
                     <span>{q.slider_labels?.[1]}</span>
                   </div>
                 </div>

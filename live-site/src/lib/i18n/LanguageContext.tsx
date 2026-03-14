@@ -19,13 +19,22 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Locale>(defaultLocale);
 
   useEffect(() => {
-    // Check URL param first, then localStorage
+    // 1. Check ?lang= query param
     const urlParam = new URLSearchParams(window.location.search).get('lang');
     if (urlParam === 'en' || urlParam === 'hu') {
       setLangState(urlParam);
       localStorage.setItem('app_lang', urlParam);
       return;
     }
+    // 2. Detect locale from URL path (e.g. /hu, /hu/..., /corp/hu, /eu-ai-act/hu)
+    const pathParts = window.location.pathname.split('/');
+    const pathLocale = pathParts.find(p => p === 'hu' || p === 'en');
+    if (pathLocale === 'en' || pathLocale === 'hu') {
+      setLangState(pathLocale);
+      localStorage.setItem('app_lang', pathLocale);
+      return;
+    }
+    // 3. Fall back to localStorage
     const stored = localStorage.getItem('app_lang') as Locale | null;
     if (stored && (stored === 'en' || stored === 'hu')) {
       setLangState(stored);

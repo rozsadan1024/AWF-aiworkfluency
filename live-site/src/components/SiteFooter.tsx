@@ -26,14 +26,14 @@ export function SiteFooter({ t }: { t: Record<string, string> }) {
             <div className="text-white font-semibold mb-4">{t.footer_company}</div>
             <ul className="space-y-2 text-sm">
               <li><Link href="/rolunk" className="hover:text-white transition-colors">{t.footer_about}</Link></li>
-              <li><a href="#" className="hover:text-white transition-colors">{t.footer_contact}</a></li>
+              <li><a href="mailto:hello@aiworkfluency.com" className="hover:text-white transition-colors">{t.footer_contact}</a></li>
             </ul>
           </div>
           <div>
             <div className="text-white font-semibold mb-4">{t.footer_legal}</div>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="hover:text-white transition-colors">{t.footer_privacy}</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">{t.footer_terms}</a></li>
+              <li><Link href="/privacy" className="hover:text-white transition-colors">{t.footer_privacy}</Link></li>
+              <li><Link href="/terms" className="hover:text-white transition-colors">{t.footer_terms}</Link></li>
             </ul>
           </div>
         </div>

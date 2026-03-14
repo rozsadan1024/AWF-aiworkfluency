@@ -9,13 +9,11 @@ import { Shield, ArrowLeft, ArrowRight, Loader2, Star, TrendingUp, Lightbulb } f
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 const DIMENSION_KEYS = [
-  { key: 'output_quality', tKey: 'eval_dim_output_quality', weight: '30%' },
-  { key: 'ai_leverage', tKey: 'eval_dim_ai_leverage', weight: '20%' },
+  { key: 'output_quality', tKey: 'eval_dim_output_quality', weight: '35%' },
+  { key: 'ai_leverage', tKey: 'eval_dim_ai_leverage', weight: '25%' },
   { key: 'prompt_sophistication', tKey: 'eval_dim_prompt_sophistication', weight: '15%' },
   { key: 'human_judgment', tKey: 'eval_dim_human_judgment', weight: '15%' },
   { key: 'iteration_skill', tKey: 'eval_dim_iteration_skill', weight: '10%' },
-  { key: 'time_efficiency', tKey: 'eval_dim_time_efficiency', weight: '5%' },
-  { key: 'tool_selection', tKey: 'eval_dim_tool_selection', weight: '5%' },
 ];
 
 function scoreColor(score: number): string {

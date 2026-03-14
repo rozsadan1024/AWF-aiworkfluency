@@ -17,10 +17,20 @@ export default function SignupPage() {
   const router = useRouter();
   const { t } = useLanguage();
 
+  // Read redirect/upgrade intent from URL params
+  const searchParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
+  const redirectTo = searchParams?.get('redirect') || '/onboarding';
+  const upgradeTier = searchParams?.get('upgrade');
+
   async function handleSignup(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
     setError('');
+
+    // Build callback URL preserving upgrade intent
+    const callbackNext = upgradeTier
+      ? `${redirectTo}?upgrade=${upgradeTier}`
+      : redirectTo;
 
     try {
       const supabase = createClient();
@@ -29,14 +39,14 @@ export default function SignupPage() {
         password,
         options: {
           data: { full_name: fullName },
-          emailRedirectTo: `${window.location.origin}/auth/callback?next=/onboarding`,
+          emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(callbackNext)}`,
         },
       });
 
       if (error) {
         setError(error.message);
       } else if (data.session) {
-        router.push('/onboarding');
+        router.push(callbackNext);
         router.refresh();
       } else {
         setEmailSent(true);

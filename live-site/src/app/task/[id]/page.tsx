@@ -33,6 +33,8 @@ export default function TaskPage() {
   const [sending, setSending] = useState(false);
   const [wsError, setWsError] = useState('');
   const [turnsRemaining, setTurnsRemaining] = useState(5);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const chatEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -116,6 +118,45 @@ export default function TaskPage() {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSend();
+    }
+  }
+
+  async function handleSubmitWork() {
+    if (submitting || turns.length === 0) return;
+    setSubmitting(true);
+    setSubmitError('');
+
+    try {
+      const supabase = createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) throw new Error('Not authenticated');
+
+      // Use the last AI response as the final output
+      const lastTurn = turns[turns.length - 1];
+      const finalOutput = lastTurn.ai_response;
+
+      const { data: submission, error: subError } = await supabase.from('submissions').insert({
+        task_id: id,
+        user_id: user.id,
+        final_output: finalOutput,
+      }).select().single();
+
+      if (subError) throw subError;
+
+      await supabase.from('tasks').update({ status: 'submitted' }).eq('id', id);
+
+      const evalRes = await fetch('/api/evaluate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ submission_id: submission.id, task_id: id }),
+      });
+
+      if (!evalRes.ok) throw new Error('Evaluation failed');
+
+      router.push(`/task/${id}/evaluation`);
+    } catch (err: unknown) {
+      setSubmitError(err instanceof Error ? err.message : t.common_error);
+      setSubmitting(false);
     }
   }
 
@@ -304,20 +345,34 @@ export default function TaskPage() {
         )}
 
         {/* Actions */}
-        <div className="flex gap-4">
+        <div className="flex flex-col gap-3">
           {isCompleted ? (
-            <Link href={`/task/${task.id}/evaluation`} className="btn-primary flex items-center gap-2">
+            <Link href={`/task/${task.id}/evaluation`} className="btn-primary flex items-center justify-center gap-2">
               {t.task_view_results} <ArrowRight className="w-4 h-4" />
             </Link>
-          ) : (
+          ) : turns.length > 0 ? (
             <>
-              <Link href={`/task/${task.id}/submit`} className="btn-primary flex items-center gap-2 text-lg py-4 px-8">
-                {t.task_submit_button} <ArrowRight className="w-5 h-5" />
-              </Link>
-              {turns.length > 0 && (
-                <span className="text-xs text-gray-400 self-center">{t.ws_conv_included}</span>
-              )}
+              <button
+                onClick={handleSubmitWork}
+                disabled={submitting}
+                className="btn-primary w-full flex items-center justify-center gap-2 text-lg py-4"
+              >
+                {submitting ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    {t.sub_submitting}
+                  </>
+                ) : (
+                  <>
+                    {t.task_submit_button} <ArrowRight className="w-5 h-5" />
+                  </>
+                )}
+              </button>
+              <p className="text-xs text-gray-400 text-center">{t.ws_conv_included}</p>
             </>
+          ) : null}
+          {submitError && (
+            <div className="bg-red-50 text-red-700 text-sm px-4 py-3 rounded-lg">{submitError}</div>
           )}
         </div>
       </div>

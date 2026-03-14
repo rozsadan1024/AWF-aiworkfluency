@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { Task } from '@/types';
 import { useParams, useRouter } from 'next/navigation';
@@ -22,9 +22,21 @@ export default function SubmitPage() {
   const [timeSpent, setTimeSpent] = useState('');
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
+  const [evalMsgIndex, setEvalMsgIndex] = useState(0);
   const [error, setError] = useState('');
   const router = useRouter();
   const { t } = useLanguage();
+  const evalMsgRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const evalMessages = [
+    t.sub_eval_msg_1, t.sub_eval_msg_2, t.sub_eval_msg_3,
+    t.sub_eval_msg_4, t.sub_eval_msg_5,
+  ];
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => { if (evalMsgRef.current) clearInterval(evalMsgRef.current); };
+  }, []);
 
   useEffect(() => {
     async function load() {
@@ -45,7 +57,13 @@ export default function SubmitPage() {
     e.preventDefault();
     if (!output.trim()) return;
     setSubmitting(true);
+    setEvalMsgIndex(0);
     setError('');
+
+    // Rotate encouraging messages every 10 seconds
+    evalMsgRef.current = setInterval(() => {
+      setEvalMsgIndex(prev => prev + 1);
+    }, 10000);
 
     try {
       const supabase = createClient();
@@ -74,6 +92,7 @@ export default function SubmitPage() {
 
       router.push(`/task/${id}/evaluation`);
     } catch (err: unknown) {
+      if (evalMsgRef.current) { clearInterval(evalMsgRef.current); evalMsgRef.current = null; }
       setError(err instanceof Error ? err.message : t.common_error);
       setSubmitting(false);
     }
@@ -149,7 +168,7 @@ export default function SubmitPage() {
                 onChange={e => setTimeSpent(e.target.value)}
                 min="1"
                 max="300"
-                placeholder="pl. 20"
+                placeholder={t.sub_time_placeholder}
               />
               <span className="text-sm text-gray-500">{t.sub_time_benchmark} ~{task.estimated_minutes} {t.sub_time_min}</span>
             </div>
@@ -159,23 +178,24 @@ export default function SubmitPage() {
             <div className="bg-red-50 text-red-700 text-sm px-4 py-3 rounded-lg">{error}</div>
           )}
 
-          <button
-            type="submit"
-            className="btn-primary w-full flex items-center justify-center gap-2 text-lg py-4"
-            disabled={submitting || !output.trim()}
-          >
-            {submitting ? (
-              <>
-                <Loader2 className="w-5 h-5 animate-spin" />
-                {t.sub_submitting}
-              </>
-            ) : (
-              <>
-                <Send className="w-5 h-5" />
-                {t.sub_submit_button}
-              </>
-            )}
-          </button>
+          {submitting ? (
+            <div className="card text-center py-8">
+              <Loader2 className="w-10 h-10 animate-spin text-brand-600 mx-auto mb-4" />
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">{t.sub_submitting}</h3>
+              <p className="text-gray-500 transition-opacity duration-500">
+                {evalMessages[evalMsgIndex % evalMessages.length]}
+              </p>
+            </div>
+          ) : (
+            <button
+              type="submit"
+              className="btn-primary w-full flex items-center justify-center gap-2 text-lg py-4"
+              disabled={!output.trim()}
+            >
+              <Send className="w-5 h-5" />
+              {t.sub_submit_button}
+            </button>
+          )}
         </form>
       </div>
     </div>

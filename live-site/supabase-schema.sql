@@ -14,6 +14,7 @@ CREATE TABLE public.profiles (
   created_at TIMESTAMPTZ DEFAULT NOW(),
   subscription_tier TEXT DEFAULT 'free' CHECK (subscription_tier IN ('free', 'basic', 'pro')),
   subscription_expires_at TIMESTAMPTZ,
+  stripe_customer_id TEXT UNIQUE,
   onboarding_completed BOOLEAN DEFAULT FALSE
 );
 
@@ -187,3 +188,7 @@ CREATE POLICY "Users can insert own conversations" ON public.conversations FOR I
 
 ALTER TABLE public.evaluations ADD COLUMN IF NOT EXISTS top_strength TEXT;
 ALTER TABLE public.evaluations ADD COLUMN IF NOT EXISTS top_improvement TEXT;
+
+-- Stripe integration
+ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS stripe_customer_id TEXT UNIQUE;
+CREATE INDEX IF NOT EXISTS idx_profiles_stripe_customer_id ON public.profiles(stripe_customer_id);

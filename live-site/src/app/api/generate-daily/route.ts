@@ -4,21 +4,55 @@ import { anthropic, MODEL, extractJSON } from '@/lib/kimi/client';
 import { DAILY_TASK_PROMPT } from '@/lib/kimi/prompts';
 import { ADMIN_KNOWLEDGE_BASE } from '@/lib/knowledge-base/admin';
 
+const DAILY_TASK_LIMIT = 5;
+
 export async function POST() {
   try {
     const supabase = createServerSupabase();
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
-    // Check if user already has a quick task created today
+    // Check subscription tier — daily tasks are paid-only
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('subscription_tier')
+      .eq('id', user.id)
+      .single();
+
+    const tier = profile?.subscription_tier || 'free';
+    if (tier === 'free') {
+      return NextResponse.json({
+        error: 'upgrade_required',
+        message: 'Daily tasks require a Pro subscription.',
+      }, { status: 403 });
+    }
+
+    // Check daily limit across all task types
     const today = new Date();
     today.setHours(0, 0, 0, 0);
+    const { count: todayTotal } = await supabase
+      .from('tasks')
+      .select('id', { count: 'exact', head: true })
+      .eq('user_id', user.id)
+      .gte('created_at', today.toISOString());
+
+    if ((todayTotal || 0) >= DAILY_TASK_LIMIT) {
+      return NextResponse.json({
+        error: 'daily_limit_reached',
+        message: 'Daily task limit reached. Come back tomorrow!',
+        limit: DAILY_TASK_LIMIT,
+      }, { status: 429 });
+    }
+
+    // Check if user already has a quick task created today
+    const todayStart = new Date();
+    todayStart.setHours(0, 0, 0, 0);
     const { data: existingToday } = await supabase
       .from('tasks')
       .select('id, title, status')
       .eq('user_id', user.id)
       .eq('difficulty', 'quick')
-      .gte('created_at', today.toISOString())
+      .gte('created_at', todayStart.toISOString())
       .limit(1)
       .single();
 

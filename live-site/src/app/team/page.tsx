@@ -4,7 +4,8 @@ import { useEffect, useState, useCallback } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Shield, LogOut, Users, UserPlus, BarChart3, Award, Loader2, ArrowLeft } from 'lucide-react';
+import { Shield, LogOut, Users, UserPlus, BarChart3, Award, Loader2 } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 interface TeamMemberRow {
   id: string;
@@ -31,13 +32,13 @@ export default function TeamDashboardPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const router = useRouter();
+  const { t } = useLanguage();
 
   const loadData = useCallback(async () => {
     const supabase = createClient();
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) { router.push('/auth/login'); return; }
 
-    // Check if user is a leader
     const { data: profile } = await supabase
       .from('profiles')
       .select('role')
@@ -49,7 +50,6 @@ export default function TeamDashboardPage() {
       return;
     }
 
-    // Load team
     const { data: team } = await supabase
       .from('teams')
       .select('*')
@@ -57,14 +57,13 @@ export default function TeamDashboardPage() {
       .single();
 
     if (!team) {
-      setError('No team found. Please contact support.');
+      setError(t.team_error_no_team);
       setLoading(false);
       return;
     }
 
     setTeamName(team.name);
 
-    // Load team members
     const { data: teamMembers } = await supabase
       .from('team_members')
       .select('*')
@@ -77,7 +76,6 @@ export default function TeamDashboardPage() {
       return;
     }
 
-    // For active members, load their profiles and progress
     const enrichedMembers: TeamMemberRow[] = [];
     for (const m of teamMembers) {
       const row: TeamMemberRow = { ...m };
@@ -94,7 +92,7 @@ export default function TeamDashboardPage() {
 
     setMembers(enrichedMembers);
     setLoading(false);
-  }, [router]);
+  }, [router, t]);
 
   useEffect(() => { loadData(); }, [loadData]);
 
@@ -110,7 +108,7 @@ export default function TeamDashboardPage() {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="flex flex-col items-center gap-3">
           <Loader2 className="w-8 h-8 animate-spin text-brand-600" />
-          <p className="text-gray-600">Loading team dashboard...</p>
+          <p className="text-gray-600">{t.team_loading}</p>
         </div>
       </div>
     );
@@ -125,35 +123,33 @@ export default function TeamDashboardPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Nav */}
       <nav className="bg-white border-b border-gray-200 sticky top-0 z-10">
         <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <Shield className="w-6 h-6 text-brand-600" />
-              <span className="text-xl font-bold">AIProof</span>
+              <span className="text-xl font-bold">{t.common_brand}</span>
             </div>
             <div className="flex items-center gap-2 text-sm">
-              <Link href="/dashboard" className="text-gray-500 hover:text-gray-700">My Tasks</Link>
+              <Link href="/dashboard" className="text-gray-500 hover:text-gray-700">{t.team_nav_tasks}</Link>
               <span className="text-gray-300">|</span>
-              <span className="text-brand-600 font-medium">Team</span>
+              <span className="text-brand-600 font-medium">{t.team_nav_team}</span>
             </div>
           </div>
-          <button onClick={handleLogout} className="text-gray-400 hover:text-gray-600">
+          <button onClick={handleLogout} className="text-gray-400 hover:text-gray-600" title={t.common_logout}>
             <LogOut className="w-5 h-5" />
           </button>
         </div>
       </nav>
 
       <div className="max-w-5xl mx-auto px-4 py-8">
-        {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">{teamName}</h1>
-            <p className="text-gray-600 mt-1">{members.length} member{members.length !== 1 ? 's' : ''} ({activeMembers.length} active, {invitedMembers.length} invited)</p>
+            <p className="text-gray-600 mt-1">{members.length} {t.team_members_count} ({activeMembers.length} {t.team_active}, {invitedMembers.length} {t.team_invited})</p>
           </div>
           <Link href="/team/invite" className="btn-primary flex items-center gap-2">
-            <UserPlus className="w-4 h-4" /> Invite Members
+            <UserPlus className="w-4 h-4" /> {t.team_invite_button}
           </Link>
         </div>
 
@@ -161,33 +157,31 @@ export default function TeamDashboardPage() {
           <div className="bg-red-50 text-red-700 text-sm px-4 py-3 rounded-lg mb-6">{error}</div>
         )}
 
-        {/* Aggregate Stats */}
         <div className="grid grid-cols-3 gap-4 mb-8">
           <div className="card text-center">
             <Users className="w-6 h-6 text-brand-600 mx-auto mb-1" />
             <div className="text-2xl font-bold text-gray-900">{activeMembers.length}</div>
-            <div className="text-xs text-gray-500">Active Members</div>
+            <div className="text-xs text-gray-500">{t.team_stat_active}</div>
           </div>
           <div className="card text-center">
             <BarChart3 className="w-6 h-6 text-brand-600 mx-auto mb-1" />
             <div className="text-2xl font-bold text-gray-900">{avgTeamScore}</div>
-            <div className="text-xs text-gray-500">Avg Team Score</div>
+            <div className="text-xs text-gray-500">{t.team_stat_avg_score}</div>
           </div>
           <div className="card text-center">
             <Award className="w-6 h-6 text-brand-600 mx-auto mb-1" />
             <div className="text-2xl font-bold text-gray-900">{totalTasks}</div>
-            <div className="text-xs text-gray-500">Total Tasks Done</div>
+            <div className="text-xs text-gray-500">{t.team_stat_tasks_done}</div>
           </div>
         </div>
 
-        {/* Members Table */}
         {members.length === 0 ? (
           <div className="card text-center py-12">
             <Users className="w-10 h-10 text-gray-300 mx-auto mb-3" />
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">No team members yet</h3>
-            <p className="text-gray-600 mb-4">Invite your team members by email to get started.</p>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">{t.team_no_members}</h3>
+            <p className="text-gray-600 mb-4">{t.team_no_members_desc}</p>
             <Link href="/team/invite" className="btn-primary inline-flex items-center gap-2">
-              <UserPlus className="w-4 h-4" /> Invite Members
+              <UserPlus className="w-4 h-4" /> {t.team_invite_button}
             </Link>
           </div>
         ) : (
@@ -195,12 +189,12 @@ export default function TeamDashboardPage() {
             <table className="w-full">
               <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>
-                  <th className="text-left px-4 py-3 text-xs font-medium text-gray-500 uppercase">Name</th>
-                  <th className="text-left px-4 py-3 text-xs font-medium text-gray-500 uppercase">Status</th>
-                  <th className="text-center px-4 py-3 text-xs font-medium text-gray-500 uppercase">Tasks</th>
-                  <th className="text-center px-4 py-3 text-xs font-medium text-gray-500 uppercase">Avg Score</th>
-                  <th className="text-center px-4 py-3 text-xs font-medium text-gray-500 uppercase">Level</th>
-                  <th className="text-right px-4 py-3 text-xs font-medium text-gray-500 uppercase">Last Active</th>
+                  <th className="text-left px-4 py-3 text-xs font-medium text-gray-500 uppercase">{t.team_th_name}</th>
+                  <th className="text-left px-4 py-3 text-xs font-medium text-gray-500 uppercase">{t.team_th_status}</th>
+                  <th className="text-center px-4 py-3 text-xs font-medium text-gray-500 uppercase">{t.team_th_tasks}</th>
+                  <th className="text-center px-4 py-3 text-xs font-medium text-gray-500 uppercase">{t.team_th_score}</th>
+                  <th className="text-center px-4 py-3 text-xs font-medium text-gray-500 uppercase">{t.team_th_level}</th>
+                  <th className="text-right px-4 py-3 text-xs font-medium text-gray-500 uppercase">{t.team_th_last_active}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
@@ -209,7 +203,7 @@ export default function TeamDashboardPage() {
                     <td className="px-4 py-3">
                       <div>
                         <p className="text-sm font-medium text-gray-900">
-                          {m.profile?.full_name || m.invited_email || 'Unknown'}
+                          {m.profile?.full_name || m.invited_email || t.team_unknown}
                         </p>
                         {m.profile?.email && (
                           <p className="text-xs text-gray-500">{m.profile.email}</p>
@@ -222,7 +216,7 @@ export default function TeamDashboardPage() {
                           ? 'bg-green-100 text-green-700'
                           : 'bg-amber-100 text-amber-700'
                       }`}>
-                        {m.status === 'active' ? 'Active' : 'Invited'}
+                        {m.status === 'active' ? t.team_status_active : t.team_status_invited}
                       </span>
                     </td>
                     <td className="px-4 py-3 text-center text-sm text-gray-900">

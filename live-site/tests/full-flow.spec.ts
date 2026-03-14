@@ -192,32 +192,13 @@ test.describe.serial('Full User Journey (HU)', () => {
     console.log('Turns indicator:', turnsText);
   });
 
-  test('6. Navigate to submit page and submit work', async () => {
-    // Click submit button
-    const submitLink = page.locator('a[href*="/submit"]').first();
-    await submitLink.click();
+  test('6. Submit work directly from task page', async () => {
+    // The submit button should now be visible on the task page (after workspace interaction)
+    const submitBtn = page.locator('button:has-text("Munkám beadása"), button:has-text("Kész vagyok")').first();
+    await submitBtn.waitFor({ timeout: 10_000 });
 
-    await page.waitForURL('**/submit**');
-    await page.waitForSelector('h1');
-
-    // Verify Hungarian UI
-    const title = await page.textContent('h1');
-    console.log('Submit page title:', title);
-    expect(title).toContain('Beadás');
-
-    // Fill submission form — only final output textarea remains
-    const textarea = page.locator('textarea');
-    await textarea.fill(SUBMISSION.output);
-
-    // Select tools
-    await page.click('button:has-text("ChatGPT")');
-    await page.click('button:has-text("Excel")');
-
-    // Fill time
-    await page.fill('input[type="number"]', '15');
-
-    console.log('Submitting work...');
-    await page.click('button[type="submit"]');
+    console.log('Submitting work from task page...');
+    await submitBtn.click();
 
     // Wait for evaluation (this calls the evaluate API which takes 15-30s)
     console.log('Waiting for evaluation...');

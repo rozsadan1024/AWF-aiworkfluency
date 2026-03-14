@@ -139,10 +139,10 @@ export default function ResultsPage() {
       localStorage.setItem("pending_assessment", "true");
 
       // Always redirect to signup - let auth flow handle logged-in users there
-      await router.push("/auth/signup");
+      await router.push(`/auth/signup${lang === 'hu' ? '?lang=hu' : ''}`);
     } catch (err) {
       console.error("Signup redirect error:", err);
-      try { await router.push("/auth/signup"); } catch (e) {}
+      try { await router.push(`/auth/signup${lang === 'hu' ? '?lang=hu' : ''}`); } catch (e) {}
     } finally {
       setSaving(false);
     }

@@ -5,12 +5,12 @@ const nextConfig = {
     return [
       {
         source: '/',
-        destination: '/hu',
+        destination: '/en',
         permanent: false,
       },
-{
+      {
         source: '/de',
-        destination: '/hu',
+        destination: '/en',
         permanent: true,
       },
     ];

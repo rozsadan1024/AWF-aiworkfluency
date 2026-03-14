@@ -5,6 +5,7 @@ import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Shield, LogOut, ArrowLeft, UserPlus, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 export default function InviteMembersPage() {
   const [emails, setEmails] = useState('');
@@ -14,6 +15,7 @@ export default function InviteMembersPage() {
   const [result, setResult] = useState<{ added: number; duplicates: number; invalid: number } | null>(null);
   const [error, setError] = useState('');
   const router = useRouter();
+  const { t } = useLanguage();
 
   const init = useCallback(async () => {
     const supabase = createClient();
@@ -38,14 +40,14 @@ export default function InviteMembersPage() {
       .single();
 
     if (!team) {
-      setError('No team found. Please contact support.');
+      setError(t.team_error_no_team);
       setLoading(false);
       return;
     }
 
     setTeamId(team.id);
     setLoading(false);
-  }, [router]);
+  }, [router, t]);
 
   useEffect(() => { init(); }, [init]);
 
@@ -63,7 +65,6 @@ export default function InviteMembersPage() {
       .map(e => e.trim().toLowerCase())
       .filter(e => e.length > 0);
 
-    // Basic email validation
     const validEmails: string[] = [];
     let invalid = 0;
     for (const email of emailList) {
@@ -74,7 +75,6 @@ export default function InviteMembersPage() {
       }
     }
 
-    // Check existing members to avoid duplicates
     const { data: existing } = await supabase
       .from('team_members')
       .select('invited_email')
@@ -85,7 +85,6 @@ export default function InviteMembersPage() {
     const duplicates = validEmails.length - newEmails.length;
 
     if (newEmails.length > 0) {
-      // Check if any of these emails already have accounts
       const { data: existingProfiles } = await supabase
         .from('profiles')
         .select('id, email')
@@ -106,7 +105,7 @@ export default function InviteMembersPage() {
         .insert(rows);
 
       if (insertError) {
-        setError('Failed to invite members. Please try again.');
+        setError(t.team_inv_error_failed);
         setSubmitting(false);
         return;
       }
@@ -138,9 +137,9 @@ export default function InviteMembersPage() {
         <div className="max-w-2xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Shield className="w-6 h-6 text-brand-600" />
-            <span className="text-xl font-bold">AIProof</span>
+            <span className="text-xl font-bold">{t.common_brand}</span>
           </div>
-          <button onClick={handleLogout} className="text-gray-400 hover:text-gray-600">
+          <button onClick={handleLogout} className="text-gray-400 hover:text-gray-600" title={t.common_logout}>
             <LogOut className="w-5 h-5" />
           </button>
         </div>
@@ -148,17 +147,17 @@ export default function InviteMembersPage() {
 
       <div className="max-w-2xl mx-auto px-4 py-8">
         <Link href="/team" className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700 mb-6">
-          <ArrowLeft className="w-4 h-4" /> Back to Team Dashboard
+          <ArrowLeft className="w-4 h-4" /> {t.team_inv_back}
         </Link>
 
         <div className="card">
           <div className="flex items-center gap-3 mb-6">
             <UserPlus className="w-6 h-6 text-brand-600" />
-            <h1 className="text-xl font-bold text-gray-900">Invite Team Members</h1>
+            <h1 className="text-xl font-bold text-gray-900">{t.team_inv_title}</h1>
           </div>
 
           <p className="text-gray-600 text-sm mb-6">
-            Enter email addresses to invite team members. When they sign up with that email, they will automatically join your team.
+            {t.team_inv_desc}
           </p>
 
           {error && (
@@ -172,28 +171,28 @@ export default function InviteMembersPage() {
             <div className="bg-green-50 text-green-700 text-sm px-4 py-3 rounded-lg mb-4">
               <div className="flex items-center gap-2 mb-1">
                 <CheckCircle className="w-4 h-4" />
-                <span className="font-medium">Invitations processed</span>
+                <span className="font-medium">{t.team_inv_processed}</span>
               </div>
               <ul className="ml-6 space-y-0.5">
-                {result.added > 0 && <li>{result.added} member{result.added !== 1 ? 's' : ''} invited</li>}
-                {result.duplicates > 0 && <li>{result.duplicates} already invited (skipped)</li>}
-                {result.invalid > 0 && <li>{result.invalid} invalid email{result.invalid !== 1 ? 's' : ''} (skipped)</li>}
+                {result.added > 0 && <li>{result.added} {t.team_inv_added}</li>}
+                {result.duplicates > 0 && <li>{result.duplicates} {t.team_inv_duplicates}</li>}
+                {result.invalid > 0 && <li>{result.invalid} {t.team_inv_invalid}</li>}
               </ul>
             </div>
           )}
 
           <form onSubmit={handleSubmit}>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Email addresses
+              {t.team_inv_email_label}
             </label>
             <textarea
               value={emails}
               onChange={e => setEmails(e.target.value)}
-              placeholder="Enter email addresses, one per line or comma-separated&#10;e.g. anna.kovacs@company.hu, peter.nagy@company.hu"
+              placeholder={t.team_inv_email_placeholder}
               className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm min-h-[120px] focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none resize-y"
             />
             <p className="text-xs text-gray-500 mt-1 mb-4">
-              Separate multiple emails with commas or new lines.
+              {t.team_inv_email_hint}
             </p>
 
             <button
@@ -203,11 +202,11 @@ export default function InviteMembersPage() {
             >
               {submitting ? (
                 <>
-                  <Loader2 className="w-4 h-4 animate-spin" /> Processing...
+                  <Loader2 className="w-4 h-4 animate-spin" /> {t.team_inv_processing}
                 </>
               ) : (
                 <>
-                  <UserPlus className="w-4 h-4" /> Send Invitations
+                  <UserPlus className="w-4 h-4" /> {t.team_inv_send}
                 </>
               )}
             </button>

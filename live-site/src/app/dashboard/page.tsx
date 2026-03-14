@@ -5,7 +5,7 @@ import { createClient } from '@/lib/supabase/client';
 import { Task, UserProgress, Profile } from '@/types';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Shield, LogOut, Clock, Zap, BarChart3, Award, Loader2, RefreshCw, ChevronRight } from 'lucide-react';
+import { Shield, LogOut, Clock, Zap, BarChart3, Award, Loader2, RefreshCw, ChevronRight, Crown, ExternalLink } from 'lucide-react';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 const DIFFICULTY_COLORS: Record<string, string> = {
@@ -20,20 +20,33 @@ export default function DashboardPage() {
   const [progress, setProgress] = useState<UserProgress | null>(null);
   const [loading, setLoading] = useState(true);
   const [generating, setGenerating] = useState(false);
+  const [checkoutMsg, setCheckoutMsg] = useState<string | null>(null);
   const [genCount, setGenCount] = useState(0);
+  const [limitMsg, setLimitMsg] = useState<string | null>(null);
   const router = useRouter();
   const { t } = useLanguage();
+  const [genMsgIndex, setGenMsgIndex] = useState(0);
   const generatingRef = useRef(false);
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const genStartRef = useRef<string | null>(null);
+  const msgIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const difficultyLabel = (d: string) =>
     t[`difficulty_${d}`] || d;
+
+  const genMessages = [
+    t.dash_gen_msg_1, t.dash_gen_msg_2, t.dash_gen_msg_3,
+    t.dash_gen_msg_4, t.dash_gen_msg_5, t.dash_gen_msg_6,
+  ];
 
   const stopPolling = useCallback(() => {
     if (pollRef.current) {
       clearInterval(pollRef.current);
       pollRef.current = null;
+    }
+    if (msgIntervalRef.current) {
+      clearInterval(msgIntervalRef.current);
+      msgIntervalRef.current = null;
     }
   }, []);
 
@@ -69,6 +82,44 @@ export default function DashboardPage() {
 
   useEffect(() => { loadData(); }, [loadData]);
 
+  // Handle checkout redirect and upgrade param
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const checkout = params.get('checkout');
+    const upgrade = params.get('upgrade');
+    if (checkout === 'success') {
+      setCheckoutMsg(t.dash_checkout_success || 'Subscription activated!');
+      window.history.replaceState({}, '', '/dashboard');
+    } else if (checkout === 'cancel') {
+      setCheckoutMsg(t.dash_checkout_cancel || 'Checkout cancelled.');
+      window.history.replaceState({}, '', '/dashboard');
+    } else if (upgrade === 'basic' || upgrade === 'pro') {
+      // Auto-trigger checkout when redirected from signup with upgrade intent
+      window.history.replaceState({}, '', '/dashboard');
+      handleCheckout(upgrade);
+    }
+  }, [t]);
+
+  // Re-fetch tasks when returning to dashboard (handles browser back, tab switch, Next.js navigation)
+  useEffect(() => {
+    function handleVisibility() {
+      if (document.visibilityState === 'visible' && !generatingRef.current) {
+        loadData();
+      }
+    }
+    function handleFocus() {
+      if (!generatingRef.current) {
+        loadData();
+      }
+    }
+    window.addEventListener('focus', handleFocus);
+    document.addEventListener('visibilitychange', handleVisibility);
+    return () => {
+      window.removeEventListener('focus', handleFocus);
+      document.removeEventListener('visibilitychange', handleVisibility);
+    };
+  }, [loadData]);
+
   // Cleanup polling on unmount
   useEffect(() => {
     return () => { stopPolling(); };
@@ -80,6 +131,12 @@ export default function DashboardPage() {
     generatingRef.current = true;
     setGenerating(true);
     setGenCount(0);
+    setGenMsgIndex(0);
+
+    // Rotate encouraging messages every 10 seconds
+    msgIntervalRef.current = setInterval(() => {
+      setGenMsgIndex(prev => prev + 1);
+    }, 10000);
 
     const startTime = new Date().toISOString();
     genStartRef.current = startTime;
@@ -87,6 +144,16 @@ export default function DashboardPage() {
     // Fire-and-forget: start API call
     const apiPromise = fetch("/api/generate-tasks", { method: "POST" })
       .then(async (res) => {
+        if (res.status === 403 || res.status === 429) {
+          const data = await res.json();
+          setLimitMsg(data.error === 'limit_reached'
+            ? (t.dash_free_limit || 'You\'ve used your 3 free exercises. Upgrade to Pro for unlimited practice!')
+            : (t.dash_daily_limit || 'Daily exercise limit reached. Come back tomorrow!'));
+          stopPolling();
+          generatingRef.current = false;
+          setGenerating(false);
+          return;
+        }
         if (!res.ok) console.error("Task generation failed:", await res.text());
       })
       .catch((e) => console.error("Task generation error:", e))
@@ -153,6 +220,34 @@ export default function DashboardPage() {
     }
   }
 
+  async function handleCheckout(tier: 'basic' | 'pro') {
+    try {
+      const res = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tier }),
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      }
+    } catch (e) {
+      console.error('Checkout error:', e);
+    }
+  }
+
+  async function handleManageSubscription() {
+    try {
+      const res = await fetch('/api/billing/portal', { method: 'POST' });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      }
+    } catch (e) {
+      console.error('Portal error:', e);
+    }
+  }
+
   async function handleLogout() {
     const supabase = createClient();
     await supabase.auth.signOut();
@@ -178,7 +273,7 @@ export default function DashboardPage() {
     );
   }
 
-  const pendingTasks = tasks.filter(t => t.status === 'pending' || t.status === 'in_progress');
+  const pendingTasks = tasks.filter(t => t.status === 'pending' || t.status === 'in_progress' || t.status === 'submitted');
   const completedTasks = tasks.filter(t => t.status === 'evaluated');
 
   return (
@@ -200,6 +295,64 @@ export default function DashboardPage() {
       </nav>
 
       <div className="max-w-5xl mx-auto px-4 py-8">
+        {/* Checkout message */}
+        {checkoutMsg && (
+          <div className={`mb-6 p-4 rounded-lg text-sm font-medium ${
+            checkoutMsg.includes('cancel') || checkoutMsg.includes('Megszak')
+              ? 'bg-amber-50 text-amber-800 border border-amber-200'
+              : 'bg-green-50 text-green-800 border border-green-200'
+          }`}>
+            {checkoutMsg}
+            <button onClick={() => setCheckoutMsg(null)} className="ml-3 underline text-xs">OK</button>
+          </div>
+        )}
+
+        {/* Limit message */}
+        {limitMsg && (
+          <div className="mb-6 p-4 rounded-lg bg-amber-50 border border-amber-200">
+            <p className="text-sm font-medium text-amber-800 mb-2">{limitMsg}</p>
+            {profile?.subscription_tier === 'free' && (
+              <button
+                onClick={() => handleCheckout('basic')}
+                className="text-sm font-bold text-brand-600 hover:text-brand-700 underline"
+              >
+                {t.dash_upgrade_now || 'Upgrade to Pro'}
+              </button>
+            )}
+          </div>
+        )}
+
+        {/* Subscription info */}
+        {profile && (
+          <div className="mb-6 flex items-center justify-between bg-white rounded-lg border border-gray-200 px-4 py-3">
+            <div className="flex items-center gap-2 text-sm">
+              <Crown className={`w-4 h-4 ${profile.subscription_tier === 'free' ? 'text-gray-400' : 'text-amber-500'}`} />
+              <span className="text-gray-600">
+                {profile.subscription_tier === 'free' && (t.dash_tier_free || 'Free')}
+                {profile.subscription_tier === 'basic' && (t.dash_tier_pro || 'Pro')}
+                {profile.subscription_tier === 'pro' && (t.dash_tier_proplus || 'Pro+')}
+              </span>
+            </div>
+            {profile.subscription_tier === 'free' ? (
+              <button
+                onClick={() => handleCheckout('basic')}
+                className="text-sm text-brand-600 hover:text-brand-700 font-medium flex items-center gap-1"
+              >
+                {t.dash_upgrade || 'Upgrade'}
+                <ExternalLink className="w-3.5 h-3.5" />
+              </button>
+            ) : (
+              <button
+                onClick={handleManageSubscription}
+                className="text-sm text-gray-500 hover:text-gray-700 flex items-center gap-1"
+              >
+                {t.dash_manage_sub || 'Manage subscription'}
+                <ExternalLink className="w-3.5 h-3.5" />
+              </button>
+            )}
+          </div>
+        )}
+
         {/* Progress Bar */}
         {progress && (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
@@ -236,7 +389,9 @@ export default function DashboardPage() {
                 : t.dash_gen_preparing
               }
             </h3>
-            <p className="text-gray-600">{t.dash_generating_desc}</p>
+            <p className="text-gray-500 transition-opacity duration-500">
+              {genMessages[genMsgIndex % genMessages.length]}
+            </p>
             {/* Progress dots */}
             <div className="flex justify-center gap-3 mt-4">
               {[0, 1, 2].map(i => (
