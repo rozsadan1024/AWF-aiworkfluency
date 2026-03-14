@@ -165,3 +165,64 @@ export interface UserProgress {
   level: 'novice' | 'learner' | 'practitioner' | 'proficient' | 'expert';
   updated_at: string;
 }
+
+// ---- Quick Pill ----
+export type QPTheme = 'prompt_craft' | 'ai_literacy' | 'workflow_hacks' | 'tool_spotlight' | 'critical_thinking' | 'ai_news';
+
+export interface QuickPill {
+  id: string;
+  theme: QPTheme;
+  title: string;
+  knowledge_text: string;
+  task_prompt: string;
+  task_type: 'rewrite' | 'classify' | 'generate' | 'analyze' | 'compare';
+  difficulty: 'easy' | 'medium';
+  estimated_minutes: number;
+  sort_order: number;
+  active: boolean;
+  created_at: string;
+  // Joined fields (optional)
+  completed?: boolean;
+  score?: number;
+}
+
+export interface QPSubmission {
+  id: string;
+  pill_id: string;
+  user_id: string;
+  answer_text: string;
+  submitted_at: string;
+}
+
+export interface QPEvaluation {
+  id: string;
+  submission_id: string;
+  user_id: string;
+  pill_id: string;
+  overall_score: number;
+  understanding_score: number;
+  application_score: number;
+  readiness_score: number;
+  understanding_feedback: string;
+  application_feedback: string;
+  readiness_feedback: string;
+  feedback_summary: string;
+  practical_tip: string;
+  evaluated_at: string;
+}
+
+export type QPLevel = 'curious' | 'explorer' | 'practitioner' | 'specialist' | 'sage';
+
+export interface QPUserProgress {
+  id: string;
+  user_id: string;
+  pills_completed: number;
+  average_score: number;
+  theme_scores: Record<string, number>;
+  streak_days: number;
+  longest_streak: number;
+  last_pill_at: string | null;
+  badges: string[];
+  level: QPLevel;
+  updated_at: string;
+}

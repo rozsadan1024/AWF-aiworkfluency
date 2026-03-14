@@ -406,6 +406,24 @@ export default function DashboardPage() {
           </div>
         )}
 
+        {/* Quick Pill Card */}
+        <div className="mb-8">
+          <Link href="/quick-pill" className="block bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-6 border border-indigo-100 hover:shadow-md transition group">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center">
+                  <Zap className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-900 text-lg">Quick Pill</h3>
+                  <p className="text-sm text-gray-600">5-minute micro-learning — learn one new AI skill today</p>
+                </div>
+              </div>
+              <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-indigo-600 transition" />
+            </div>
+          </Link>
+        </div>
+
         {/* Pending Tasks */}
         {pendingTasks.length > 0 && (
           <div className="mb-8">
