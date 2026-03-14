@@ -5,7 +5,7 @@ import { createClient } from '@/lib/supabase/client';
 import { QuickPill, QPEvaluation, QPTheme } from '@/types';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Pill, Loader2, Send, CheckCircle2, BookOpen, PenTool, Lightbulb, ArrowRight } from 'lucide-react';
+import { ArrowLeft, Pill, Loader2, Send, CheckCircle2, BookOpen, PenTool, Lightbulb, ArrowRight, Zap } from 'lucide-react';
 
 const THEME_COLORS: Record<QPTheme, { bg: string; text: string; accent: string }> = {
   prompt_craft: { bg: 'bg-purple-50', text: 'text-purple-700', accent: 'bg-purple-600' },
@@ -266,6 +266,30 @@ export default function PillDetailPage() {
                   <h3 className="font-semibold text-amber-800">Try This Tomorrow</h3>
                 </div>
                 <p className="text-sm text-amber-700">{evaluation.practical_tip}</p>
+              </div>
+            )}
+
+            {/* Expert solution */}
+            {pill.example_solution && (
+              <div className="bg-indigo-50 rounded-xl p-5 border border-indigo-200 mb-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <BookOpen className="w-5 h-5 text-indigo-600" />
+                  <h3 className="font-semibold text-indigo-800">Expert Solution</h3>
+                </div>
+                <div className="text-sm text-indigo-900 whitespace-pre-line leading-relaxed">
+                  {pill.example_solution}
+                </div>
+              </div>
+            )}
+
+            {/* Takeaway */}
+            {pill.takeaway && (
+              <div className="bg-gray-900 rounded-xl p-5 mb-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <Zap className="w-5 h-5 text-amber-400" />
+                  <h3 className="font-semibold text-white">Your Takeaway</h3>
+                </div>
+                <p className="text-gray-200 text-sm font-medium">{pill.takeaway}</p>
               </div>
             )}
 

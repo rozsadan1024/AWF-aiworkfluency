@@ -180,6 +180,8 @@ export interface QuickPill {
   estimated_minutes: number;
   sort_order: number;
   active: boolean;
+  example_solution: string | null;
+  takeaway: string | null;
   created_at: string;
   // Joined fields (optional)
   completed?: boolean;
