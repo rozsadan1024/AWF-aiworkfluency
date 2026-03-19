@@ -125,22 +125,23 @@ const copy = {
 
     // Pricing
     pricing_tag: 'Pricing',
-    pricing_h2: 'Choose Your Protection Level',
+    pricing_h2: 'Ongoing Compliance — Choose Your Level',
+    pricing_intro: 'Compliance maintenance works as a monthly subscription.',
     pricing_1_name: 'Starter — AI Literacy',
     pricing_1_desc: 'Recommended: if your only goal is quick Article 4 AI literacy compliance',
     pricing_1_price: 'HUF 8,000',
-    pricing_1_period: '/person',
+    pricing_1_period: '/person/month',
     pricing_1_features: [
       'EU AI Act Article 4 compliant training',
       'Role-appropriate AI literacy content',
       'Individual competency assessment',
       'AI literacy training completion record per employee',
     ],
-    pricing_1_cta: 'Start Now',
+    pricing_1_cta: 'Request a Quote',
     pricing_2_name: 'Professional — Full Protection',
     pricing_2_desc: 'Complete organizational compliance package with governance',
     pricing_2_price: 'HUF 16,000',
-    pricing_2_period: '/person',
+    pricing_2_period: '/person/month',
     pricing_2_features: [
       'Everything in Starter',
       'Documentation structured per AI Act requirements',
@@ -151,13 +152,9 @@ const copy = {
       'Audit-preparatory documentation package',
       'Dedicated compliance support',
     ],
-    pricing_2_cta: 'Get Started',
+    pricing_2_cta: 'Request a Quote',
     pricing_popular: 'Recommended',
-    pricing_explainer_title: 'Why ongoing — not one-time',
-    pricing_explainer_text: 'AI compliance isn\'t a checkbox you tick once. AI technology evolves weekly — new tools, new risks, new regulatory guidance. Your employees need to stay current. That\'s why AI Work Fluency provides personalized daily real-world tasks for every employee, and an AI coaching system that adapts to each person\'s role and progress. This isn\'t a generic course — it\'s a living compliance program.',
     pricing_note: 'Volume discounts for 100+ employees. Custom enterprise packages available.',
-    pricing_headcount_label: 'Team size',
-    pricing_total_label: 'Estimated total',
 
     // FAQ
     faq_tag: 'FAQ',
@@ -327,22 +324,23 @@ const copy = {
 
     // Pricing
     pricing_tag: 'Árak',
-    pricing_h2: 'Válassza ki a védelmi szintet',
+    pricing_h2: 'Folyamatos megfelelőség — válassza ki a szintet',
+    pricing_intro: 'A megfelelőség fenntartása havi előfizetéssel működik.',
     pricing_1_name: 'Alap csomag — AI Literacy',
     pricing_1_desc: 'Ajánlott: ha csak a 4. cikk gyors AI-literacy teljesítése a cél',
     pricing_1_price: '8 000 Ft',
-    pricing_1_period: '/fő',
+    pricing_1_period: '/fő/hó',
     pricing_1_features: [
       'EU AI Act 4. cikk szerinti képzés',
       'Szerepkörre szabott AI-jártassági tartalom',
       'Egyéni kompetenciafelmérés',
       'AI literacy képzés teljesítési igazolás munkatársanként',
     ],
-    pricing_1_cta: 'Kezdés most',
+    pricing_1_cta: 'Kérjen ajánlatot',
     pricing_2_name: 'Professional csomag — Teljes védelem',
     pricing_2_desc: 'Teljes szervezeti megfelelőségi csomag governance-szel',
     pricing_2_price: '16 000 Ft',
-    pricing_2_period: '/fő',
+    pricing_2_period: '/fő/hó',
     pricing_2_features: [
       'Minden, ami az Alap csomagban',
       'AI Act követelmények szerint strukturált dokumentáció',
@@ -353,13 +351,9 @@ const copy = {
       'Audit-felkészítő dokumentációs csomag',
       'Dedikált megfelelőségi támogatás',
     ],
-    pricing_2_cta: 'Indítás',
+    pricing_2_cta: 'Kérjen ajánlatot',
     pricing_popular: 'Ajánlott',
-    pricing_explainer_title: 'Miért folyamatos — nem egyszeri',
-    pricing_explainer_text: 'Az AI-megfelelőség nem egy pipa, amit egyszer bejelölsz. Az AI technológia hetente változik — új eszközök, új kockázatok, új szabályozói iránymutatások. A munkatársaknak naprakésznek kell maradniuk. Ezért az AI Work Fluency minden dolgozónak személyre szabott, napi valós feladatokat ad, és egy AI coaching rendszer igazodik mindenkinek a szerepköréhez és haladásához. Ez nem egy generikus tanfolyam — ez egy élő megfelelőségi program.',
     pricing_note: '100+ fő felett kedvezményes árazás. Egyedi enterprise csomagok elérhetők.',
-    pricing_headcount_label: 'Csapatméret',
-    pricing_total_label: 'Becsült összeg',
 
     // FAQ
     faq_tag: 'GYIK',
@@ -479,7 +473,7 @@ export default function EuComplianceLandingPageV3({ params }: { params: { locale
             <span className="bg-red-600 text-white text-[10px] sm:text-xs font-bold px-2.5 py-0.5 uppercase tracking-wider flex-shrink-0">
               {t.urgency_badge}
             </span>
-            <p className="text-white/80 text-xs sm:text-sm">{t.urgency_text}</p>
+            <p className="text-white/80 text-sm">{t.urgency_text}</p>
           </div>
         </div>
 
@@ -504,7 +498,7 @@ export default function EuComplianceLandingPageV3({ params }: { params: { locale
               </h1>
 
               {/* Sub */}
-              <p className="text-sm sm:text-lg text-white/70 mb-3 sm:mb-4 leading-relaxed max-w-2xl">
+              <p className="text-base sm:text-lg text-white/70 mb-3 sm:mb-4 leading-relaxed max-w-2xl">
                 {t.hero_sub} <strong className="text-white font-semibold">{t.hero_sub_bold}</strong>
               </p>
 
@@ -534,7 +528,7 @@ export default function EuComplianceLandingPageV3({ params }: { params: { locale
                 ].map((stat, i) => (
                   <div key={i}>
                     <div className="text-2xl sm:text-3xl font-bold text-white font-serif-heading">{stat.value}</div>
-                    <div className="text-xs sm:text-sm text-white/50 mt-1">{stat.label}</div>
+                    <div className="text-sm text-white/50 mt-1">{stat.label}</div>
                   </div>
                 ))}
               </div>
@@ -567,8 +561,8 @@ export default function EuComplianceLandingPageV3({ params }: { params: { locale
                     <span className="text-sm font-semibold text-[#00a9f4]">{card.size}</span>
                   </div>
                   <h3 className="font-serif-heading text-lg sm:text-xl text-[#051c2c] font-bold mb-3">{card.title}</h3>
-                  <p className="text-sm text-gray-500 leading-relaxed mb-4">{card.desc}</p>
-                  <span className="text-sm font-semibold text-[#00a9f4] inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                  <p className="text-base sm:text-sm text-gray-500 leading-relaxed mb-4">{card.desc}</p>
+                  <span className="text-base sm:text-sm font-semibold text-[#00a9f4] inline-flex items-center gap-1 group-hover:gap-2 transition-all">
                     {t.nav_contact}
                     <ArrowRight className="w-3.5 h-3.5" />
                   </span>
@@ -601,11 +595,11 @@ export default function EuComplianceLandingPageV3({ params }: { params: { locale
                   {/* Large faded number */}
                   <div className="absolute top-4 right-4 text-6xl sm:text-7xl font-bold text-gray-100 font-serif-heading select-none">{item.num}</div>
                   <div className="relative">
-                    <span className={`${item.tagColor} text-white text-[10px] font-bold px-2 py-0.5 uppercase tracking-wider inline-block mb-4`}>
+                    <span className={`${item.tagColor} text-white text-xs font-bold px-2 py-0.5 uppercase tracking-wider inline-block mb-4`}>
                       {item.tag}
                     </span>
                     <h3 className="font-serif-heading text-lg text-[#051c2c] font-bold mb-3">{item.title}</h3>
-                    <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
+                    <p className="text-base sm:text-sm text-gray-500 leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -639,7 +633,7 @@ export default function EuComplianceLandingPageV3({ params }: { params: { locale
                   <h3 className="font-semibold text-white text-lg mb-4">{card.title}</h3>
                   <ul className="space-y-3">
                     {card.items.map((item, j) => (
-                      <li key={j} className="flex items-start gap-2 text-sm text-white/60">
+                      <li key={j} className="flex items-start gap-2 text-base sm:text-sm text-white/60">
                         <CheckCircle className="w-4 h-4 text-white/30 flex-shrink-0 mt-0.5" />
                         {item}
                       </li>
@@ -676,9 +670,9 @@ export default function EuComplianceLandingPageV3({ params }: { params: { locale
                   <div className={`w-14 h-14 border-2 ${step.borderColor} flex items-center justify-center mx-auto sm:mx-0 mb-4 bg-[#f7f7f7] relative z-10`}>
                     <span className="text-[#051c2c] font-bold text-sm">{i + 1}</span>
                   </div>
-                  <div className="text-[10px] font-semibold uppercase tracking-wider text-[#051c2c]/40 mb-2">{step.week}</div>
-                  <h3 className="font-semibold text-[#051c2c] mb-2 text-sm">{step.title}</h3>
-                  <p className="text-sm text-gray-500 leading-relaxed">{step.desc}</p>
+                  <div className="text-xs font-semibold uppercase tracking-wider text-[#051c2c]/40 mb-2">{step.week}</div>
+                  <h3 className="font-semibold text-[#051c2c] mb-2 text-base sm:text-sm">{step.title}</h3>
+                  <p className="text-base sm:text-sm text-gray-500 leading-relaxed">{step.desc}</p>
                 </div>
               ))}
             </div>
@@ -699,7 +693,7 @@ export default function EuComplianceLandingPageV3({ params }: { params: { locale
               ].map((item, i) => (
                 <div key={i}>
                   <div className="text-xl sm:text-2xl font-bold text-white font-serif-heading">{item.value}</div>
-                  <div className="text-xs sm:text-sm text-white/70 mt-1">{item.label}</div>
+                  <div className="text-sm text-white/70 mt-1">{item.label}</div>
                 </div>
               ))}
             </div>
@@ -720,7 +714,7 @@ export default function EuComplianceLandingPageV3({ params }: { params: { locale
               <div>
                 <div className="text-5xl sm:text-7xl font-bold text-red-600 font-serif-heading mb-2">{t.risk_h2}</div>
                 <div className="text-lg sm:text-xl text-[#051c2c] font-semibold mb-4">{t.risk_sub}</div>
-                <p className="text-sm text-gray-500 leading-relaxed">{t.risk_desc}</p>
+                <p className="text-base sm:text-sm text-gray-500 leading-relaxed">{t.risk_desc}</p>
               </div>
               {/* Right: calculator */}
               <div>
@@ -740,16 +734,17 @@ export default function EuComplianceLandingPageV3({ params }: { params: { locale
                 <div className="w-10 h-[2px] bg-[#051c2c]" />
                 <span className="text-xs font-semibold tracking-[0.15em] uppercase text-[#051c2c]/50">{t.pricing_tag}</span>
               </div>
-              <h2 className="font-serif-heading text-2xl sm:text-4xl text-[#051c2c] font-bold">{t.pricing_h2}</h2>
+              <h2 className="font-serif-heading text-2xl sm:text-4xl text-[#051c2c] font-bold mb-3">{t.pricing_h2}</h2>
+              <p className="text-base text-gray-500">{t.pricing_intro}</p>
             </div>
             <div className="grid sm:grid-cols-2 gap-6">
               {/* Starter */}
-              <div className="bg-white border border-gray-200 p-8">
-                <div className="font-semibold text-base text-[#051c2c] mb-1">{t.pricing_1_name}</div>
-                <div className="text-sm text-gray-400 mb-5">{t.pricing_1_desc}</div>
+              <div className="bg-white border border-gray-200 p-6 sm:p-8 flex flex-col">
+                <div className="font-semibold text-base sm:text-lg text-[#051c2c] mb-1">{t.pricing_1_name}</div>
+                <div className="text-base sm:text-sm text-gray-400 mb-5">{t.pricing_1_desc}</div>
                 <div className="text-3xl font-bold text-[#051c2c] mb-1 font-serif-heading">{t.pricing_1_price}</div>
-                <div className="text-sm text-gray-400 mb-6">{t.pricing_1_period}</div>
-                <div className="space-y-3 text-sm mb-8">
+                <div className="text-base sm:text-sm text-gray-400 mb-6">{t.pricing_1_period}</div>
+                <div className="space-y-3 text-base sm:text-sm mb-8">
                   {t.pricing_1_features.map((f) => (
                     <div key={f} className="flex items-start gap-2 text-gray-600">
                       <CheckCircle className="w-4 h-4 text-[#00a9f4] flex-shrink-0 mt-0.5" />
@@ -757,21 +752,21 @@ export default function EuComplianceLandingPageV3({ params }: { params: { locale
                     </div>
                   ))}
                 </div>
-                <Link href={`/lp/eu-compliance/assessment/${locale}`} className="block w-full text-center border-2 border-[#051c2c] text-[#051c2c] hover:bg-[#051c2c] hover:text-white font-semibold py-3 transition-colors text-sm">
+                <a href="#kapcsolat" className="mt-auto block w-full text-center border-2 border-[#051c2c] text-[#051c2c] hover:bg-[#051c2c] hover:text-white font-semibold py-3 transition-colors text-base sm:text-sm">
                   {t.pricing_1_cta}
-                </Link>
+                </a>
               </div>
               {/* Professional */}
-              <div className="p-8 relative bg-white border border-gray-200">
+              <div className="p-6 sm:p-8 relative bg-white border border-gray-200 flex flex-col">
                 <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#00a9f4]" />
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="font-semibold text-base text-[#051c2c]">{t.pricing_2_name}</span>
-                  <span className="bg-[#051c2c] text-white text-[10px] font-semibold px-2 py-0.5 uppercase tracking-wider">{t.pricing_popular}</span>
+                  <span className="font-semibold text-base sm:text-lg text-[#051c2c]">{t.pricing_2_name}</span>
+                  <span className="bg-[#051c2c] text-white text-xs font-semibold px-2 py-0.5 uppercase tracking-wider">{t.pricing_popular}</span>
                 </div>
-                <div className="text-sm text-gray-400 mb-5">{t.pricing_2_desc}</div>
+                <div className="text-base sm:text-sm text-gray-400 mb-5">{t.pricing_2_desc}</div>
                 <div className="text-3xl font-bold text-[#051c2c] mb-1 font-serif-heading">{t.pricing_2_price}</div>
-                <div className="text-sm text-gray-400 mb-6">{t.pricing_2_period}</div>
-                <div className="space-y-3 text-sm mb-8">
+                <div className="text-base sm:text-sm text-gray-400 mb-6">{t.pricing_2_period}</div>
+                <div className="space-y-3 text-base sm:text-sm mb-8">
                   {t.pricing_2_features.map((f) => (
                     <div key={f} className="flex items-start gap-2 text-gray-600">
                       <CheckCircle className="w-4 h-4 text-[#00a9f4] flex-shrink-0 mt-0.5" />
@@ -779,17 +774,12 @@ export default function EuComplianceLandingPageV3({ params }: { params: { locale
                     </div>
                   ))}
                 </div>
-                <Link href={`/lp/eu-compliance/assessment/${locale}`} className="block w-full text-center bg-[#051c2c] hover:bg-[#0a3152] text-white font-semibold py-3 transition-colors text-sm">
+                <a href="#kapcsolat" className="mt-auto block w-full text-center bg-[#051c2c] hover:bg-[#0a3152] text-white font-semibold py-3 transition-colors text-base sm:text-sm">
                   {t.pricing_2_cta}
-                </Link>
+                </a>
               </div>
             </div>
-            {/* Explainer box */}
-            <div className="mt-10 bg-white border border-gray-200 p-6 sm:p-8">
-              <h3 className="font-serif-heading text-lg sm:text-xl text-[#051c2c] font-bold mb-3">{t.pricing_explainer_title}</h3>
-              <p className="text-sm text-gray-500 leading-relaxed">{t.pricing_explainer_text}</p>
-            </div>
-            <p className="text-center text-sm text-gray-400 mt-6">{t.pricing_note}</p>
+            <p className="text-center text-base sm:text-sm text-gray-400 mt-6">{t.pricing_note}</p>
           </div>
         </section>
 
@@ -822,12 +812,12 @@ export default function EuComplianceLandingPageV3({ params }: { params: { locale
               {/* KKV card */}
               <div className="bg-amber-500/10 border border-amber-500/20 p-6 sm:p-8">
                 <h3 className="font-serif-heading text-lg text-white font-bold mb-3">{t.cta_kkv_title}</h3>
-                <p className="text-sm text-white/60 mb-5">{t.cta_kkv_desc}</p>
-                <a href={`tel:${t.cta_kkv_phone.replace(/\s/g, '')}`} className="bg-amber-500 hover:bg-amber-600 text-white font-semibold text-sm py-3 px-6 inline-flex items-center gap-2 transition-colors mb-4">
+                <p className="text-base sm:text-sm text-white/60 mb-5">{t.cta_kkv_desc}</p>
+                <a href={`tel:${t.cta_kkv_phone.replace(/\s/g, '')}`} className="bg-amber-500 hover:bg-amber-600 text-white font-semibold text-base sm:text-sm py-3 px-6 inline-flex items-center gap-2 transition-colors mb-4">
                   <Phone className="w-4 h-4" />
                   {t.cta_kkv_cta}
                 </a>
-                <div className="text-sm text-white/40">
+                <div className="text-base sm:text-sm text-white/40">
                   <span className="text-white/60 font-semibold">{t.cta_kkv_phone}</span>
                   <br />
                   {t.cta_kkv_person}
@@ -836,12 +826,12 @@ export default function EuComplianceLandingPageV3({ params }: { params: { locale
               {/* Enterprise card */}
               <div className="bg-[#00a9f4]/10 border border-[#00a9f4]/20 p-6 sm:p-8">
                 <h3 className="font-serif-heading text-lg text-white font-bold mb-3">{t.cta_enterprise_title}</h3>
-                <p className="text-sm text-white/60 mb-5">{t.cta_enterprise_desc}</p>
-                <a href="/AiWorkFluencyPitch.pdf" target="_blank" rel="noopener noreferrer" className="bg-[#00a9f4] hover:bg-[#0090d0] text-white font-semibold text-sm py-3 px-6 inline-flex items-center gap-2 transition-colors mb-4">
+                <p className="text-base sm:text-sm text-white/60 mb-5">{t.cta_enterprise_desc}</p>
+                <a href="/AiWorkFluencyPitch.pdf" target="_blank" rel="noopener noreferrer" className="bg-[#00a9f4] hover:bg-[#0090d0] text-white font-semibold text-base sm:text-sm py-3 px-6 inline-flex items-center gap-2 transition-colors mb-4">
                   <Download className="w-4 h-4" />
                   {t.cta_enterprise_cta}
                 </a>
-                <div className="text-sm text-white/40">
+                <div className="text-base sm:text-sm text-white/40">
                   {t.cta_enterprise_email_label}
                   <br />
                   <a href={`mailto:${t.cta_enterprise_email}`} className="text-[#00a9f4] hover:underline">{t.cta_enterprise_email}</a>
@@ -884,7 +874,7 @@ export default function EuComplianceLandingPageV3({ params }: { params: { locale
               </div>
             </div>
             <div className="border-t border-white/10 pt-4">
-              <p className="text-[10px] text-white/25 leading-relaxed">{t.footer_legal}</p>
+              <p className="text-xs text-white/25 leading-relaxed">{t.footer_legal}</p>
             </div>
           </div>
         </footer>

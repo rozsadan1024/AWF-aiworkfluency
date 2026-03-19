@@ -21,7 +21,7 @@ function FaqEntry({ item }: { item: FaqItem }) {
         onClick={() => setOpen((v) => !v)}
         className="w-full flex items-start justify-between gap-4 p-5 text-left"
       >
-        <span className="text-sm font-bold text-[#051c2c] leading-snug">{item.q}</span>
+        <span className="text-base sm:text-sm font-bold text-[#051c2c] leading-snug">{item.q}</span>
         <span
           className="shrink-0 w-5 h-5 flex items-center justify-center text-[#051c2c] transition-transform duration-200"
           style={{ transform: open ? 'rotate(45deg)' : 'rotate(0deg)' }}
@@ -45,7 +45,7 @@ function FaqEntry({ item }: { item: FaqItem }) {
       >
         <div className="overflow-hidden">
           <div className="border-t border-gray-200 px-5 pb-5 pt-4">
-            <p className="text-sm leading-relaxed text-gray-500">{item.a}</p>
+            <p className="text-base sm:text-sm leading-relaxed text-gray-500">{item.a}</p>
           </div>
         </div>
       </div>

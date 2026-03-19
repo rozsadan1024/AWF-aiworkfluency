@@ -79,7 +79,7 @@ export default function CallbackForm({ locale }: CallbackFormProps) {
   }
 
   const inputClass =
-    'w-full bg-transparent border border-white/10 px-4 py-3 text-sm text-white placeholder:text-white/40 outline-none focus:border-[#00a9f4] transition-colors';
+    'w-full bg-transparent border border-white/10 px-4 py-3 text-base sm:text-sm text-white placeholder:text-white/40 outline-none focus:border-[#00a9f4] transition-colors';
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -146,7 +146,7 @@ export default function CallbackForm({ locale }: CallbackFormProps) {
       <button
         type="submit"
         disabled={status === 'sending'}
-        className="w-full bg-[#00a9f4] px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-50"
+        className="w-full bg-[#00a9f4] px-6 py-3 text-base sm:text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-50"
       >
         {status === 'sending' ? '...' : t.submit}
       </button>

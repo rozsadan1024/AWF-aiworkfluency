@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Shield, TrendingUp, ArrowRight, BarChart3, BookOpen, Users, LineChart, ChevronRight, CheckCircle, AlertTriangle, Globe, Briefcase, Target } from 'lucide-react';
+import { Shield, ArrowRight, BarChart3, BookOpen, Users, LineChart, ChevronRight, CheckCircle, AlertTriangle, Briefcase, Building2 } from 'lucide-react';
 import { getDictionary, locales, type Locale } from '@/lib/i18n/dictionaries';
 import { FaqAccordion } from '@/components/FaqAccordion';
 
@@ -18,8 +18,6 @@ export default function B2BHomePage({ params }: { params: { locale: string } }) 
     { question: t.faq_corp_4_q, answer: t.faq_corp_4_a },
     { question: t.faq_corp_5_q, answer: t.faq_corp_5_a },
     { question: t.faq_corp_6_q, answer: t.faq_corp_6_a },
-    { question: t.faq_corp_7_q, answer: t.faq_corp_7_a },
-    { question: t.faq_corp_8_q, answer: t.faq_corp_8_a },
   ];
 
   return (
@@ -32,7 +30,7 @@ export default function B2BHomePage({ params }: { params: { locale: string } }) 
             <span className="text-xl font-bold text-gray-900">{t.nav_brand}</span>
           </Link>
           <div className="hidden md:flex items-center gap-6 text-sm text-gray-600">
-            <a href="#companies" className="hover:text-brand-600 transition-colors">{t.nav_companies}</a>
+            <a href="#target" className="hover:text-brand-600 transition-colors">{t.nav_companies}</a>
             <a href="#how" className="hover:text-brand-600 transition-colors">{t.nav_how}</a>
             <a href="#pricing" className="hover:text-brand-600 transition-colors">{t.nav_pricing}</a>
             <Link href={`/${locale}`} className="hover:text-brand-600 transition-colors">{t.nav_individual}</Link>
@@ -83,14 +81,53 @@ export default function B2BHomePage({ params }: { params: { locale: string } }) 
         </div>
       </section>
 
-      {/* S2: Problem */}
+      {/* S2: Target Audience Selector */}
+      <section id="target" className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">{t.target_h2}</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-brand-50 rounded-xl p-8 border-2 border-brand-200 hover:border-brand-400 transition-colors">
+              <div className="w-14 h-14 mb-5 bg-brand-100 rounded-xl flex items-center justify-center">
+                <Briefcase className="w-7 h-7 text-brand-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">{t.target_small_title}</h3>
+              <p className="text-gray-600 leading-relaxed">{t.target_small_desc}</p>
+            </div>
+            <div className="bg-brand-50 rounded-xl p-8 border-2 border-brand-200 hover:border-brand-400 transition-colors">
+              <div className="w-14 h-14 mb-5 bg-brand-100 rounded-xl flex items-center justify-center">
+                <Building2 className="w-7 h-7 text-brand-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">{t.target_large_title}</h3>
+              <p className="text-gray-600 leading-relaxed">{t.target_large_desc}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* S3: Stakes */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm">
+              <div className="text-brand-600 font-bold text-lg mb-4">{t.stakes_small_h3}</div>
+              <p className="text-gray-600 leading-relaxed">{t.stakes_small_desc}</p>
+            </div>
+            <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm">
+              <div className="text-brand-600 font-bold text-lg mb-4">{t.stakes_large_h3}</div>
+              <p className="text-gray-600 leading-relaxed">{t.stakes_large_desc}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* S4: Problem */}
       <section className="py-20 bg-gray-900 text-white">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-3xl font-bold mb-12 text-center">{t.problem_h2}</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { title: t.problem_1_title, desc: t.problem_1_desc, icon: Users },
-              { title: t.problem_2_title, desc: t.problem_2_desc, icon: BookOpen },
+              { title: t.problem_1_title, desc: t.problem_1_desc, icon: BookOpen },
+              { title: t.problem_2_title, desc: t.problem_2_desc, icon: Users },
               { title: t.problem_3_title, desc: t.problem_3_desc, icon: LineChart },
             ].map((item) => (
               <div key={item.title} className="bg-gray-800 rounded-xl p-6">
@@ -105,7 +142,7 @@ export default function B2BHomePage({ params }: { params: { locale: string } }) 
         </div>
       </section>
 
-      {/* S3: How It's Different */}
+      {/* S5: Solution */}
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
@@ -134,36 +171,34 @@ export default function B2BHomePage({ params }: { params: { locale: string } }) 
         </div>
       </section>
 
-      {/* S4: Task Comparison */}
+      {/* S6: Case Studies */}
       <section className="py-20 bg-gradient-to-br from-brand-50 to-white">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">{t.examples_h2}</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">{t.examples_sub}</p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-6 mb-8">
-            {[
-              { role: t.examples_mm1_role, ctx: t.examples_mm1_context, task: t.examples_mm1_task },
-              { role: t.examples_mm2_role, ctx: t.examples_mm2_context, task: t.examples_mm2_task },
-              { role: t.examples_hr_role, ctx: t.examples_hr_context, task: t.examples_hr_task },
-              { role: t.examples_pm_role, ctx: t.examples_pm_context, task: t.examples_pm_task },
-              { role: t.examples_sl1_role, ctx: t.examples_sl1_context, task: t.examples_sl1_task },
-              { role: t.examples_sl2_role, ctx: t.examples_sl2_context, task: t.examples_sl2_task },
-            ].map((ex, i) => (
-              <div key={i} className="bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden">
-                <div className="text-sm font-semibold text-brand-600 px-5 pt-5 mb-1">{ex.role}</div>
-                <div className="text-xs text-gray-500 px-5 mb-3">{ex.ctx}</div>
-                <div className="mx-5 mb-5 bg-gray-50 p-4 rounded-lg border border-gray-200">
-                  <p className="text-sm text-gray-700 leading-relaxed italic">{ex.task}</p>
+        <div className="max-w-4xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">{t.cases_h2}</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-md">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-brand-100 rounded-lg flex items-center justify-center">
+                  <Briefcase className="w-5 h-5 text-brand-600" />
                 </div>
+                <h3 className="font-bold text-gray-900 text-lg">{t.case_small_title}</h3>
               </div>
-            ))}
+              <p className="text-gray-600 leading-relaxed">{t.case_small_desc}</p>
+            </div>
+            <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-md">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-brand-100 rounded-lg flex items-center justify-center">
+                  <Building2 className="w-5 h-5 text-brand-600" />
+                </div>
+                <h3 className="font-bold text-gray-900 text-lg">{t.case_large_title}</h3>
+              </div>
+              <p className="text-gray-600 leading-relaxed">{t.case_large_desc}</p>
+            </div>
           </div>
-          <p className="text-center text-lg font-semibold text-brand-600">{t.examples_tagline}</p>
         </div>
       </section>
 
-      {/* S5: Social Proof */}
+      {/* S7: Social Proof */}
       <section className="py-16 bg-gray-50 border-y border-gray-200">
         <div className="max-w-5xl mx-auto px-4">
           <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">{t.proof_h2}</h3>
@@ -183,79 +218,7 @@ export default function B2BHomePage({ params }: { params: { locale: string } }) 
         </div>
       </section>
 
-      {/* S6: Use Case Blocks */}
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">{t.usecase_h2}</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { title: t.usecase_1_title, desc: t.usecase_1_desc, icon: Users },
-              { title: t.usecase_2_title, desc: t.usecase_2_desc, icon: Target },
-              { title: t.usecase_3_title, desc: t.usecase_3_desc, icon: BarChart3 },
-            ].map((item) => (
-              <div key={item.title} className="bg-gray-50 rounded-xl p-6 border border-gray-200">
-                <div className="w-12 h-12 mb-4 bg-brand-100 rounded-lg flex items-center justify-center">
-                  <item.icon className="w-6 h-6 text-brand-600" />
-                </div>
-                <h3 className="font-bold text-gray-900 mb-3">{item.title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* S7: Why Companies Choose */}
-      <section id="companies" className="py-20 bg-gradient-to-br from-brand-50 to-white">
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">{t.companies_h2}</h2>
-          <div className="grid sm:grid-cols-2 gap-8">
-            {[
-              { title: t.companies_1_title, desc: t.companies_1_desc, icon: TrendingUp },
-              { title: t.companies_2_title, desc: t.companies_2_desc, icon: BarChart3 },
-              { title: t.companies_3_title, desc: t.companies_3_desc, icon: LineChart },
-              { title: t.companies_4_title, desc: t.companies_4_desc, icon: Shield },
-            ].map((item) => (
-              <div key={item.title} className="card flex gap-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-brand-100 rounded-lg flex items-center justify-center">
-                  <item.icon className="w-6 h-6 text-brand-600" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-gray-900 mb-2">{item.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* S8: Differentiation Table */}
-      <section className="py-20 bg-white">
-        <div className="max-w-3xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">{t.diff_table_h2}</h2>
-          <div className="overflow-hidden rounded-xl border border-gray-200">
-            <table className="w-full text-sm">
-              <thead>
-                <tr>
-                  <th className="bg-gray-100 text-gray-500 font-semibold py-3 px-5 text-left">{t.diff_table_col_generic}</th>
-                  <th className="bg-brand-600 text-white font-semibold py-3 px-5 text-left">{t.diff_table_col_awf}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {[1, 2, 3, 4, 5, 6].map((n) => (
-                  <tr key={n} className={n % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
-                    <td className="py-3 px-5 text-gray-500 border-t border-gray-100">{t[`diff_table_row_${n}_generic`]}</td>
-                    <td className="py-3 px-5 text-gray-900 font-medium border-t border-gray-100">{t[`diff_table_row_${n}_awf`]}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      {/* S9: EU AI Act */}
+      {/* S8: EU AI Act */}
       <section className="py-20 bg-amber-50 border-y border-amber-200">
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex items-start gap-4 mb-6">
@@ -280,7 +243,7 @@ export default function B2BHomePage({ params }: { params: { locale: string } }) 
         </div>
       </section>
 
-      {/* S10: How It Works */}
+      {/* S9: How It Works */}
       <section id="how" className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">{t.how_h2}</h2>
@@ -311,70 +274,32 @@ export default function B2BHomePage({ params }: { params: { locale: string } }) 
         </div>
       </section>
 
-      {/* S11: Implementation Ease */}
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">{t.impl_h2}</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { title: t.impl_1_title, desc: t.impl_1_desc, icon: Globe },
-              { title: t.impl_2_title, desc: t.impl_2_desc, icon: Users },
-              { title: t.impl_3_title, desc: t.impl_3_desc, icon: BarChart3 },
-            ].map((item) => (
-              <div key={item.title} className="text-center">
-                <div className="w-14 h-14 mx-auto mb-4 bg-brand-100 rounded-xl flex items-center justify-center">
-                  <item.icon className="w-7 h-7 text-brand-600" />
-                </div>
-                <h3 className="font-bold text-gray-900 mb-2">{item.title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* S12: ROI Justification */}
-      <section className="py-16 bg-green-50 border-y border-green-200">
-        <div className="max-w-3xl mx-auto px-4 text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">{t.roi_block_h2}</h2>
-          <p className="text-gray-700 leading-relaxed mb-6">{t.roi_block_desc}</p>
-          <Link href="/roi-kalkulator" className="text-brand-600 hover:text-brand-700 font-semibold inline-flex items-center gap-1 transition-colors">
-            {t.roi_block_link}
-          </Link>
-        </div>
-      </section>
-
-      {/* S13: Pricing */}
+      {/* S10: Pricing */}
       <section id="pricing" className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">{t.pricing_h2}</h2>
-          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8">
-            <div className="card text-center border-2 border-gray-200">
-              <div className="font-bold text-lg text-gray-900 mb-1">{t.pricing_starter}</div>
-              <div className="text-sm text-gray-500 mb-4">{t.pricing_starter_seats}</div>
-              <div className="text-3xl font-extrabold text-gray-900 mb-1">{locale === 'hu' ? '7 500 Ft' : '€19'}<span className="text-sm font-normal text-gray-500">{t.pricing_per_seat}</span></div>
-              <Link href={`/assessment${locale === 'hu' ? '?lang=hu' : ''}`} className="btn-secondary w-full mt-4 text-sm py-2">{t.pricing_cta}</Link>
-            </div>
+          <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto mb-8">
             <div className="card text-center border-2 border-brand-500 shadow-lg relative">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-600 text-white text-xs font-bold px-3 py-1 rounded-full">{t.pricing_popular}</div>
-              <div className="font-bold text-lg text-gray-900 mb-1">{t.pricing_growth}</div>
+              <div className="font-bold text-xl text-gray-900 mb-1">{t.pricing_growth}</div>
               <div className="text-sm text-gray-500 mb-4">{t.pricing_growth_seats}</div>
-              <div className="text-3xl font-extrabold text-brand-600 mb-1">{locale === 'hu' ? '9 900 Ft' : '€26'}<span className="text-sm font-normal text-gray-500">{t.pricing_per_seat}</span></div>
-              <Link href={`/assessment${locale === 'hu' ? '?lang=hu' : ''}`} className="btn-primary w-full mt-4 text-sm py-2">{t.pricing_cta}</Link>
+              <div className="text-3xl font-extrabold text-brand-600 mb-1">{locale === 'hu' ? '7 500 Ft' : '€19'}<span className="text-sm font-normal text-gray-500">{t.pricing_per_seat}</span></div>
+              <p className="text-xs text-gray-500 mt-3 mb-4">{t.pricing_growth_includes}</p>
+              <Link href={`/assessment${locale === 'hu' ? '?lang=hu' : ''}`} className="btn-primary w-full mt-2 text-sm py-2">{t.pricing_cta}</Link>
             </div>
             <div className="card text-center border-2 border-gray-200">
-              <div className="font-bold text-lg text-gray-900 mb-1">{t.pricing_enterprise}</div>
-              <div className="text-sm text-gray-500 mb-4">{t.pricing_enterprise_seats}</div>
-              <div className="text-3xl font-extrabold text-gray-900 mb-1">{t.pricing_custom}</div>
-              <a href="mailto:hello@aiworkfluency.com" className="btn-secondary w-full mt-4 text-sm py-2">{t.hero_cta_demo}</a>
+              <div className="font-bold text-xl text-gray-900 mb-1">{t.pricing_scale}</div>
+              <div className="text-sm text-gray-500 mb-4">{t.pricing_scale_seats}</div>
+              <div className="text-3xl font-extrabold text-gray-900 mb-1">{locale === 'hu' ? '9 900 Ft' : '€26'}<span className="text-sm font-normal text-gray-500">{t.pricing_per_seat}</span></div>
+              <p className="text-xs text-gray-500 mt-3 mb-4">{t.pricing_scale_includes}</p>
+              <a href="mailto:hello@aiworkfluency.com" className="btn-secondary w-full mt-2 text-sm py-2">{t.hero_cta_demo}</a>
             </div>
           </div>
           <p className="text-center text-sm text-gray-500">{t.pricing_annual}</p>
-          <p className="text-center text-sm text-gray-500 mt-2">{t.pricing_includes}</p>
         </div>
       </section>
 
-      {/* S14: FAQ */}
+      {/* S11: FAQ */}
       <section id="faq" className="py-20 bg-gray-50">
         <div className="max-w-3xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">{t.faq_corp_h2}</h2>
@@ -382,7 +307,7 @@ export default function B2BHomePage({ params }: { params: { locale: string } }) 
         </div>
       </section>
 
-      {/* S15: Final CTA */}
+      {/* S12: Final CTA */}
       <section className="py-20 bg-brand-600">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8 leading-tight">{t.cta_h2}</h2>
@@ -396,14 +321,14 @@ export default function B2BHomePage({ params }: { params: { locale: string } }) 
         </div>
       </section>
 
-      {/* S16: Footer */}
+      {/* S13: Footer */}
       <footer className="bg-gray-900 text-gray-400 py-16">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-8 mb-12">
             <div>
               <div className="text-white font-semibold mb-4">{t.footer_product}</div>
               <ul className="space-y-2 text-sm">
-                <li><a href="#companies" className="hover:text-white transition-colors">{t.nav_companies}</a></li>
+                <li><a href="#target" className="hover:text-white transition-colors">{t.nav_companies}</a></li>
                 <li><a href="#how" className="hover:text-white transition-colors">{t.nav_how}</a></li>
                 <li><a href="#pricing" className="hover:text-white transition-colors">{t.nav_pricing}</a></li>
                 <li><Link href={`/${locale}`} className="hover:text-white transition-colors">{t.nav_individual}</Link></li>
